@@ -1,26 +1,45 @@
 = Istio-Envoy Objects Relationship
 
-[#istio]
-== Virtual Services
+== Review Red Hat Service Mesh objects
 
-:podname: back-golang-v1-7fb9ff7bdc-mwp8b
+When a new Service Mesh object is created in a specific namespace, a set of configurations blocks are added to Envoy proxies in order to be able to apply these rules in the mesh traffic flow.
 
-include::partial$envoy_config.adoc[]
+In this step, you will review how these objects affect Envoy proxies getting their configuration from Envoy itself.
 
-== Destination Rules
+NOTE: Please, replace *<user_namespace>* and *<pod_id>* with the values provided by the Instructor at the beginning of this tutorial or values obtained from openshift cluster.
 
-:podname: back-golang-v1-7fb9ff7bdc-mwp8b
+[#vsvc]
+=== Virtual Services
 
-include::partial$envoy_config.adoc[]
+:name: Virtual Service
+:object_file: virtualservices-additional.yml
+:object: virtual-service
 
-== Service Entry
+include::partial$relationship_step.adoc[]
 
-:podname: back-golang-v1-7fb9ff7bdc-mwp8b
+[#dr]
+=== Destination Rules
 
-include::partial$envoy_config.adoc[]
+:name: Destination Rule
+:object_file: destinationrules-additional.yml
+:object: destination-rule
 
-== Envoy Filters
+include::partial$relationship_step.adoc[]
 
-:podname: back-golang-v1-7fb9ff7bdc-mwp8b
+[#se]
+=== Service Entry
 
-include::partial$envoy_config.adoc[]
+:name: Service Entry
+:object_file: serviceentries-additional.yml
+:object: service-entry
+
+include::partial$relationship_step.adoc[]
+
+[#ef]
+=== Envoy Filters
+
+:name: Envoy Filters
+:object_file: envoyfilters-additional.yml
+:object: envoy-filter
+
+include::partial$relationship_step.adoc[]

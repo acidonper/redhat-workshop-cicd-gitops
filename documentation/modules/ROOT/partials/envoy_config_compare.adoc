@@ -1,0 +1,5 @@
+[.console-input]
+[source, java,subs="+macros,+attributes"]
+----
+diff {podname}-{file1} {podname}-{file2}
+----

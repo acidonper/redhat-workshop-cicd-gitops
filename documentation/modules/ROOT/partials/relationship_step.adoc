@@ -1,0 +1,28 @@
+Before applying changes, please save the original Envoy proxy configuration following next steps:
+
+:podname: back-golang-v1-<pod_id>
+:file: {object}-orig.json
+
+include::partial$envoy_config.adoc[]
+
+It is time to added a new _{name}_ in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:
+
+[source,yaml,subs="+macros,+attributes"]
+----
+include::example${object_file}[]
+----
+
+Once this new _{name}_ has been created, save the custom Envoy proxy configuration following next steps:
+
+:podname: back-golang-v1-<pod_id>
+:file: {object}-custom.json
+
+include::partial$envoy_config.adoc[]
+
+Finally, compare both files differences and draw a definitive conclusion:
+
+:podname: back-golang-v1-<pod_id>
+:file1: {object}-orig.json
+:file2: {object}-custom.json
+
+include::partial$envoy_config_compare.adoc[]
