@@ -1,29 +1,25 @@
 = Setup
 include::_attributes.adoc[]
 
-[#prerequisite]
-== Prerequisite CLI tools
+[#prerequisites]
+== Prerequisites
 
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/prerequisites-kubernetes.adoc[]
-|===
+The following CLI tools are necessary for running the exercises in this tutorial.
 
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/optional-requisites.adoc[]
-|===
+include::partial$requirements.adoc[]
 
-[#minikube]
-== Setup Kubernetes
+[#laboratory]
+== Laboratory
 
-:profile: my_profile
+Tutorial's laboratory is based on a set of technologies and resources which will allow you to understand what Red Hat Service Mesh, Istio Control Plane and Envoy roles are:
 
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/kubernetes-setup.adoc[]
+- Red Hat Openshift Container Platform
+- Red Hat Service Mesh
+- A GitHub Repositories
 
-And then you are ready for start using Kubernetes:
+include::partial$access_lab.adoc[]
 
-image::kubelogo.png[]
+NOTE: _Red Hat Online Partner Enablement Network_ is the laboratory platform which allows running this tutorial. 
 
-[#downloadtutorial]
-== Get tutorial sources
 
-:tutorial-url: https://github.com/redhat-developer-demos/rhd-tutorial-common.git
-:folder: my_folder
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/download-sources.adoc[]
+

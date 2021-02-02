@@ -1,7 +1,25 @@
 * xref:01-setup.adoc[1. Setup]
-** xref:01-setup.adoc#prerequisite[Prerequisites]
-** xref:01-setup.adoc#minikube[Setup Minikube]
+** xref:01-setup.adoc#prerequisites[1.1 Prerequisites]
+** xref:01-setup.adoc#laboratory[1.2 Laboratory]
 
-* xref:02-deploy.adoc[2. Deploy Service]
-** xref:02-deploy.adoc#package[Build Service]
-** xref:02-deploy.adoc#deploy[Deploy Dervice]
+* xref:02-jumpapp.adoc[2. Jump App Deployment]
+** xref:02-jumpapp.adoc#login[2.1 Login in Openshift]
+** xref:02-jumpapp.adoc#github[2.2 Clone GitHub Repository]
+** xref:02-jumpapp.adoc#jumpappobjects[2.3 Create Jump App Objects in Openshift by Helm]
+** xref:02-jumpapp.adoc#test[2.4 Confirm Jump App is already running in Openshift]
+
+* xref:03-flows.adoc[3. Service Mesh Communication Flows]
+** xref:03-flows.adoc#gw[3.1 Gateways]
+** xref:03-flows.adoc#vsvc[3.2 Virtual Services]
+** xref:03-flows.adoc#dr[3.3 Destination Rules]
+** xref:03-flows.adoc#annotation[3.4 Add Istio Sidecar annotation in Jump App deployments]
+** xref:03-flows.adoc#routes[3.5 Configure Routes]
+** xref:03-flows.adoc#test[3.6 Confirm Jump App is running again]
+
+* xref:04-relationship.adoc[4. Istio-Envoy Objects Relationship]
+
+* xref:05-envoy.adoc[5. Envoy Proxy]
+
+* xref:06-crtlplane.adoc[6. Istio Control Plane]
+
+* xref:07-services.adoc[7. Istio Global Services]

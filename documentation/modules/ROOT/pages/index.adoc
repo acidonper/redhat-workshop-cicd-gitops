@@ -1,20 +1,64 @@
-= Welcome to Template Tutorial
+= Welcome to Red Hat Service Mesh: Envoy & Istio Control Plane
 :page-layout: home
 :!sectids:
 
 [.text-center.strong]
-== Publish Services to Kubernetes
+== Introduction
 
-A Kubernetes tutorial to show how you can deploy a Java service to a Kubernetes cluster as it was a child game.
+The general idea of _Red Hat Service Mesh: Envoy & Istio Control Plane_ tutorial is to get a deeply understanding of the following points:
 
-[.tiles.browse]
-== Browse modules
+- Service Mesh Communication Flows
+- Istio-Envoy Objects Relationship
+- Envoy Proxy
+- Istio Control Plane Objects
+- Istio Global Services
 
-[.tile]
-.xref:01-setup.adoc[Get Started]
-* xref:01-setup.adoc#minikube[Minikube]
+[.text-center.strong]
+== Get Started
 
-[.tile]
-.xref:02-deploy.adoc[Deploying]
-* xref:02-deploy.adoc#package[Package the Application]
-* xref:02-deploy.adoc#deploy[Deploy the Application]
+First at all, it is required to review your local machine prerequisites and laboratory environment access in order to be able to start working on this tutorial.
+
+Please, follow xref:01-setup.adoc[Get Started] for more information.
+
+
+[.text-center.strong]
+== Tutorial Steps
+
+=== Deploy Jump App
+
+In this step, you will deploy a demo application in Openshift in order to have a testing environment which supports the next tutorial exercises. 
+
+xref:02-jumpapp.adoc[Start this exercise...]
+
+
+=== Service Mesh Communication Flows
+
+In this step, you will review how Service Mesh objects are created and allow the different communication flows in Service Mesh in a specific namespace.
+
+xref:03-flows.adoc[Start this exercise...]
+
+
+=== Istio-Envoy Objects Relationship
+
+In this step, you will go through Service Mesh objects definition and their effect at Envoy level.
+
+xref:04-relationship.adoc[Start this exercise...]
+
+=== Envoy Proxy
+
+hola
+
+xref:05-envoy.adoc[Start this exercise...]
+
+=== Istio Control Plane
+
+hola
+
+xref:06-crtlplane.adoc[Start this exercise...]
+
+
+=== Istio Global Services
+
+hola
+
+xref:07-services.adoc[Start this exercise...]

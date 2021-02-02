@@ -1,0 +1,26 @@
+= Istio-Envoy Objects Relationship
+
+[#istio]
+== Virtual Services
+
+:podname: back-golang-v1-7fb9ff7bdc-mwp8b
+
+include::partial$envoy_config.adoc[]
+
+== Destination Rules
+
+:podname: back-golang-v1-7fb9ff7bdc-mwp8b
+
+include::partial$envoy_config.adoc[]
+
+== Service Entry
+
+:podname: back-golang-v1-7fb9ff7bdc-mwp8b
+
+include::partial$envoy_config.adoc[]
+
+== Envoy Filters
+
+:podname: back-golang-v1-7fb9ff7bdc-mwp8b
+
+include::partial$envoy_config.adoc[]

@@ -1,0 +1,76 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: back-golang
+spec:
+  gateways:
+  - back-golang
+  - mesh
+  hosts:
+  - back-golang-<user_namespace>.<openshift_apps_domain>
+  - back-golang.<user_namespace>.svc.cluster.local
+  - back-golang
+  http:
+  - route:
+      - destination:
+          host: back-golang.<user_namespace>.svc.cluster.local
+          subset: v1
+        weight: 100
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: back-python
+spec:
+  gateways:
+  - back-python
+  - mesh
+  hosts:
+  - back-python-<user_namespace>.<openshift_apps_domain>
+  - back-python.<user_namespace>.svc.cluster.local
+  - back-python
+  http:
+  - route:
+      - destination:
+          host: back-python.<user_namespace>.svc.cluster.local
+          subset: v1
+        weight: 100
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: back-springboot
+spec:
+  gateways:
+  - back-springboot
+  - mesh
+  hosts:
+  - back-springboot-<user_namespace>.<openshift_apps_domain>
+  - back-springboot.<user_namespace>.svc.cluster.local
+  - back-springboot
+  http:
+  - route:
+      - destination:
+          host: back-springboot.<user_namespace>.svc.cluster.local
+          subset: v1
+        weight: 100
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: front-javascript
+spec:
+  gateways:
+  - front-javascript
+  - mesh
+  hosts:
+  - front-javascript-<user_namespace>.<openshift_apps_domain>
+  - front-javascript.<user_namespace>.svc.cluster.local
+  - front-javascript
+  http:
+  - route:
+      - destination:
+          host: front-javascript.<user_namespace>.svc.cluster.local
+          subset: v1
+        weight: 100

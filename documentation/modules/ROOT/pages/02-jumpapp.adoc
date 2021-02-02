@@ -1,0 +1,56 @@
+= Deploy Jump App
+
+== Deploy _Jump App_ Microservices
+
+_Jump App_ is a microservice-based application created to emulate an enterprise application complex architecture with multi environments. This app allows users to configure a set of jumps between components and generate a continuous traffic flow defining the number of retries and their span of time.
+
+First at all, it is required to deploy Jump App application in Openshift in order to have the demo application environment ready. The following steps in this section helps you to deploy _Jump App_.
+
+[#login]
+=== Login in Openshift
+
+include::partial$oc_login.adoc[]
+
+[#github]
+=== Clone GitHub Repository
+
+include::partial$clone_helm_repo.adoc[]
+
+[#jumpappobjects]
+=== Create _Jump App_ Objects in Openshift by Helm
+
+[.lines_7]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+oc project <user_namespace>
+helm template ./charts/jump-app-micros -f examples/local/values-jump-app-dev.yaml --namespace <user_namespace> | oc apply -f - -n <user_namespace>
+----
+
+[.console-output]
+[source,output,subs="+macros,+attributes"]
+----
+rolebinding.rbac.authorization.k8s.io/tekton-deployments-admin created
+service/back-golang created
+service/back-python created
+service/back-springboot created
+service/front-javascript created
+deployment.apps/back-golang-v1 created
+deployment.apps/back-python-v1 created
+deployment.apps/back-springboot-v1 created
+deployment.apps/front-javascript-v1 created
+secret/mongo created
+service/mongo created
+deployment.apps/mongo created
+route.route.openshift.io/back-golang-v1 created 
+route.route.openshift.io/back-golang created 
+route.route.openshift.io/back-javascript-v1 created
+route.route.openshift.io/back-javascript created
+----
+
+[#test]
+=== Confirm _Jump App_ is already running in Openshift
+
+Once _Jump App_ objects have been created in Openshift, it is required to follow next steps in order to ensure your demo app is running properly:
+
+include::partial$check_jumpapp.adoc[]

@@ -1,0 +1,168 @@
+= Service Mesh Communication Flows
+
+IMPORTANT: Let your instructor know that you are at this point
+
+== Create Red Hat Service Mesh objects
+
+In order to make an application available through Service Mesh, it is required to create a set of Service Mesh objects:
+
+- Gateways - Describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.
+- Virtual Services - Defines a set of traffic routing rules to apply when a host is addressed.
+- Destination Rules - Defines policies that apply to traffic intended for a service after routing has occurred.
+
+In this step, you have to be able to deploy this _Jump App_ service mesh objects in order to introduce this application in the Service Mesh and publish it to external clients.
+
+[#gw]
+=== Gateways
+
+First at all, it is required to create a Gateway for external access. In the _Jump App_ architecture, you have a couple of services which have to be exposes to external clients in order to present the Frontend and Backend services.
+
+Please, create a new file named *gateways.yml* with the following content replacing *<user_namespace>* and *<openshift_apps_domain>* with the values provided by the Instructor at the beginning of this tutorial.
+
+[source,yaml,subs="+macros,+attributes"]
+----
+include::example$gateways.yml[]
+----
+
+:file: gateways.yml
+
+include::partial$oc_apply.adoc[]
+
+[.console-output]
+[source,output,subs="+macros,+attributes"]
+----
+gateway.networking.istio.io/back-golang created
+gateway.networking.istio.io/front-javascript created
+----
+
+[#vsvc]
+=== Virtual Services
+
+Once gateways are created and the application is reacheabled, it is time to create the traffic rules inside your namespace in order to route this traffic to the specific endpoint.
+
+Please, create a new file named *virtualservices.yml* with the following content replacing *<user_namespace>* and *<openshift_apps_domain>* with the values provided by the Instructor at the beginning of this tutorial.
+
+[source,yaml,subs="+macros,+attributes"]
+----
+include::example$virtualservices.yml[]
+----
+
+:file: virtualservices.yml
+
+include::partial$oc_apply.adoc[]
+
+[.console-output]
+[source,output,subs="+macros,+attributes"]
+----
+virtualservice.networking.istio.io/back-golang created
+virtualservice.networking.istio.io/back-python created
+virtualservice.networking.istio.io/back-springboot created
+virtualservice.networking.istio.io/front-javascript created
+----
+
+[#dr]
+=== Destination Rules
+
+Once previous objects are created, it is required  to define the policies which will be applied to traffic intended for a service after routing has occurred.
+
+Please, create a new file named *destinationrules.yml* with the following content replacing *<user_namespace>* with the value provided by the Instructor at the beginning of this tutorial.
+
+[source,yaml,subs="+macros,+attributes"]
+----
+include::example$destinationrules.yml[]
+----
+
+:file: destinationrules.yml
+
+include::partial$oc_apply.adoc[]
+
+[.console-output]
+[source,output,subs="+macros,+attributes"]
+----
+virtualservice.networking.istio.io/back-golang created
+virtualservice.networking.istio.io/back-python created
+virtualservice.networking.istio.io/back-springboot created
+virtualservice.networking.istio.io/front-javascript created
+----
+
+[#annotation]
+=== Add _Istio Sidecar_ annotation in _Jump App_ deployments 
+
+Finally, it is time to include a specific annotation in your app deployments in order to be Service Mesh will able to run envoy sidecar automatically.
+
+Please, edit each _Jump App Microservice_ deployment including the annotation added below:
+
+[source,output,subs="+macros,+attributes"]
+----
+...
+spec:
+...
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+...
+----
+
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+oc edit deployment front-javascript-v1 -n <user_namespace>
+oc edit deployment back-springboot-v1 -n <user_namespace>
+oc edit deployment back-python-v1 -n <user_namespace>
+oc edit deployment back-golang-v1 -n <user_namespace>
+oc edit deployment mongodb -n <user_namespace>
+----
+
+[#routes]
+=== Configure Routes
+
+An OpenShift Container Platform *route* exposes a service at a host name, such as www.example.com, so that external clients can reach it by name. When you manage routes outside Service Mesh, it is required to create these objects in each namespace.
+
+Once you have a project integrated in Service Mesh, routes should be created in istio-system in order to making this external service available through the Istio Ingress Gateway. For this reason, it is required to follow next steps:
+
+==== *Delete all current routes in <user_namespace>*
+
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+oc get routes -n <user_namespace> | grep -v NAME | awk '{print "oc delete route " $1}' | sh
+----
+
+[.console-output]
+[source,output,subs="+macros,+attributes"]
+----
+route.route.openshift.io/back-golang-v1 deleted 
+route.route.openshift.io/back-golang deleted 
+route.route.openshift.io/back-javascript-v1 deleted
+route.route.openshift.io/back-javascript deleted
+----
+
+==== *Create a new routes in istio-system*
+
+Please, create a new file named *routes.yml* with the following content replacing *<user_namespace>* and *<openshift_apps_domain>* with the values provided by the Instructor at the beginning of this tutorial.
+
+[source,yaml,subs="+macros,+attributes"]
+----
+include::example$routes.yml[]
+----
+
+:file: routes.yml
+
+include::partial$oc_apply.adoc[]
+
+[.console-output]
+[source,output,subs="+macros,+attributes"]
+----
+route.route.openshift.io/back-golang-jump-app-dev created
+route.route.openshift.io/front-javascript-jump-app-dev created
+----
+
+[#test]
+=== Confirm _Jump App_ is running again
+
+Once _Jump App_ objects have been created in Openshift, it is required to follow next steps in order to ensure your demo app is running properly:
+
+NOTE: Look at the number of containers in each microservice, it must contains 2 container per each pod (*READY 2/2*). 
+
+include::partial$check_jumpapp_mesh.adoc[]

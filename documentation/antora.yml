@@ -1,5 +1,5 @@
-name: template-tutorial
-title: Template Tutorial
+name: rh-servicemesh-envoy-crtplane
+title: Red Hat Service Mesh - Envoy & Istio Control Plane
 version: master
 nav:
   - modules/ROOT/nav.adoc

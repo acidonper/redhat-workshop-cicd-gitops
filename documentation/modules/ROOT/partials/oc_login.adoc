@@ -1,0 +1,16 @@
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc login -u <user> -p <pass> <ocp_cluster_url>
+----
+
+[.console-output]
+[source,output,subs="+macros,+attributes"]
+----
+Login successful.
+
+You have access to 65 projects, the list has been suppressed. You can list all projects with 'oc projects'
+
+Using project "default".
+----

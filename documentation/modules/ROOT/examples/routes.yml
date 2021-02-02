@@ -1,0 +1,32 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: back-golang-jump-app-dev
+  namespace: istio-system
+spec:
+  host: back-golang-<user_namespace>.<openshift_apps_domain>
+  to:
+    kind: Service
+    name: istio-ingressgateway
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  port:
+    targetPort: http2
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: front-javascript-jump-app-dev
+  namespace: istio-system
+spec:
+  host: front-javascript-<user_namespace>.<openshift_apps_domain>
+  to:
+    kind: Service
+    name: istio-ingressgateway
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  port:
+    targetPort: http2

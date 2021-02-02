@@ -1,0 +1,17 @@
+
+[cols="4*^,4*.",options="header,+attributes"]
+|===
+|**Tool**|**Fedora**|**macOS**|**windows**
+| oc
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz[Download]
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-mac.tar.gz[Download]
+| https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-windows.zip[Download]
+| git
+| https://git-scm.com/download/linux[Download]
+| https://git-scm.com/download/mac[Download]
+| https://git-scm.com/download/win[Download]
+| helm
+| https://get.helm.sh/helm-v3.5.1-linux-amd64.tar.gz[Download]
+| https://get.helm.sh/helm-v3.5.1-darwin-amd64.tar.gz[Download]
+| https://get.helm.sh/helm-v3.5.1-windows-amd64.zip[Download]
+|===
