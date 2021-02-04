@@ -6,9 +6,10 @@ Instructor provides students Openshift credentials at the beginning of this tuto
 - Password (E.g. _password_)
 - Namespace (E.g. _ns_user1_)
 - Openshift Apps Domain (E.g. _apps.acidonpe.sandbox507.opentlc.com_)
+- Kiali Url (E.g. _https://kiali-istio-system.apps.acidonpe.sandbox507.opentlc.com_)
 
 Please, review the previous settings with your instructor and connect to the cluster executing next command:
 
 include::partial$oc_login.adoc[]
 
-In addition, access to <ocp_cluster_url> via browser in order to access Openshift Console.
+In addition, access to <ocp_cluster_url> with your credentials via browser in order to access Openshift Console.

@@ -5,12 +5,18 @@ Before applying changes, please save the original Envoy proxy configuration foll
 
 include::partial$envoy_config.adoc[]
 
-It is time to added a new _{name}_ in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:
+- It is time to added a new _{name}_ in order to see how it is implemented in Envoy proxy configuration through the respective configuration blocks:
 
 [source,yaml,subs="+macros,+attributes"]
 ----
 include::example${object_file}[]
 ----
+
+Apply this object through _oc_client:
+
+:file: {object}-orig.json
+
+include::partial$oc_apply.adoc[]
 
 Once this new _{name}_ has been created, save the custom Envoy proxy configuration following next steps:
 

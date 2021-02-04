@@ -20,23 +20,13 @@ front-javascript-v1-7b6d4fb65c-9fdfb   1/1     Running   0          1m
 mongo-7c8f67cc4b-t9dnf                 1/1     Running   0          1m
 ----
 
-- Obtain external services URLs
+- Connect to a pod
 
 [.lines_7]
 [.console-input]
 [source, java,subs="+macros,+attributes"]
 ----
-oc get routes -n <user_namespace>
-----
-
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-back-golang           back-golang-<user_namespace>.<openshift_apps_domain>          <user_namespace>   http2   edge/Redirect        None
-back-golang-v1        back-golang-v1-<user_namespace>.<openshift_apps_domain>       <user_namespace>   http2   edge/Redirect        None
-back-golang-v2        back-golang-v1-<user_namespace>.<openshift_apps_domain>       <user_namespace>   http2   edge/Redirect        None
-front-javascript      front-javascript-<user_namespace>.<openshift_apps_domain>     <user_namespace>   http2   edge/Redirect        None
-front-javascript-v1   front-javascript-v1-<user_namespace>.<openshift_apps_domain>  <user_namespace>   http2   edge/Redirect        None
+oc rsh back-springboot-v1-74db6bb8b4-pw74s -n <user_namespace>
 ----
 
 - Visit the *back*, _back-golang_, route via your web browser

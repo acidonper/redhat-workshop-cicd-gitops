@@ -46,7 +46,7 @@ xref:04-relationship.adoc[Start this exercise...]
 
 === Envoy Proxy
 
-hola
+In this step, you will play with Service Mesh _envoy filters_ and see the results.
 
 xref:05-envoy.adoc[Start this exercise...]
 

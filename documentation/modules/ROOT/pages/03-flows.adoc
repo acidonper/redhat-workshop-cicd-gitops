@@ -165,4 +165,7 @@ Once _Jump App_ objects have been created in Openshift, it is required to follow
 
 NOTE: Look at the number of containers in each microservice, it must contains 2 container per each pod (*READY 2/2*). 
 
+:jumps: 1
+:seconds: 1
+
 include::partial$check_jumpapp_mesh.adoc[]

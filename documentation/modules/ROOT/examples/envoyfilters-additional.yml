@@ -1,2 +1,28 @@
 ---
-envoy filter
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: envoy-filter-test
+spec:
+  workloadSelector:
+    labels:
+      app: back-golang
+  configPatches:
+    - applyTo: HTTP_FILTER
+      match:
+        context: GATEWAY
+        listener:
+          filterChain:
+            filter:
+              name: "envoy.http_connection_manager"
+      patch:
+        operation: INSERT_BEFORE
+        value:
+          name: envoy.lua.add.headers
+          typed_config:
+            "@type": "type.googleapis.com/envoy.config.filter.http.lua.v2.Lua"
+            inlineCode: |
+              function envoy_on_request(request_handle)
+                request_handle:logInfo("Adding header envoy-filter-test: rh-servicemesh-crtlplane-training")
+                request_handle:headers():add("envoy-filter-test", "rh-servicemesh-crtlplane-training")
+              end

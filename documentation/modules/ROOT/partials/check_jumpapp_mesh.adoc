@@ -13,6 +13,7 @@ oc get pods
 ----
 NAME                                   READY   STATUS    RESTARTS   AGE
 back-golang-v1-7fb9ff7bdc-mwp8b        2/2     Running   0          1m
+back-golang-v2-213fhfd23d-23ass        2/2     Running   0          1m
 back-python-v1-74c65d94b5-9hzxd        2/2     Running   0          1m
 back-springboot-v1-74db6bb8b4-pw74s    2/2     Running   0          1m
 front-javascript-v1-7b6d4fb65c-9fdfb   2/2     Running   0          1m
@@ -37,7 +38,7 @@ front-javascript-<user_namespace>   front-javascript-<user_namespace>.<openshift
 
 - Visit the *back*, _back-golang-<user_namespace>_, route via your web browser
 
-- Visit the *front*, _front-javascript-golang-<user_namespace>_, route via your web browser, push *- JUMP-* button and ensure the following message is displaying in your screen
+- Visit the *front*, _front-javascript-golang-<user_namespace>_, route via your web browser. In addition, configure *{jumps}* retries with *{seconds}* interval and  push *- JUMP-* button and ensure the following message is displaying in your screen
 
 [.console-output]
 [source,output,subs="+macros,+attributes"]
@@ -46,3 +47,5 @@ Jump 0 -> <tutorial_date> GMT+0100 (Central European Standard Time) {"code":200,
 ----
 
 IMPORTANT: It is required to accept *self-signed certificates* provided by Openshift
+
+NOTE: Alternatively, you are able to review the Service Mesh traffic flow by Kiali console visiting <kiali_url>

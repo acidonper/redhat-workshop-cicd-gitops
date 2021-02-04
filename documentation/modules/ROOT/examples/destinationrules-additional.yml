@@ -1,2 +1,14 @@
 ---
-destinationrule
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: back-golang
+spec:
+  host: back-golang.<user_namespace>.cluster.local
+  subsets:
+    - labels:
+        version: v1
+      name: v1
+    - labels:
+        version: v2
+      name: v2  
