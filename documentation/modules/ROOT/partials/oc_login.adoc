@@ -10,7 +10,7 @@ oc login -u <user> -p <pass> <ocp_cluster_console>
 ----
 Login successful.
 
-You have access to 65 projects, the list has been suppressed. You can list all projects with 'oc projects'
+You have access to 2 projects, the list has been suppressed. You can list all projects with 'oc projects'
 
 Using project "<user_namespace>".
 ----
