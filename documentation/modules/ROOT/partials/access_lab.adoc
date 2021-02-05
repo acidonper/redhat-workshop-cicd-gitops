@@ -1,15 +1,44 @@
 
-Instructor provides students Openshift credentials at the beginning of this tutorial in order to access the laboratory. 
+Instructor provides users Openshift credentials and other important parameters at the beginning of this tutorial in order to access the laboratory. 
 
-- Openshift Cluster URL (E.g. _https://console-openshift-console.apps.acidonpe.sandbox507.opentlc.com_)
-- Username (E.g. _user1_)
-- Password (E.g. _password_)
-- Namespace (E.g. _ns_user1_)
-- Openshift Apps Domain (E.g. _apps.acidonpe.sandbox507.opentlc.com_)
-- Kiali Url (E.g. _https://kiali-istio-system.apps.acidonpe.sandbox507.opentlc.com_)
+[cols="3*^,3*.",options="header,+attributes"]
+|===
+|**Name**|**Reference**|**Example**
+| Openshift Cluster URL
+| <ocp_cluster_url>
+| _https://api.tutorialrhmesh.sandbox507.opentlc.com_
+| Openshift Cluster URL
+| <ocp_cluster_console>
+| _https://console-openshift-console.apps.tutorialrhmesh.sandbox507.opentlc.com_
+| Username
+| <user>
+| user1
+| Password
+| <pass>
+| P4ssw0rd
+| Namespace
+| <user_namespace>
+| user1_namespace
+| Openshift Apps Domain
+| <openshift_apps_domain>
+| _apps.tutorialrhmesh.sandbox507.opentlc.com_
+| Kiali Url
+| <kiali_url>
+| _https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com_
+|===
+
+=== Access Laboratory - OC Client
+
+The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system. 
 
 Please, review the previous settings with your instructor and connect to the cluster executing next command:
 
 include::partial$oc_login.adoc[]
 
-In addition, access to <ocp_cluster_url> with your credentials via browser in order to access Openshift Console.
+NOTE: Please, pay special attention to _oc_ because you will need to use this tool several times during this tutorial.
+
+=== Access Laboratory - Console
+
+In addition, access Openshift Console using your credentials via browser in order to check connectivity and accessibility to the console:
+
+- <ocp_cluster_console>

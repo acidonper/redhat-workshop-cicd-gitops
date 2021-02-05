@@ -11,11 +11,15 @@ include::partial$requirements.adoc[]
 [#laboratory]
 == Laboratory
 
-Tutorial's laboratory is based on a set of technologies and resources which will allow you to understand what Red Hat Service Mesh, Istio Control Plane and Envoy roles are:
+Tutorial's laboratory is based on a set of technologies and resources:
 
 - Red Hat Openshift Container Platform
 - Red Hat Service Mesh
-- A GitHub Repositories
+- A GitHub Repository
+
+These resources will allow you to understand what Red Hat Service Mesh, Istio Control Plane and Envoy roles are.
+
+=== Laboratory Parameters
 
 include::partial$access_lab.adoc[]
 

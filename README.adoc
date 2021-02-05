@@ -16,6 +16,6 @@ This tutorial has been developed using courseware. Please visit courseware https
 
 ## Author Information
 
-Asier Cidon
+Asier Cidon @Red Hat
 
 asier.cidon@gmail.com

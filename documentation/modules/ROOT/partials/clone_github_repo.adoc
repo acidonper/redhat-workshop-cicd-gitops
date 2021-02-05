@@ -7,6 +7,5 @@ Please, follow next steps in order to download the GitHub repository code:
 [.console-input]
 [source,bash, subs="+macros,+attributes"]
 ----
-git clone https://github.com/acidonper/jump-app-gitops.git
-git submodule update --remote
+git clone https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git
 ----

@@ -14,17 +14,30 @@ include::partial$oc_login.adoc[]
 [#github]
 === Clone GitHub Repository
 
-include::partial$clone_helm_repo.adoc[]
+include::partial$clone_github_repo.adoc[]
 
 [#jumpappobjects]
-=== Create _Jump App_ Objects in Openshift by Helm
+=== Create _Jump App_ Objects in Openshift
+
+First at all, it is required to modify _params.env_ file to include the parameters provided by the instructor:
+
+[.lines_7]
+[.console-input]
+[source,bash,subs="+macros,+attributes"]
+----
+vi params.env
+USER_NAMESPACE="<user_namespace>"
+...
+----
+
+Once the params file is saved, you are able to process with _Jump App_ deployment phase:
 
 [.lines_7]
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
 oc project <user_namespace>
-helm template ./charts/jump-app-micros -f examples/local/values-jump-app-dev.yaml --namespace <user_namespace> | oc apply -f - -n <user_namespace>
+oc process -f 00-jump-app-template.yml --param-file=./params.env --ignore-unknown-parameters | oc create -f -
 ----
 
 [.console-output]
@@ -54,3 +67,10 @@ route.route.openshift.io/back-javascript created
 Once _Jump App_ objects have been created in Openshift, it is required to follow next steps in order to ensure your demo app is running properly:
 
 include::partial$check_jumpapp.adoc[]
+
+[#testapp]
+=== Access to _Jump App_
+
+Once _Jump App_ is already running in Openshift, it is time to access _Jump App_ public services in order to test the application:
+
+include::partial$check_jumpapp_service.adoc[]

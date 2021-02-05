@@ -10,8 +10,4 @@
 | https://git-scm.com/download/linux[Download]
 | https://git-scm.com/download/mac[Download]
 | https://git-scm.com/download/win[Download]
-| helm
-| https://get.helm.sh/helm-v3.5.1-linux-amd64.tar.gz[Download]
-| https://get.helm.sh/helm-v3.5.1-darwin-amd64.tar.gz[Download]
-| https://get.helm.sh/helm-v3.5.1-windows-amd64.zip[Download]
 |===

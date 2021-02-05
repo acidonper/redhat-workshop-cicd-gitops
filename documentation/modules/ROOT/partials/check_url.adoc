@@ -3,7 +3,7 @@
 
 [.lines_7]
 [.console-input]
-[source, java,subs="+macros,+attributes"]
+[source,input,subs="+macros,+attributes"]
 ----
 oc get pods
 ----
@@ -24,7 +24,7 @@ mongo-7c8f67cc4b-t9dnf                 1/1     Running   0          1m
 
 [.lines_7]
 [.console-input]
-[source, java,subs="+macros,+attributes"]
+[source,input,subs="+macros,+attributes"]
 ----
 oc rsh back-springboot-v1-74db6bb8b4-pw74s -n <user_namespace>
 ----

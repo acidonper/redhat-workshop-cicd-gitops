@@ -1,0 +1,29 @@
+- Obtain external services URLs
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+oc get routes -n <user_namespace>
+----
+
+[.console-output]
+[source,output,subs="+macros,+attributes"]
+----
+back-golang           back-golang-<user_namespace>.<openshift_apps_domain>          <user_namespace>   http2   edge/Redirect        None
+back-golang-v1        back-golang-v1-<user_namespace>.<openshift_apps_domain>       <user_namespace>   http2   edge/Redirect        None
+front-javascript      front-javascript-<user_namespace>.<openshift_apps_domain>     <user_namespace>   http2   edge/Redirect        None
+front-javascript-v1   front-javascript-v1-<user_namespace>.<openshift_apps_domain>  <user_namespace>   http2   edge/Redirect        None
+----
+
+- Visit the *back*, _back-golang_ and _back-golang-v1_, routes via your web browser
+
+- Visit the *front*, _front-javascript_, route via your web browser, push *- JUMP-* button and ensure the following message is displaying in your screen
+
+[.console-output]
+[source,output,subs="+macros,+attributes"]
+----
+Jump 0 -> <tutorial_date> GMT+0100 (Central European Standard Time) {"code":200,"message":"/jump - Greetings from Python!"}
+----
+
+IMPORTANT: It is required to accept *self-signed certificates* provided by Openshift
