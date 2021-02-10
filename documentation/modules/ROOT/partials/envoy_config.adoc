@@ -4,16 +4,5 @@
 oc exec {podname} -c istio-proxy -n <user_namespace> curl localhost:15000/config_dump > {podname}-{file}
 ----
 
-
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-{
- "configs": [
-  {
-   "@type": "type.googleapis.com/envoy.admin.v3.BootstrapConfigDump",
-   "bootstrap": {
-    "node": {
-     "id": "sidecar~10.128.2.23~{podname}.<user_namespace>~<user_namespace>.svc.cluster.local",
-...
-----
+.Envoy Configuration
+image::envoy_conf.png[]

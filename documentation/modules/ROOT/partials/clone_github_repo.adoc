@@ -9,3 +9,6 @@ Please, follow next steps in order to download the GitHub repository code:
 ----
 git clone https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resources.git
 ----
+
+.git clone output
+image::git_clone_output.png[]

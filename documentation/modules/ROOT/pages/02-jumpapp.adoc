@@ -6,7 +6,7 @@ _Jump App_ is a microservice-based application created to emulate an enterprise 
 
 First at all, it is required to deploy Jump App application in Openshift in order to have the demo application environment ready. The following steps in this section helps you to deploy _Jump App_.
 
-NOTE: Please, replace *<user_namespace>* with the value provided by the Instructor at the beginning of this tutorial or values obtained from openshift cluster.
+WARNING: Please, replace *<user>*, *<pass>*, *<ocp_cluster_console>* and *<user_namespace>* with the values provided by the Instructor at the beginning of this tutorial or values obtained from openshift cluster.
 
 [#login]
 === Login in Openshift
@@ -21,16 +21,21 @@ include::partial$clone_github_repo.adoc[]
 [#jumpappobjects]
 === Create _Jump App_ Objects in Openshift
 
-First at all, it is required to modify _params.env_ file to include the parameters provided by the instructor:
+First at all, it is required to modify _params.env_ file to include the parameters provided by the Instructor:
 
 [.lines_7]
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
+cd rh-service-mesh-v2-istio-crtlplane-resources
 vi params.env
-USER_NAMESPACE="<user_namespace>"
-...
 ----
+
+.params file content
+====
+USER_NAMESPACE=user1 +
+OCP_APPS_DOMAIN=apps.tutorialrhmesh.sandbox507.opentlc.com
+====
 
 Once the params file is saved, you are able to process with _Jump App_ deployment phase:
 

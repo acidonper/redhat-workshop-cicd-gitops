@@ -1,5 +1,7 @@
 
-Instructor provides users Openshift credentials and other important parameters at the beginning of this tutorial in order to access the laboratory. 
+The Instructor provides users the Openshift credentials and other important parameters at the beginning of this tutorial in order to access the laboratory. 
+
+The following table includes the parameters that the Instructor should provide you at the beginning:
 
 [cols="3*^,3*.",options="header,+attributes"]
 |===
@@ -18,7 +20,7 @@ Instructor provides users Openshift credentials and other important parameters a
 | P4ssw0rd
 | Namespace
 | <user_namespace>
-| user1_namespace
+| user1-namespace
 | Openshift Apps Domain
 | <openshift_apps_domain>
 | _apps.tutorialrhmesh.sandbox507.opentlc.com_
@@ -31,14 +33,17 @@ Instructor provides users Openshift credentials and other important parameters a
 
 The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system. 
 
-Please, review the previous settings with your instructor and connect to the cluster executing next command:
+Please, review the previous settings with your Instructor and connect to the cluster executing next command from your terminal:
 
 include::partial$oc_login.adoc[]
 
-NOTE: Please, pay special attention to _oc_ because you will need to use this tool several times during this tutorial.
+TIP: Please, pay special attention to _oc CLI_  because you will need to use this tool several times during this tutorial.
 
 === Access Laboratory - Console
 
 In addition, access Openshift Console using your credentials via browser in order to check connectivity and accessibility to the console:
 
-- <ocp_cluster_console>
+- <ocp_cluster_console> (_E.g. https://console-openshift-console.apps.tutorialrhmesh.sandbox507.opentlc.com_)
+
+.Openshift Console
+image::ocp_console.png[]

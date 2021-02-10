@@ -4,26 +4,23 @@ include::_attributes.adoc[]
 [#prerequisites]
 == Prerequisites
 
-The following CLI tools are necessary for running the exercises in this tutorial.
+During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:
 
 include::partial$requirements.adoc[]
 
 [#laboratory]
 == Laboratory
 
-Tutorial's laboratory is based on a set of technologies and resources:
+Tutorial's laboratory is basically based on the following technologies:
 
-- Red Hat Openshift Container Platform
-- Red Hat Service Mesh
-- A GitHub Repository
+- Red Hat Openshift Container Platform Cluster
+- Red Hat Service Mesh based on _Istio_ & _Envoy_
 
-These resources will allow you to understand what Red Hat Service Mesh, Istio Control Plane and Envoy roles are.
+In addition, a GitHub repository is provided with a set of templates and other resources which are required to create different objects in Openshift during this tutorial.
+
+The previous technologies and resources will allow you to implement a microservice-based application in Openshift which will be included in Service Mesh. The main objective of deploying this application in Openshift using Service Mesh is to understand how _Istio_ & _Envoy_ are tightly related.
 
 === Laboratory Parameters
 
 include::partial$access_lab.adoc[]
-
-NOTE: _Red Hat Online Partner Enablement Network_ is the laboratory platform which allows running this tutorial. 
-
-
 

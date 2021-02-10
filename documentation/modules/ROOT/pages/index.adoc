@@ -2,6 +2,9 @@
 :page-layout: home
 :!sectids:
 
+image::logos.png[Envoy,600,200]
+
+
 [.text-center.strong]
 == Introduction
 
@@ -62,3 +65,4 @@ xref:06-crtlplane.adoc[Start this exercise...]
 hola
 
 xref:07-services.adoc[Start this exercise...]
+

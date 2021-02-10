@@ -1,6 +1,6 @@
 = Service Mesh Communication Flows
 
-IMPORTANT: Let your instructor know that you are at this point
+IMPORTANT: Let your Instructor know that you are at this point
 
 XXXXXXXXXXXXXXXXXXXXXXXX
 XXXXXXXXXXXXXXXXXXXXXXXX
@@ -17,7 +17,7 @@ In order to make an application available through Service Mesh, it is required t
 
 In this step, you have to be able to deploy this _Jump App_ Service Mesh objects in order to introduce this application in the Service Mesh and publish it to external clients.
 
-NOTE: Please, replace *<user_namespace>* with the value provided by the Instructor at the beginning of this tutorial.
+WARNING: Please, replace *<user_namespace>* with the value provided by the Instructor at the beginning of this tutorial.
 
 [#gw]
 === Gateways

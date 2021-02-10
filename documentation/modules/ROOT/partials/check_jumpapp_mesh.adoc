@@ -39,7 +39,7 @@ front-javascript-v1-<user_namespace>   front-javascript-<user_namespace>.<opensh
 
 - Visit the *back*, _back-golang-<user_namespace>_ and  _back-golang-v1-<user_namespace>_, routes via your web browser
 
-- Visit the *front*, _front-javascript-golang-<user_namespace>_, route via your web browser. In addition, configure *{jumps}* retries with *{seconds}* interval and  push *- JUMP-* button and ensure the following message is displaying in your screen
+- Visit the *front*, _front-javascript-golang-<user_namespace>_, route via your web browser. In addition, configure *[ {jumps} ]* retries with *[ {seconds} ]* interval and press *[ JUMP ]* and ensure the following message is displaying in your screen
 
 [.console-output]
 [source,output,subs="+macros,+attributes"]
@@ -49,4 +49,4 @@ Jump 0 -> <tutorial_date> GMT+0100 (Central European Standard Time) {"code":200,
 
 IMPORTANT: It is required to accept *self-signed certificates* provided by Openshift
 
-NOTE: Alternatively, you are able to review the Service Mesh traffic flow by Kiali console visiting *<kiali_url>*
+TIP: Alternatively, you are able to review the Service Mesh traffic flow by Kiali console visiting *<kiali_url>* (_E.g. https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com_)

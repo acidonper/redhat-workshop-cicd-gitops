@@ -6,7 +6,7 @@ When a new Service Mesh object is created in a specific namespace, a set of conf
 
 In this step, you will review how these objects affect Envoy proxies getting their configuration from Envoy itself.
 
-NOTE: Please, replace *<user_namespace>* and *<pod_id>* with the values provided by the Instructor at the beginning of this tutorial or values obtained from openshift cluster.
+WARNING: Please, replace *<user_namespace>* and *<pod_id>* with the values provided by the Instructor at the beginning of this tutorial or values obtained from openshift cluster.
 
 [#dr]
 === Destination Rules

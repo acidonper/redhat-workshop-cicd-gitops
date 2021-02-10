@@ -9,7 +9,7 @@ As you reviewed in the previous section, when a new Service Mesh object is creat
 
 In this step, you will review how _envoy filters_ affect Envoy traffic applying different rules based on a set of criteria.
 
-NOTE: Please, replace *<user_namespace>* with the value provided by the Instructor at the beginning of this tutorial or values obtained from openshift cluster.
+WARNING: Please, replace *<user_namespace>* with the value provided by the Instructor at the beginning of this tutorial or values obtained from openshift cluster.
 
 [#ef]
 === Envoy Filters

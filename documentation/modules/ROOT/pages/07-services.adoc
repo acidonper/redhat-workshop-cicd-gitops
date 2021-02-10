@@ -1,1 +1,26 @@
-A
+= Istio Global Services
+
+== Secure Gateways 
+
+As you might know, Gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.
+
+During this step, you will review how to expose a secure HTTPS service using a Gateway, a custom certificate and Istio Secret Discovery Service (SDS).
+
+=== Generate a Custom Certificate
+
+For this task, you can use your favorite tool to generate certificates and keys. The commands below use openssl
+
+????????
+
+=== Create in Istio the Custom Certificate using SDS
+
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+oc create -n istio-system secret tls <user>-credential --key=./07-istio-sds/jumpapp.com.key --cert=./07-istio-sds/jumpapp.com.crt
+----
+
+=== Configure Gateway
+
+=== Test the new HTTPS service
+
