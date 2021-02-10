@@ -5,4 +5,5 @@
 oc login -u <user> -p <pass> <ocp_cluster_console>
 ----
 
+.OC CLI Login Output
 image::oc_login_output.png[]

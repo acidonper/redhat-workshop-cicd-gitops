@@ -14,11 +14,8 @@ WARNING: Please, replace *<user_namespace>* with the value provided by the Instr
 [#ef]
 === Envoy Filters
 
-:name: Envoy Filters
-:object: envoy-filter
-:file_repo: 05-envoy-proxy/00-envoy-proxy-ef.yaml
-
-include::partial$relationship_step.adoc[]
+XXXXXXXXXXXXx
+XXXXXXXXXXXXx
 
 NOTE: Additionally, perform a GET request using _curl_ in order to test out headers modification
 

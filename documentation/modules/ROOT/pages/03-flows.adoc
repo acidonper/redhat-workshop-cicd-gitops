@@ -25,6 +25,7 @@ Please, return to git repository and create *gateways* through the respective Op
 
 include::partial$oc_process_create.adoc[]
 
+.Gateways Created
 image::jump-app-gws-ok.png[]
 
 [#vsvc]
@@ -39,6 +40,7 @@ Please, create new *virtual services* through the respective Openshift template 
 
 include::partial$oc_process_create.adoc[]
 
+.Virtual Services Created
 image::jump-app-vss-ok.png[]
 
 [#dr]
@@ -53,6 +55,7 @@ Please, create new *destination rules* through the respective Openshift template
 
 include::partial$oc_process_create.adoc[]
 
+.Destination Rules Created
 image::jump-app-drs-ok.png[]
 
 [#services]
@@ -67,6 +70,7 @@ Please, create new *k8s services* through the respective Openshift template exec
 
 include::partial$oc_process_create.adoc[]
 
+.k8s Services Created
 image::jump-app-svcs-ok.png[]
 
 [#memberrol]
@@ -76,10 +80,11 @@ The ServiceMeshMemberRoll lists the projects belonging to the control plane. Onl
 
 In order to add this new project to the Service Mesh and make possible the traffic between each microservice, it is required to modify the ServiceMeshMemberRoll **default** object at this moment. 
 
-IMPORTANT: Let your Instructor know that you are at this point
+IMPORTANT: Let the Instructor know that you are at this point
 
 At this moment, you are not able to access to _Jump App_ because of a set of required tasks which you have to perform next.
 
+.Frontend KO
 image::jump-app-front-ko.png[]
 
 [#finalsteps]
@@ -97,6 +102,8 @@ Please, edit each _Jump App Microservice_ deployment executing the commands adde
 ----
 oc patch deployment front-javascript-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
 ----
+
+.Front Patched
 image::jump-app-front-depl-patch.png[]
 
 [.console-input]
@@ -104,6 +111,8 @@ image::jump-app-front-depl-patch.png[]
 ----
 oc patch deployment back-springboot-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
 ----
+
+.Back Springboot Patched
 image::jump-app-back-spb-depl-patch.png[]
 
 [.console-input]
@@ -111,6 +120,8 @@ image::jump-app-back-spb-depl-patch.png[]
 ----
 oc patch deployment back-python-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
 ----
+
+.Back Python Patched
 image::jump-app-back-py-depl-patch.png[]
 
 [.console-input]
@@ -118,6 +129,8 @@ image::jump-app-back-py-depl-patch.png[]
 ----
 oc patch deployment back-golang-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
 ----
+
+.Back Golang Patched
 image::jump-app-back-go-depl-patch.png[]
 
 [.console-input]
@@ -125,6 +138,8 @@ image::jump-app-back-go-depl-patch.png[]
 ----
 oc patch deployment mongo -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
 ----
+
+.MongoDB Patched
 image::jump-app-back-mg-depl-patch.png[]
 
 Before continuing with the following steps, please test Jump App _pods_ status, in order to be sure that 2 replicas are running for each microservice:
@@ -146,6 +161,7 @@ Once you have a project integrated in Service Mesh, routes should be created in 
 oc get routes -n <user_namespace> | grep -v NAME | awk '{print "oc delete route " $1}' | sh
 ----
 
+.Jump App Routes Deleted
 image::jump-app-route-del.png[]
 
 ==== *Create a new routes in istio-system*
@@ -159,6 +175,7 @@ Please, create new *routes* in **istio-system** namespace through the respective
 
 include::partial$oc_process_create.adoc[]
 
+.Mesh Routes Created
 image::jump-app-routes-mesh-ok.png[]
 
 [#test]
@@ -179,4 +196,5 @@ include::partial$check_jumpapp_mesh.adoc[]
 
 Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console *<kiali_url>* (_E.g. https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com_):
 
+.Kiali Console
 image::jump-app-kiali.png[]

@@ -1,12 +1,47 @@
 = Istio-Envoy Objects Relationship
 
+[#previous]
+== Create a new microservice version
+
+First at all, it is required to create a new microservice _deployment_ and a _service_ objects for being able to work with different micro versions in Service Mesh.
+
+Please, create the previous object through the respective Openshift template executing the following command: 
+
+:file: 04-istio-envoy-relationship/00-istio-envoy-rel-micro-version.yaml
+:namespace: <user_namespace>
+
+include::partial$oc_process_create.adoc[]
+
+.New Micro Version Created
+image::jump-app-new-micro-version-ok.png[]
+
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+oc patch deployment back-golang-v2 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
+----
+
+.Front Patched
+image::jump-app-back-golang-v2-depl-patch.png[]
+
+[#reviewing]
 == Review Red Hat Service Mesh objects
 
 When a new Service Mesh object is created in a specific namespace, a set of configurations blocks are added to Envoy proxies in order to be able to apply these rules in the mesh traffic flow.
 
-In this step, you will review how these objects affect Envoy proxies getting their configuration from Envoy itself.
+In this step, you will review how these objects affect Envoy proxies getting their configuration from Envoy itself. In order to be able to obtain some information from pods, it is required to obtain pods names before starting this section:
 
-WARNING: Please, replace *<user_namespace>* and *<pod_id>* with the values provided by the Instructor at the beginning of this tutorial or values obtained from openshift cluster.
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+oc get pods
+----
+
+.Jump App Pods Mesh
+image::jump-app-pods-2-v2.png[]
+
+WARNING: Please, replace *<user_namespace>* and *<back-golang-pod_id>* with the values provided by the Instructor at the beginning of this tutorial or values obtained from openshift cluster.
 
 [#dr]
 === Destination Rules
@@ -14,17 +49,24 @@ WARNING: Please, replace *<user_namespace>* and *<pod_id>* with the values provi
 :name: Destination Rule
 :object: destination-rule
 :file_repo: 04-istio-envoy-relationship/00-istio-envoy-rel-drs.yaml
+:image: jump-app-dr-new.png
+:image_config_init: jump-app-dr-golang.png
+:image_config_compare: jump-app-dr-compare.png
 
-include::partial$relationship_step.adoc[]
+include::partial$rel_step.adoc[]
 
 [#vsvc]
 === Virtual Services
 
-:name: Virtual Service
+:name: Virtual Services
 :object: virtual-service
 :file_repo: 04-istio-envoy-relationship/01-istio-envoy-rel-vss.yaml
+:image: jump-app-vs-new.png
+:image_config_init: jump-app-vs-golang.png
+:image_config_compare: jump-app-vs-compare.png
 
-include::partial$relationship_step.adoc[]
+include::partial$rel_step.adoc[]
+
 
 NOTE: Additionally, perform a GET request using _curl_ in order to test out headers modification
 
@@ -43,12 +85,29 @@ curl -k -v https://back-golang-<user_namespace>.<openshift_apps_domain>/testing
 {"code":200,"message":"/jump - Greetings from Golang!"}%  
 ----
 
+[#testvsvc]
+==== Test Jump App
+
 Once the previous objects are applied, it is time to test our services again with a multiple number of connections. For this step, please follow the next steps:
 
-:jumps: 1000
-:seconds: 1
+Once the Virtual Service rules are applied, visit the *back*, _back-golang-<user_namespace>.<openshift_apps_domain>/redirection-test_, route via your web browser
 
-include::partial$check_jumpapp_mesh.adoc[]
+.Jump App Back Redirection
+image::jump-app-back-golang-redirect-ok.png[]
+
+Visit the *front*, _front-javascript-<user_namespace>.<openshift_apps_domain>_, route via your web browser. In addition, configure *[ 1000 ]* retries with *[ 1 ]* interval and press *[ JUMP ]* and ensure the following message is displaying in your screen
+
+ ...{"code":200,"message":"/jump - Greetings from Python!"}
+
+.Jump App Front Web UI Multi Jumps
+image::jump-app-front-jumps-ok.png[]
+
+*KIALI*
+
+Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console *<kiali_url>* (_E.g. https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com_):
+
+.Kiali Console
+image::jump-app-kiali-v2.png[]
 
 [#se]
 === Service Entry
@@ -56,8 +115,11 @@ include::partial$check_jumpapp_mesh.adoc[]
 :name: Service Entry
 :object: service-entry
 :file_repo: 04-istio-envoy-relationship/02-istio-envoy-rel-ses.yaml
+:image: jump-app-se-new.png
+:image_config_init: jump-app-se-golang.png
+:image_config_compare: jump-app-se-compare.png
 
-include::partial$relationship_step.adoc[]
+include::partial$rel_step.adoc[]
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]

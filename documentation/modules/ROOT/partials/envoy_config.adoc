@@ -5,4 +5,4 @@ oc exec {podname} -c istio-proxy -n <user_namespace> curl localhost:15000/config
 ----
 
 .Envoy Configuration
-image::envoy_conf.png[]
+image::{image_config_init}[]

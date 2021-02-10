@@ -22,9 +22,12 @@
 *** xref:03-flows.adoc#test[3.3.3 Confirm Jump App is running again]
 
 * xref:04-relationship.adoc[4. Istio-Envoy Objects Relationship]
-** xref:04-relationship.adoc#dr[4.1 Destination Rules]
-** xref:04-relationship.adoc#vsvc[4.2 Virtual Services]
-** xref:04-relationship.adoc#se[4.3 Service Entry]
+** xref:04-relationship.adoc#previous[4.1 Create a new microservice version]
+** xref:04-relationship.adoc#reviewing[4.2 Review Red Hat Service Mesh objects]
+*** xref:04-relationship.adoc#dr[4.2.1 Destination Rules]
+*** xref:04-relationship.adoc#vsvc[4.2.2 Virtual Services]
+**** xref:04-relationship.adoc#testvsvc[4.2.2.1 Test Jump App]
+*** xref:04-relationship.adoc#se[4.2.3 Service Entry]
 
 * xref:05-envoy.adoc[5. Envoy Proxy]
 ** xref:05-envoy.adoc#ef[5.1 Envoy Filters]

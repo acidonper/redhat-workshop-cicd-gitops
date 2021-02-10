@@ -45,6 +45,7 @@ Once the params file is saved, you are able to process with _Jump App_ deploymen
 oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.env --ignore-unknown-parameters | oc create -f -
 ----
 
+.Jump App Deployed
 image::jump_app_created.png[]
 
 [#test]
