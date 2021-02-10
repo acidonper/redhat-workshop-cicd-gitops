@@ -12,3 +12,13 @@ git clone https://github.com/acidonper/rh-service-mesh-v2-istio-crtlplane-resour
 
 .git clone output
 image::git_clone_output.png[]
+
+Finally, navigate to the new folder created in your system after repository download for completing all tasks included in this tutorial:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+cd rh-service-mesh-v2-istio-crtlplane-resources
+----
+

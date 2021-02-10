@@ -1,15 +1,9 @@
 = Service Mesh Communication Flows
 
-IMPORTANT: Let your Instructor know that you are at this point
+[#create]
+== Create Red Hat Service Mesh Traffic Flow objects
 
-XXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXX
-XXXXXXXXXXXXXXXXXXXXXXXX
-
-== Create Red Hat Service Mesh objects
-
-In order to make an application available through Service Mesh, it is required to create a set of Service Mesh objects:
+In order to make an application available through Service Mesh, it is required to create a set of Service Mesh objects related to the traffic flow:
 
 - Gateways - Describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.
 - Virtual Services - Defines a set of traffic routing rules to apply when a host is addressed.
@@ -27,80 +21,74 @@ First at all, it is required to create a Gateway for external access. In the _Ju
 Please, return to git repository and create *gateways* through the respective Openshift template executing the following command: 
 
 :file: 03-jump-app-flows/00-jump-app-gws.yaml
+:namespace: <user_namespace>
 
 include::partial$oc_process_create.adoc[]
 
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-gateway.networking.istio.io/back-golang created
-gateway.networking.istio.io/front-javascript created
-----
+image::jump-app-gws-ok.png[]
 
 [#vsvc]
 === Virtual Services
 
 Once gateways are created and the application is reacheabled, it is time to create the traffic rules inside your namespace in order to route this traffic to the specific endpoint.
 
-Please, create *virtual services* through the respective Openshift template executing the following command: 
+Please, create new *virtual services* through the respective Openshift template executing the following command: 
 
 :file: 03-jump-app-flows/01-jump-app-vss.yaml
+:namespace: <user_namespace>
 
 include::partial$oc_process_create.adoc[]
 
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-virtualservice.networking.istio.io/back-golang created
-virtualservice.networking.istio.io/back-python created
-virtualservice.networking.istio.io/back-springboot created
-virtualservice.networking.istio.io/front-javascript created
-----
+image::jump-app-vss-ok.png[]
 
 [#dr]
 === Destination Rules
 
 Once previous objects are created, it is required  to define the policies which will be applied to traffic intended for a service after routing has occurred.
 
-Please, create *destination rules* through the respective Openshift template executing the following command: 
+Please, create new *destination rules* through the respective Openshift template executing the following command: 
 
 :file: 03-jump-app-flows/02-jump-app-drs.yaml
+:namespace: <user_namespace>
 
 include::partial$oc_process_create.adoc[]
 
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-destinationrule.networking.istio.io/back-golang created
-destinationrule.networking.istio.io/back-python created
-destinationrule.networking.istio.io/back-springboot created
-destinationrule.networking.istio.io/front-javascript created
-----
+image::jump-app-drs-ok.png[]
 
 [#services]
 === K8s Services
 
 Once you have created gateways, virtual services and destination rules, it is time to include a specific annotation in your app deployments in order to allow Service Mesh control and run the respective envoy sidecar automatically.
 
-Please, create *k8s services* through the respective Openshift template executing the following command: 
+Please, create new *k8s services* through the respective Openshift template executing the following command: 
 
 :file: 03-jump-app-flows/03-jump-app-services.yaml
+:namespace: <user_namespace>
 
 include::partial$oc_process_create.adoc[]
 
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-service/back-golang created
-service/back-python created
-service/back-springboot created
-service/front-javascript created
-----
+image::jump-app-svcs-ok.png[]
+
+[#memberrol]
+== Added a new project to Red Hat Service Mesh Control Plane 
+
+The ServiceMeshMemberRoll lists the projects belonging to the control plane. Only projects listed in the ServiceMeshMemberRoll are affected by the control plane.
+
+In order to add this new project to the Service Mesh and make possible the traffic between each microservice, it is required to modify the ServiceMeshMemberRoll **default** object at this moment. 
+
+IMPORTANT: Let your Instructor know that you are at this point
+
+At this moment, you are not able to access to _Jump App_ because of a set of required tasks which you have to perform next.
+
+image::jump-app-front-ko.png[]
+
+[#finalsteps]
+== Final Steps
 
 [#annotation]
-=== Add _Istio Sidecar_ annotation in _Jump App_ deployments 
+=== Add _Istio Sidecar_ annotation in _Jump App_ deployments  
 
-Finally, it is time to include a specific annotation in your app deployments in order to allow Service Mesh control and run the respective envoy sidecar automatically.
+Once traffic flow objects are created and your namespace is included as member in the Service Mesh Control Plane, it is time to include a specific annotation in your app deployments in order to allow Service Mesh control and run the respective envoy sidecar automatically.
 
 Please, edit each _Jump App Microservice_ deployment executing the commands added below:
 
@@ -108,11 +96,40 @@ Please, edit each _Jump App Microservice_ deployment executing the commands adde
 [source,input,subs="+macros,+attributes"]
 ----
 oc patch deployment front-javascript-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
+----
+image::jump-app-front-depl-patch.png[]
+
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
 oc patch deployment back-springboot-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
+----
+image::jump-app-back-spb-depl-patch.png[]
+
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
 oc patch deployment back-python-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
+----
+image::jump-app-back-py-depl-patch.png[]
+
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
 oc patch deployment back-golang-v1 -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
+----
+image::jump-app-back-go-depl-patch.png[]
+
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
 oc patch deployment mongo -p '{"spec":{"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"}}}}}' -n <user_namespace>
 ----
+image::jump-app-back-mg-depl-patch.png[]
+
+Before continuing with the following steps, please test Jump App _pods_ status, in order to be sure that 2 replicas are running for each microservice:
+
+include::partial$chec_jumpapp_mesh_pod.adoc[]
 
 [#routes]
 === Configure Routes
@@ -129,33 +146,20 @@ Once you have a project integrated in Service Mesh, routes should be created in 
 oc get routes -n <user_namespace> | grep -v NAME | awk '{print "oc delete route " $1}' | sh
 ----
 
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-route.route.openshift.io/back-golang-v1 deleted 
-route.route.openshift.io/back-golang deleted 
-route.route.openshift.io/back-javascript-v1 deleted
-route.route.openshift.io/back-javascript deleted
-----
+image::jump-app-route-del.png[]
 
 ==== *Create a new routes in istio-system*
 
 Once "regular" routes are deleted, it is required to create the new ones.
 
-Please, create *routes* through the respective Openshift template executing the following command: 
+Please, create new *routes* in **istio-system** namespace through the respective Openshift template executing the following command: 
 
 :file: 03-jump-app-flows/04-jump-app-routes.yaml
+:namespace: istio-system
 
 include::partial$oc_process_create.adoc[]
 
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-route.route.openshift.io/back-golang-<user_namespace> created
-route.route.openshift.io/back-golang-v1-<user_namespace> created
-route.route.openshift.io/front-javascript-<user_namespace> created
-route.route.openshift.io/front-javascript-v1-<user_namespace> created
-----
+image::jump-app-routes-mesh-ok.png[]
 
 [#test]
 === Confirm _Jump App_ is running again
@@ -164,7 +168,15 @@ Once _Jump App_ objects have been created in Openshift, it is required to follow
 
 NOTE: Look at the number of containers in each microservice, it must contains 2 container per each pod (*READY 2/2*). 
 
-:jumps: 1
+:jumps: 10000
 :seconds: 1
 
 include::partial$check_jumpapp_mesh.adoc[]
+
+
+[#kiali]
+=== Visit Kiali
+
+Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console *<kiali_url>* (_E.g. https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com_):
+
+image::jump-app-kiali.png[]

@@ -1,23 +1,7 @@
 
 - Get pods
 
-[.lines_7]
-[.console-input]
-[source,input,subs="+macros,+attributes"]
-----
-oc get pods
-----
-
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-NAME                                   READY   STATUS    RESTARTS   AGE
-back-golang-v1-7fb9ff7bdc-mwp8b        2/2     Running   0          1m
-back-python-v1-74c65d94b5-9hzxd        2/2     Running   0          1m
-back-springboot-v1-74db6bb8b4-pw74s    2/2     Running   0          1m
-front-javascript-v1-7b6d4fb65c-9fdfb   2/2     Running   0          1m
-mongo-7c8f67cc4b-t9dnf                 2/2     Running   0          1m
-----
+include::partial$chec_jumpapp_mesh_pod.adoc[]
 
 - Obtain external services URLs
 
@@ -28,25 +12,20 @@ mongo-7c8f67cc4b-t9dnf                 2/2     Running   0          1m
 oc get routes -n istio-system | grep <user_namespace>
 ----
 
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-back-golang-<user_namespace>        back-golang-<user_namespace>.<openshift_apps_domain>         istio-ingressgateway   http2   edge/Redirect        None
-back-golang-v1-<user_namespace>        back-golang-<user_namespace>.<openshift_apps_domain>         istio-ingressgateway   http2   edge/Redirect        None
-front-javascript-<user_namespace>   front-javascript-<user_namespace>.<openshift_apps_domain>    istio-ingressgateway   http2   edge/Redirect        None
-front-javascript-v1-<user_namespace>   front-javascript-<user_namespace>.<openshift_apps_domain>    istio-ingressgateway   http2   edge/Redirect        None
-----
+image::jump-app-get-routes-mesh-ok.png[]
 
-- Visit the *back*, _back-golang-<user_namespace>_ and  _back-golang-v1-<user_namespace>_, routes via your web browser
+- Visit the *back*, _back-golang-<user_namespace>.<openshift_apps_domain>_, route via your web browser
 
-- Visit the *front*, _front-javascript-golang-<user_namespace>_, route via your web browser. In addition, configure *[ {jumps} ]* retries with *[ {seconds} ]* interval and press *[ JUMP ]* and ensure the following message is displaying in your screen
+image::jump-app-back-ok.png[]
 
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-Jump 0 -> <tutorial_date> GMT+0100 (Central European Standard Time) {"code":200,"message":"/jump - Greetings from Python!"}
-----
+- Visit the *front*, _front-javascript-<user_namespace>.<openshift_apps_domain>_, route via your web browser. In addition, configure *[ {jumps} ]* retries with *[ {seconds} ]* interval and press *[ JUMP ]* and ensure the following message is displaying in your screen
+
+ ...{"code":200,"message":"/jump - Greetings from Python!"}
+
+image::jump-app-front-jumps-ok.png[]
 
 IMPORTANT: It is required to accept *self-signed certificates* provided by Openshift
 
-TIP: Alternatively, you are able to review the Service Mesh traffic flow by Kiali console visiting *<kiali_url>* (_E.g. https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com_)
+image::certs_warning.png[width=50%]
+
+

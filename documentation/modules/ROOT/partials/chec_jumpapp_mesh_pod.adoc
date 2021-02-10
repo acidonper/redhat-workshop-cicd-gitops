@@ -1,11 +1,8 @@
-
-- Get pods
-
 [.lines_7]
 [.console-input]
 [source,input,subs="+macros,+attributes"]
 ----
-oc get pods -n <user_namespace>
+oc get pods
 ----
 
-image::jump_app_pods.png[]
+image::jump-app-pods-2-ok.png[]

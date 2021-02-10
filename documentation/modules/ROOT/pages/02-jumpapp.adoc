@@ -27,7 +27,6 @@ First at all, it is required to modify _params.env_ file to include the paramete
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-cd rh-service-mesh-v2-istio-crtlplane-resources
 vi params.env
 ----
 
@@ -43,30 +42,10 @@ Once the params file is saved, you are able to process with _Jump App_ deploymen
 [.console-input]
 [source,bash,subs="+macros,+attributes"]
 ----
-oc project <user_namespace>
-oc process -f 00-jump-app-template.yml --param-file=./params.env --ignore-unknown-parameters | oc create -f -
+oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.env --ignore-unknown-parameters | oc create -f -
 ----
 
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-rolebinding.rbac.authorization.k8s.io/tekton-deployments-admin created
-service/back-golang created
-service/back-python created
-service/back-springboot created
-service/front-javascript created
-deployment.apps/back-golang-v1 created
-deployment.apps/back-python-v1 created
-deployment.apps/back-springboot-v1 created
-deployment.apps/front-javascript-v1 created
-secret/mongo created
-service/mongo created
-deployment.apps/mongo created
-route.route.openshift.io/back-golang-v1 created 
-route.route.openshift.io/back-golang created 
-route.route.openshift.io/back-javascript-v1 created
-route.route.openshift.io/back-javascript created
-----
+image::jump_app_created.png[]
 
 [#test]
 === Confirm _Jump App_ is already running in Openshift

@@ -5,12 +5,4 @@
 oc login -u <user> -p <pass> <ocp_cluster_console>
 ----
 
-[.console-output]
-[source,output,subs="+macros,+attributes"]
-----
-Login successful.
-
-You have access to 2 projects, the list has been suppressed. You can list all projects with 'oc projects'
-
-Using project "<user_namespace>".
-----
+image::oc_login_output.png[]
