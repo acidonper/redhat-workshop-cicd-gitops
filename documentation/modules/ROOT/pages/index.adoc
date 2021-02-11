@@ -62,7 +62,7 @@ xref:06-crtlplane.adoc[Start this exercise...]
 
 === Istio Global Services
 
-hola
+During this step, you will review how to expose a secure HTTPS service using a Gateway, a custom certificate and Istio Secret Discovery Service (SDS).
 
 xref:07-services.adoc[Start this exercise...]
 
