@@ -35,3 +35,9 @@
 * xref:06-crtlplane.adoc[6. Istio Control Plane]
 
 * xref:07-services.adoc[7. Istio Global Services]
+** xref:07-services.adoc[7.1 Secure Gateways]
+*** xref:07-services.adoc[7.1.1 Generate a Custom Certificate]
+*** xref:07-services.adoc[7.1.2 Create in Istio the Custom Certificate using SDS]
+*** xref:07-services.adoc[7.1.3 Configure Gateway]
+*** xref:07-services.adoc[7.1.4 Modify Route]
+*** xref:07-services.adoc[7.1.5 Test HTTPS connections]

@@ -1,26 +1,103 @@
 = Istio Global Services
 
+[#secure]
 == Secure Gateways 
 
 As you might know, Gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.
 
 During this step, you will review how to expose a secure HTTPS service using a Gateway, a custom certificate and Istio Secret Discovery Service (SDS).
 
+[#cert]
 === Generate a Custom Certificate
 
-For this task, you can use your favorite tool to generate certificates and keys. The commands below use openssl
+It is not required to perform any task related to generate custom certificates. These resources are included in GitHub repository.
 
-????????
+TIP: Follow https://istio.io/v1.6/docs/tasks/traffic-management/ingress/secure-ingress/[Secure Ingress] for more information about generate certificates
 
+[#addcert]
 === Create in Istio the Custom Certificate using SDS
+
+Once the custom certificate is created, it is time to create a new secret in Openshift to save the respective files.
+
+Please, create this new *secret* executing the following command:
 
 [.console-input]
 [source,input,subs="+macros,+attributes"]
 ----
-oc create -n istio-system secret tls <user>-credential --key=./07-istio-sds/jumpapp.com.key --cert=./07-istio-sds/jumpapp.com.crt
+oc create -n istio-system secret tls <user_namespace>-credential --key=./07-istio-sds/jumpapp.com.key --cert=./07-istio-sds/jumpapp.com.crt
 ----
 
+.Secret Created
+image::jump-app-secret-ok.png[]
+
+[#gw]
 === Configure Gateway
 
-=== Test the new HTTPS service
+If you remember, a gateway describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.
 
+In order to serve this new certificate when you are accessing to _Jump App_ frontend service, it is required to modify the respective Gateway. 
+
+Please, modify existing frontend *gateway* object executing the following command:
+
+:file: 07-istio-sds/00-jump-app-front-gw.yaml
+:namespace: istio-system
+
+include::partial$oc_process_apply.adoc[]
+
+.Front Gateway Modified
+image::jump-app-secret-ok.png[]
+
+In order to sure our Istio Secret Discovery Service (SDS) has been configured properly, you can review the _istio ingress gateway_ pod as shown the following picture:
+
+.Secret Added to SDS
+image::jump-app-sds-ok.png[]
+
+[#route]
+=== Modify Route
+
+As you might remember, an OpenShift route exposes a service at a host name, such as www.example.com, so that external clients can reach it by name. By default, the Openshift Routers handle these external accesses and theirs respective protection.
+
+Please, modify existing frontend *route* object executing the following command:
+
+:file: 07-istio-sds/01-jump-app-front-route.yaml
+:namespace: istio-system
+
+include::partial$oc_process_apply.adoc[]
+
+.Front Route Modified
+image::jump-app-istio-route-mod-ok.png[]
+
+[#test]
+=== Test HTTPS connections
+
+- Obtain external services URLs
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+oc get routes -n istio-system | grep <user_namespace>
+----
+
+.Jump App Routes
+image::jump-app-get-routes-mesh-ok.png[]
+
+- Accept _Jump App_ *self-signed certificate* located in the GitHub repository.
+
+.Jump App Self-signed Certificates Warning
+image::jump-app-front-cert-warning.png[]
+
+- Review _Jump App_ *self-signed certificate*
+
+.Jump App Self-signed Certificates Warning
+image::jump-app-front-cert-warning-int-1.png[]
+
+.Jump App Self-signed Certificates Warning
+image::jump-app-front-cert-warning-int-2.png[]
+
+- Visit the *front*, _front-javascript-<user_namespace>.<openshift_apps_domain>_, route via your web browser. In addition, configure *[ 1 ]* retries with *[ 1 ]* interval and press *[ JUMP ]* and ensure the following message is displaying in your screen
+
+ ...{"code":200,"message":"/jump - Greetings from Python!"}
+
+.Jump App Front Web UI Multi Jumps
+image::jump-app-front-jumps-ok.png[]
