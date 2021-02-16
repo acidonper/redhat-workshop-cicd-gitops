@@ -33,6 +33,12 @@
 ** xref:05-envoy.adoc#ef[5.1 Envoy Filters]
 
 * xref:06-crtlplane.adoc[6. Istio Control Plane]
+** xref:06-crtlplane.adoc#review[6.1 Review consequences of adding a new project to Istio Control Plane]
+*** xref:06-crtlplane.adoc#smr[6.1.1 Create _ServiceMeshMember_ Object]
+*** xref:06-crtlplane.adoc#np[6.1.2 Review Network Policies Created]
+** xref:06-crtlplane.adoc#test[6.2 Test _Jump App_]
+*** xref:06-crtlplane.adoc#up[6.2.1 Confirm _Jump App_ is running again]
+*** xref:06-crtlplane.adoc#kiali[6.2.2 Visit Kiali]
 
 * xref:07-services.adoc[7. Istio Global Services]
 ** xref:07-services.adoc#secure[7.1 Secure Gateways]

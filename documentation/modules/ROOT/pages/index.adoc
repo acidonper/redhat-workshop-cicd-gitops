@@ -36,26 +36,26 @@ xref:02-jumpapp.adoc[Start this exercise...]
 
 === Service Mesh Communication Flows
 
-In this step, you will review how Service Mesh objects are created and allow the different communication flows in Service Mesh in a specific namespace.
+In this phase, you will review how Service Mesh objects are created and allow the different communication flows in Service Mesh in a specific namespace.
 
 xref:03-flows.adoc[Start this exercise...]
 
 
 === Istio-Envoy Objects Relationship
 
-In this step, you will go through Service Mesh objects definition and their effect at Envoy level.
+During this step, you will go through Service Mesh objects definition and their effect at Envoy level.
 
 xref:04-relationship.adoc[Start this exercise...]
 
 === Envoy Proxy
 
-In this step, you will play with Service Mesh _envoy filters_ and see the results.
+During this part of the tutorial, you will play with Service Mesh _envoy filters_ and see the results.
 
 xref:05-envoy.adoc[Start this exercise...]
 
 === Istio Control Plane
 
-hola
+In this phase, you will integrate a selected project in the Service Mesh Control Plane through an object names _ServiceMeshMember_ and review the implications for this project.
 
 xref:06-crtlplane.adoc[Start this exercise...]
 
