@@ -127,5 +127,6 @@ do
   oc adm policy add-role-to-user view $i -n istio-system
   oc adm policy add-role-to-user admin $i -n $i-namespace
   oc adm policy add-role-to-user admin-mesh $i -n istio-system
+  oc adm policy add-role-to-user mesh-user $i -n istio-system --role-namespace istio-system
 done
 
