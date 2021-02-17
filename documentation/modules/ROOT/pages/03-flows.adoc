@@ -87,7 +87,7 @@ At this moment, you are not able to access to _Jump App_ because of a set of req
 .Frontend KO
 image::jump-app-front-ko.png[]
 
-TIP: If you are an advanced user and can not wait for your instructor, please visit xref:06-crtlplane.adoc[Istio Control Plane] and follow the instructions there.
+TIP: If you are an advanced user and can not wait for the instructor, please visit xref:06-crtlplane.adoc#smr[6.1.1 Create _ServiceMeshMember_ Object] and follow the instructions there.
 
 [#finalsteps]
 == Final Steps
