@@ -6,10 +6,10 @@ The following table includes the parameters that the Instructor should provide y
 [cols="3*^,3*.",options="header,+attributes"]
 |===
 |**Name**|**Reference**|**Example**
-| Openshift Cluster URL
+| Openshift Cluster API (Access CLI)
 | <ocp_cluster_url>
 | _https://api.tutorialrhmesh.sandbox507.opentlc.com_
-| Openshift Cluster URL
+| Openshift Cluster Console
 | <ocp_cluster_console>
 | _https://console-openshift-console.apps.tutorialrhmesh.sandbox507.opentlc.com_
 | Username
