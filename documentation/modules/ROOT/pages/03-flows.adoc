@@ -23,7 +23,7 @@ Please, return to git repository and create *gateways* through the respective Op
 :file: 03-jump-app-flows/00-jump-app-gws.yaml
 :namespace: <user_namespace>
 
-include::partial$oc_process_create.adoc[]
+include::partial$oc_process_apply.adoc[]
 
 .Gateways Created
 image::jump-app-gws-ok.png[]
@@ -38,7 +38,7 @@ Please, create new *virtual services* through the respective Openshift template 
 :file: 03-jump-app-flows/01-jump-app-vss.yaml
 :namespace: <user_namespace>
 
-include::partial$oc_process_create.adoc[]
+include::partial$oc_process_apply.adoc[]
 
 .Virtual Services Created
 image::jump-app-vss-ok.png[]
@@ -53,7 +53,7 @@ Please, create new *destination rules* through the respective Openshift template
 :file: 03-jump-app-flows/02-jump-app-drs.yaml
 :namespace: <user_namespace>
 
-include::partial$oc_process_create.adoc[]
+include::partial$oc_process_apply.adoc[]
 
 .Destination Rules Created
 image::jump-app-drs-ok.png[]
@@ -68,7 +68,7 @@ Please, create new *k8s services* through the respective Openshift template exec
 :file: 03-jump-app-flows/03-jump-app-services.yaml
 :namespace: <user_namespace>
 
-include::partial$oc_process_create.adoc[]
+include::partial$oc_process_apply.adoc[]
 
 .k8s Services Created
 image::jump-app-svcs-ok.png[]
@@ -175,7 +175,7 @@ Please, create new *routes* in **istio-system** namespace through the respective
 :file: 03-jump-app-flows/04-jump-app-routes.yaml
 :namespace: istio-system
 
-include::partial$oc_process_create.adoc[]
+include::partial$oc_process_apply.adoc[]
 
 .Mesh Routes Created
 image::jump-app-routes-mesh-ok.png[]

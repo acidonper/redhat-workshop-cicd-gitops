@@ -10,7 +10,7 @@ Please, create the previous object through the respective Openshift template exe
 :file: 04-istio-envoy-relationship/00-istio-envoy-rel-micro-version.yaml
 :namespace: <user_namespace>
 
-include::partial$oc_process_create.adoc[]
+include::partial$oc_process_apply.adoc[]
 
 .New Micro Version Created
 image::jump-app-new-micro-version-ok.png[]
