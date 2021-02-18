@@ -2,7 +2,7 @@
 [.console-input]
 [source,bash, subs="+macros,+attributes"]
 ----
-oc login -u <user> -p <pass> <ocp_cluster_console>
+oc login -u <user> -p <pass> <ocp_cluster_api>
 ----
 
 .OC CLI Login Output

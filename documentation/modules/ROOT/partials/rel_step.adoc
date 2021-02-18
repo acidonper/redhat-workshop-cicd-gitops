@@ -3,7 +3,7 @@ Before applying changes, please save the original Envoy proxy configuration foll
 [.console-input]
 [source,input,subs="+macros,+attributes"]
 ----
-oc exec <back-golang-pod_id><back-golang-pod_id> -c istio-proxy -n <user_namespace> curl localhost:15000/config_dump > {object}-config-init.json
+oc exec <back-golang-pod_id> -c istio-proxy -n <user_namespace> curl localhost:15000/config_dump > {object}-config-init.json
 ----
 
 .Envoy Configuration
