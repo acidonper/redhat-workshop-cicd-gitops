@@ -175,7 +175,7 @@ Please, create new *routes* in **istio-system** namespace through the respective
 :file: 03-jump-app-flows/04-jump-app-routes.yaml
 :namespace: istio-system
 
-include::partial$oc_process_apply.adoc[]
+include::partial$oc_process_create.adoc[]
 
 .Mesh Routes Created
 image::jump-app-routes-mesh-ok.png[]
