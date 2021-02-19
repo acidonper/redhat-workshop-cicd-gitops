@@ -5,9 +5,9 @@
 
 In order to make an application available through Service Mesh, it is required to create a set of Service Mesh objects related to the traffic flow:
 
-- Gateways - Describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections.
-- Virtual Services - Defines a set of traffic routing rules to apply when a host is addressed.
-- Destination Rules - Defines policies that apply to traffic intended for a service after routing has occurred.
+- Gateways - Describes a load balancer operating at the edge of the mesh receiving incoming or outgoing HTTP/TCP connections (Please, visit this link https://istio.io/v1.6/docs/concepts/traffic-management/#gateways[Gateways] for more information about _gateways_)
+- Virtual Services - Defines a set of traffic routing rules to apply when a host is addressed (Please, visit this link https://istio.io/v1.6/docs/concepts/traffic-management/#virtual-services[Virtual Services] for more information about _virtual services_)
+- Destination Rules - Defines policies that apply to traffic intended for a service after routing has occurred (Please, visit this link https://istio.io/v1.6/docs/concepts/traffic-management/#destination-rules[Destination Rules] for more information about _destination rules_)
 
 In this step, you have to be able to deploy this _Jump App_ Service Mesh objects in order to introduce this application in the Service Mesh and publish it to external clients.
 
