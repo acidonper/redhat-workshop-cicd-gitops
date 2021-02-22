@@ -1,7 +1,7 @@
 
 _Jump App Gitops_ is one of a set of repositories developed to generate a microservice based application, named Jump App. This repository includes an automated way of deploy Jump App's microservices and all stuff around this application (Deployments, Services, Build Configs, Pipelines, etc), including optionally CI/CD or Service Mesh objects as well.
 
-Please, follow next steps in order to download the GitHub repository code:
+Please, follow the next steps in order to download the GitHub repository code:
 
 [.lines_space]
 [.console-input]

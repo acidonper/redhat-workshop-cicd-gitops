@@ -9,14 +9,14 @@ In order to make an application available through Service Mesh, it is required t
 - Virtual Services - Defines a set of traffic routing rules to apply when a host is addressed (Please, visit this link https://istio.io/v1.6/docs/concepts/traffic-management/#virtual-services[Virtual Services] for more information about _virtual services_)
 - Destination Rules - Defines policies that apply to traffic intended for a service after routing has occurred (Please, visit this link https://istio.io/v1.6/docs/concepts/traffic-management/#destination-rules[Destination Rules] for more information about _destination rules_)
 
-In this step, you have to be able to deploy this _Jump App_ Service Mesh objects in order to introduce this application in the Service Mesh and publish it to external clients.
+In this step, you have to be able to deploy these _Jump App_ Service Mesh objects in order to introduce this application in the Service Mesh and publish it to external clients.
 
 WARNING: Please, replace *<user_namespace>* with the value provided by the Instructor at the beginning of this tutorial.
 
 [#gw]
 === Gateways
 
-First at all, it is required to create a Gateway for external access. In the _Jump App_ architecture, you have a couple of services which have to be exposes to external clients in order to present the Frontend and Backend services.
+First of all, it is required to create a Gateway for external access. In the _Jump App_ architecture, you have a couple of services which have to be exposes to external clients in order to present the Frontend and Backend services.
 
 Please, return to git repository and create *gateways* through the respective Openshift template executing the following command: 
 
@@ -78,7 +78,7 @@ image::jump-app-svcs-ok.png[]
 
 The ServiceMeshMemberRoll lists the projects belonging to the control plane. Only projects listed in the ServiceMeshMemberRoll are affected by the control plane.
 
-In order to add this new project to the Service Mesh and make possible the traffic between each microservice, it is required to modify the ServiceMeshMemberRoll **default** object at this moment. 
+In order to add this new project to the Service Mesh and make the traffic between each microservice possible, it is required to modify the ServiceMeshMemberRoll **default** object at this moment. 
 
 IMPORTANT: Let the Instructor know that you are at this point
 
@@ -95,7 +95,7 @@ TIP: If you are an advanced user and can not wait for the instructor, please vis
 [#annotation]
 === Add _Istio Sidecar_ annotation in _Jump App_ deployments  
 
-Once traffic flow objects are created and your namespace is included as member in the Service Mesh Control Plane, it is time to include a specific annotation in your app deployments in order to allow Service Mesh control and run the respective envoy sidecar automatically.
+Once traffic flow objects are created and your namespace is included as a member in the Service Mesh Control Plane, it is time to include a specific annotation in your app deployments in order to allow Service Mesh control and run the respective envoy sidecar automatically.
 
 Please, edit each _Jump App Microservice_ deployment executing the commands added below:
 
@@ -153,7 +153,7 @@ include::partial$chec_jumpapp_mesh_pod.adoc[]
 
 An OpenShift Container Platform *route* exposes a service at a host name, such as www.example.com, so that external clients can reach it by name. When you manage routes outside Service Mesh, it is required to create these objects in each namespace.
 
-Once you have a project integrated in Service Mesh, routes should be created in istio-system, or wherever the control plane is installed, to make this external service available through the Istio Ingress Gateway. For this reason, it is required to follow next steps:
+Once you have a project integrated in Service Mesh, routes should be created in istio-system, or wherever the control plane is installed, to make this external service available through the Istio Ingress Gateway. For this reason, it is required to follow the next steps:
 
 ==== *Delete all current routes in <user_namespace>*
 
@@ -183,7 +183,7 @@ image::jump-app-routes-mesh-ok.png[]
 [#test]
 === Confirm _Jump App_ is running again
 
-Once _Jump App_ objects have been created in Openshift, it is required to follow next steps in order to ensure your demo app is running properly:
+Once _Jump App_ objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:
 
 NOTE: Look at the number of containers in each microservice, it must contains 2 container per each pod (*READY 2/2*). 
 

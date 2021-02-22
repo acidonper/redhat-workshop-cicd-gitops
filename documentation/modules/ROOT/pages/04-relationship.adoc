@@ -3,7 +3,7 @@
 [#previous]
 == Create a new microservice version
 
-First at all, it is required to create a new microservice _deployment_ and a _service_ objects for being able to work with different micro versions in Service Mesh.
+First of all, it is required to create a new microservice _deployment_ and a _service_ objects to be able to work with different micro versions in Service Mesh.
 
 Please, create the previous object through the respective Openshift template executing the following command: 
 
@@ -27,9 +27,9 @@ image::jump-app-back-golang-v2-depl-patch.png[]
 [#reviewing]
 == Review Red Hat Service Mesh objects
 
-When a new Service Mesh object is created in a specific namespace, a set of configurations blocks are added to Envoy proxies in order to be able to apply these rules in the mesh traffic flow.
+When a new Service Mesh object is created in a specific namespace, a set of configuration blocks are added to Envoy proxies in order to be able to apply these rules in the mesh traffic flow.
 
-In this step, you will review how these objects affect Envoy proxies getting their configuration from Envoy itself. In order to be able to obtain some information from pods, it is required to obtain pods names before starting this section:
+In this step, you will review how these objects affect Envoy proxies getting their configuration from Envoy itself. In order to be able to obtain some information from pods, it is required to obtain the pods names before starting this section:
 
 [.lines_7]
 [.console-input]
@@ -104,7 +104,7 @@ image::jump-app-front-jumps-ok.png[]
 
 *KIALI*
 
-Jump App is generating traffic flow thanks to the frontend where was defined an specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console *<kiali_url>* (_E.g. https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com_):
+Jump App is generating traffic flow thanks to the frontend where was given a specific number of continuous jumps. In order to review the Service Mesh traffic flow in your project, please visit Kiali console *<kiali_url>* (_E.g. https://kiali-istio-system.apps.tutorialrhmesh.sandbox507.opentlc.com_):
 
 .Kiali Console
 image::jump-app-kiali-v2.png[]

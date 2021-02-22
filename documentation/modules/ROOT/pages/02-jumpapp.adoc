@@ -4,7 +4,7 @@
 
 _Jump App_ is a microservice-based application created to emulate an enterprise application complex architecture with multi environments. This app allows users to configure a set of jumps between components and generate a continuous traffic flow defining the number of retries and their span of time.
 
-First at all, it is required to deploy Jump App application in Openshift in order to have the demo application environment ready. The following steps in this section helps you to deploy _Jump App_.
+First of all, it is required to deploy Jump App application in Openshift in order to have the demo application environment ready. The following steps in this section helps you to deploy _Jump App_.
 
 WARNING: Please, replace *<user>*, *<pass>*, *<ocp_cluster_console>* and *<user_namespace>* with the values provided by the Instructor at the beginning of this tutorial or values obtained from openshift cluster.
 
@@ -21,7 +21,7 @@ include::partial$clone_github_repo.adoc[]
 [#jumpappobjects]
 === Create _Jump App_ Objects in Openshift
 
-First at all, it is required to modify _params.env_ file to include the parameters provided by the Instructor:
+First of all, it is required to modify _params.env_ file to include the parameters provided by the Instructor:
 
 [.lines_7]
 [.console-input]
@@ -49,9 +49,9 @@ oc process -f ./02-jump-app-deploy/jump-app-template.yml --param-file=./params.e
 image::jump_app_created.png[]
 
 [#test]
-=== Confirm _Jump App_ is already running in Openshift
+=== Confirm that _Jump App_ is already running in Openshift
 
-Once _Jump App_ objects have been created in Openshift, it is required to follow next steps in order to ensure your demo app is running properly:
+Once _Jump App_ objects have been created in Openshift, it is required to follow the next steps in order to ensure your demo app is running properly:
 
 include::partial$check_jumpapp.adoc[]
 

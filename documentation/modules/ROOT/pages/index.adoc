@@ -8,7 +8,7 @@ image::logos.png[Envoy,600,200]
 [.text-center.strong]
 == Introduction
 
-The general idea of _Red Hat Service Mesh: Envoy & Istio Control Plane_ tutorial is to get a deeply understanding of the following points:
+The general idea of _Red Hat Service Mesh: Envoy & Istio Control Plane_ tutorial is to get a deep understanding of the following points:
 
 - Service Mesh Communication Flows
 - Istio-Envoy Objects Relationship
@@ -19,7 +19,7 @@ The general idea of _Red Hat Service Mesh: Envoy & Istio Control Plane_ tutorial
 [.text-center.strong]
 == Get Started
 
-First at all, it is required to review your local machine prerequisites and laboratory environment access in order to be able to start working on this tutorial.
+First of all, it is required to review your local machine prerequisites and laboratory environment access in order to be able to start working on this tutorial.
 
 Please, follow xref:01-setup.adoc[Get Started] for more information.
 

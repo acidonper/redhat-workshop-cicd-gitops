@@ -3,9 +3,9 @@
 == Review Envoy Proxy through Envoy Filters
 
 
-In Envoy Proxy, a _filter chain_ wraps a set of match criteria, an option TLS context, a set of filters, and various other parameters. When a request is received in an Envoy Proxy, a communication flow is generated going through a set of filter chains which might could modify this request in a number of ways.
+In Envoy Proxy, a _filter chain_ wraps a set of match criteria, an option TLS context, a set of filters, and various other parameters. When a request is received in an Envoy Proxy, a communication flow is generated going through a set of filter chains which might can modify this request in a number of ways.
 
-As you reviewed in the previous section, when a new Service Mesh object is created in a specific namespace, a set of configurations blocks are added to Envoy proxies in order to be able to apply these rules in the mesh traffic flow.
+As you reviewed in the previous section, when a new Service Mesh object is created in a specific namespace, a set of configuration blocks are added to Envoy proxies in order to be able to apply these rules in the mesh traffic flow.
 
 In this step, you will review how _envoy filters_ affect Envoy traffic applying different rules based on a set of criteria.
 

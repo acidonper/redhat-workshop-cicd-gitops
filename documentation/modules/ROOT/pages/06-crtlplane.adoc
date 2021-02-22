@@ -20,7 +20,7 @@ WARNING: Please, replace *<user_namespace>* with the value provided by the Instr
 [#smr]
 === Create _ServiceMeshMember_ Object
 
-First at all, it is required to create a new _ServiceMeshMember_ object for being able to add a new project to the Service Mesh.
+First of all, it is required to create a new _ServiceMeshMember_ object for being able to add a new project to the Service Mesh.
 
 Please, create the previous object through the respective Openshift template executing the following command: 
 
@@ -89,7 +89,7 @@ image::jump-app-ns-smr-np-2.png[]
 [#up]
 === Confirm _Jump App_ is running again
 
-Once your project has been added to the Service Mesh Control Plane, it is required to follow next steps in order to ensure your demo app is running properly:
+Once your project has been added to the Service Mesh Control Plane, it is required to follow the next steps in order to ensure your demo app is running properly:
 
 NOTE: Look at the number of containers in each microservice, it must contains 2 container per each pod (*READY 2/2*). 
 
