@@ -24,7 +24,7 @@ Please, create this new *secret* executing the following command:
 [.console-input]
 [source,input,subs="+macros,+attributes"]
 ----
-oc create -n istio-system secret tls <user_namespace>-credential --key=./07-istio-sds/jumpapp.com.key --cert=./07-istio-sds/jumpapp.com.crt
+oc create -n istio-system secret tls <user_namespace>-credential --key=./07-istio-sds/front-jumpapp.com.key --cert=./07-istio-sds/front-jumpapp.com.crt
 ----
 
 .Secret Created
@@ -45,7 +45,7 @@ Please, modify existing frontend *gateway* object executing the following comman
 include::partial$oc_process_apply.adoc[]
 
 .Front Gateway Modified
-image::jump-app-secret-ok.png[]
+image::jump-app-gw-ok.png[]
 
 In order to sure our Istio Secret Discovery Service (SDS) has been configured properly, you can review the _istio ingress gateway_ pod as shown the following picture:
 
