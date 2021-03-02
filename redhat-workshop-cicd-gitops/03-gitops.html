@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>GitOps Workflow :: Red Hat Service Mesh - Envoy &amp; Istio Control Plane</title>
+    <title>GitOps Workflow :: Red Hat Workshop - CI/CD &amp; GitOps</title>
     <link rel="canonical" href="http://localhost:3000/rhs-build-course/index.html/redhat-workshop-cicd-gitops/03-gitops.html">
     <link rel="prev" href="02-deployment.html">
     <link rel="next" href="04-cicd.html">
@@ -18,7 +18,7 @@
     <div class="navbar-brand">
       <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
           src="../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
-      <a class="navbar-item" href="http://localhost:3000/rhs-build-course/index.html">Red Hat Service Mesh - Envoy &amp; Istio Control Plane</a>
+      <a class="navbar-item" href="http://localhost:3000/rhs-build-course/index.html">Red Hat Workshop - CI/CD &amp; GitOps</a>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -123,7 +123,22 @@
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="03-gitops.html">3. GitOps Workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#03-changegitops">3.1 Change GitOps repository content</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#03-reviewargocd">3.2 Review Changes in ArgoCD</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#03-reviewocp">3.3 Review Changes in Openshift</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#03-test">3.4 Confirm that <em>Jump App</em> is already running in Openshift</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="04-cicd.html">3. CI/CD Workflow</a>
@@ -155,6 +170,7 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Red Hat Workshop - CI/CD & GitOps</a></li>
@@ -166,7 +182,271 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">GitOps Workflow</h1>
-
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the <em>GitOps Workflow</em> step you will make a change in your GitOps GitHub repository where application settings are located and then ArgoCD applies this configuration automatically.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="03-changegitops"><a class="anchor" href="#03-changegitops"></a>Change GitOps repository content</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As you know, you have all <em>Jump App</em> microservices settings defined in the "values.yaml" file which is located in your GitOps repository created in the previous step.</p>
+</div>
+<div class="paragraph">
+<p>In order to modify our <em>Jump App</em> application settings in a GitOps way, it is required to perform the following tasks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Modify your GitOps Repository in order to added the new settings</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">sed 's/replicas: 1/replicas: 2/g' -i values.yaml</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Push changes to GitHub</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">git add values.yaml
+git commit -m "Change the number of replicas in order to scale Jump App"
+git push origin master</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_gitops_pushed.png" alt="github gitops pushed">
+</div>
+<div class="title">Figure 1. Student GitOps Repository Pushed</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="03-reviewargocd"><a class="anchor" href="#03-reviewargocd"></a>Review Changes in ArgoCD</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once previous changes are pushed in the GitHub repository, ArgoCD automatically inits a process to modify Openshift objects in order to apply the desired state in GitHub to the Openshift cluster automatically.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Access ArgoCD console &lt;argocd_console_url&gt; (*URL provided by the Instructor at the beginning of this tutorial)</p>
+</li>
+<li>
+<p>A new sync process is triggered automatically</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/argocd_gitops_change.png" alt="argocd gitops change">
+</div>
+<div class="title">Figure 2. ArgoCD Sync Process Triggered Automatically</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After a few seconds, <em>Jump App</em> health state will change to healthy</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/argocd_gitops_changed.png" alt="argocd gitops changed">
+</div>
+<div class="title">Figure 3. ArgoCD Sync Process Finished</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Take a look at sync process status</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/argocd_gitops_sync.png" alt="argocd gitops sync">
+</div>
+<div class="title">Figure 4. ArgoCD Sync Process Characteristics</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="03-reviewocp"><a class="anchor" href="#03-reviewocp"></a>Review Changes in Openshift</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After the ArgoCD sync process finished, it is interesting to access Openshift Console using your credentials via browser in order to check these changes via Openshift Console.</p>
+</div>
+<div class="paragraph">
+<p>Please, follow the next steps to verify <em>Jump App</em> microservices changes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Access &lt;ocp_cluster_console&gt; (<em>E.g. <a href="https://console-openshift-console.apps.cicdgitopsworkshop.sandbox507.opentlc.com" class="bare">https://console-openshift-console.apps.cicdgitopsworkshop.sandbox507.opentlc.com</a></em>)</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_console.png" alt="ocp console">
+</div>
+<div class="title">Figure 5. Openshift Console</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_gitops_access.png" alt="ocp gitops access">
+</div>
+<div class="title">Figure 6. Openshift Developer View</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to Administrator view</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_gitops_admin_console.png" alt="ocp gitops admin console">
+</div>
+<div class="title">Figure 7. Openshift Administrator View</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to Deployments sections and notice that you have <strong>2 of 2</strong> pods instead of <em>1 of 1</em></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_gitops_deployments.png" alt="ocp gitops deployments">
+</div>
+<div class="title">Figure 8. Openshift Deployments Section</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Review Pods creation date differences</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_gitops_pods.png" alt="ocp gitops pods">
+</div>
+<div class="title">Figure 9. Openshift Pods Section</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="03-test"><a class="anchor" href="#03-test"></a>Confirm that <em>Jump App</em> is already running in Openshift</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once <em>Jump App</em> objects have been created in Openshift through ArgoCD, it is required to follow the next steps in order to ensure your demo app is running properly:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get pods</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get pods -n &lt;user_namespace&gt;</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/jump_app_pods_gitops.png" alt="jump app pods gitops">
+</div>
+<div class="title">Figure 10. Jump App Pods</div>
+</div>
+<div class="paragraph">
+<p>If <em>Jump App</em> is already running in Openshift, it is time to access <em>Jump App</em> public services in order to test the application:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Obtain external services URLs</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">oc get routes -n &lt;user_namespace&gt;</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/jump-app-routes.png" alt="jump app routes">
+</div>
+<div class="title">Figure 11. Jump App Routes</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>back</strong>, <em>back-golang-v1-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/jump-app-back-ok.png" alt="jump app back ok">
+</div>
+<div class="title">Figure 12. Jump App Back</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-v1-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser, push <strong>- JUMP-</strong> button and ensure the following message is displaying in your screen:</p>
+<div class="literalblock">
+<div class="content">
+<pre>...{"code":200,"message":"/jump - Greetings from Python!"}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/jump-app-front-ok.png" alt="jump app front ok">
+</div>
+<div class="title">Figure 13. Jump App Frontend Web UI</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It is required to accept <strong>self-signed certificates</strong> provided by Openshift
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/certs_warning.png" alt="certs warning" width="50%">
+</div>
+<div class="title">Figure 14. Openshift Self-signed Certificates Warning</div>
+</div>
+</div>
+</div>
 <nav class="pagination">
   <span class="prev"><a href="02-deployment.html">2. Deployment Workflow</a></span>
   <span class="next"><a href="04-cicd.html">3. CI/CD Workflow</a></span>
