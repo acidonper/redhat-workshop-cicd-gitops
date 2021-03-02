@@ -1,14 +1,14 @@
-# Red Hat Service Mesh: Envoy & Istio Control Plane
+# Red Hat Workshop - CI/CD & GitOps
 
 ## Introduction
 
-The general idea of _Red Hat Service Mesh: Envoy & Istio Control Plane_ tutorial is to get a deep understanding of the following points:
+_Red Hat Workshop CI/CD & GitOps_ is a repository which includes a tutorial with a set of practices for the purpose of practicing with Kubernetes Native CI/CD pipelines in a GitOps model.
 
-- Service Mesh Communication Flows
-- Istio-Envoy Objects Relationship
-- Envoy Proxy
-- Istio Control Plane Objects
-- Istio Global Services
+The general idea behind this workshop is to get an initial understanding of the following points:
+
+- Deploy microservice-based applications in Kubernetes using ArgoCD and Helm
+- Operate applications in Kubernetes using ArgoCD in a GitOps model
+- Implement Kubernetes Native CI/CD Pipelines strategy with Tekton
 
 ## Courseware official documentation
 

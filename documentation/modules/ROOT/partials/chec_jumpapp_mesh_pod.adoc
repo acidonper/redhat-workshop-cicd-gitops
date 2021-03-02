@@ -1,9 +1,0 @@
-[.lines_7]
-[.console-input]
-[source,input,subs="+macros,+attributes"]
-----
-oc get pods
-----
-
-.Jump App Pods Mesh
-image::jump-app-pods-2-ok.png[]

@@ -1,0 +1,293 @@
+= Deployment Workflow
+
+include::_attributes.adoc[]
+
+In the _Deployment Workflow_ step you will prepare a GitOps repository and deploy _Jump App_ application in Openshift using ArgoCD and Helm.
+
+[#02-gitopsrepo]
+== Prepare GitOps repository
+
+First of all, it is required to prepare a _GitOps_ repository in order to allocate the following resources:
+
+* Helm Charts references
+* A _values.yaml_ file to make ArgoCD able to deploy _Jump App_ in Openshift using helm charts referenced
+
+Please, follow the following sections to make this GitOps repository available.
+
+[#02-gitopsrepofork]
+=== Fork
+
+Regarding preparing a GitOps repository, you have a shared repository in GitHub ready to go. Please, follow the next steps to copy this repository in your GitHub account in order to be able to operate it freely:
+
+* Login in https://github.com[GitHub]
+
+* Access https://github.com/acidonper/jump-app-gitops[GitHub * Jump App GitOps Repository]
+
+.Acidonper GitOps Repository
+image::github_acidonper.png[]
+
+* Fork the repository
+
+.Acidonper GitOps Repository Fork
+image::github_gitops_fork.png[]
+
+.Acidonper GitOps Repository Forked
+image::github_gitops_forked.png[]
+
+[#02-gitopsrepoclone]
+=== Clone
+
+Once you have your own GitOps repository in GitHub, it is time to clone it in your laptop in order to start working.
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git clone <github_gitops_repository_url> --recursive 
+----
+
+.Student GitOps Repository Cloned
+image::github_gitops_cloned.png[]
+
+[#02-gitopsrepoconfig]
+=== Config
+
+Lastly, it is required to make some changes in this new repository in order to be able to deploy _Jump App_ correctly in future steps:
+
+* Go to the repository folder
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+cd jump-app-gitops
+----
+
+* Create Chart.yaml file
+
+----
+apiVersion: v2
+name: jump-app
+description: A Helm chart to deploy JumpApp for Kubernetes
+type: application
+
+version: 0.1.0
+appVersion: 0.1.16
+
+mantainers:
+  * name: Asier Cidon
+    email: acidonpe@redhat.com
+
+dependencies:
+  * name: jump-app-micros
+    repository: 'file://./charts/jump-app-micros'
+    version: 0.1.0
+    condition: jump-app-micros.enabled
+  * name: jump-app-cicd
+    repository: 'file://./charts/charts/jump-app-cicd'
+    version: 0.1.0
+    condition: jump-app-cicd.enabled
+  * name: jump-app-argocd
+    repository: 'file://./charts/charts/jump-app-argocd'
+    version: 0.1.0
+    condition: jump-app-argocd.enabled
+----
+
+* Create values.yaml file modifying _global.appsDomain_ including *<openshift_apps_domain>* parameter value provided by the Instructor
+
+----
+# Chart variables
+jump-app-cicd:
+  enabled: false
+jump-app-argocd:
+  enabled: false
+jump-app-micros:
+  enabled: true
+  istio:
+    enabled: false
+    namespace: istio-system
+    mtls: true
+  cicd:
+    namespace: jump-app-cicd
+  
+# Global variables
+global:
+  appsDomain: <openshift_apps_domain>
+  apps:
+    front-javascript:
+      imagetag: develop
+      multiVersions:
+        enabled: false
+      replicas: 1
+      envVars:
+        APP_REF_NAME: jump-app
+      containerPorts:
+        http:
+          containerPort: 3000
+          protocol: TCP
+      servicePorts:
+        http-8080:
+          port: 8080
+          protocol: TCP
+          targetPort: 3000
+      public: true
+      routeTargetPort: http-8080
+      backend: back-golang
+    back-golang:
+      imagetag: develop
+      multiVersions:
+        enabled: false
+      replicas: 1
+      envVars:
+        APP_REF_NAME: jump-app
+      containerPorts:
+        http:
+          containerPort: 8442
+          protocol: TCP
+      servicePorts:
+        http-8442:
+          port: 8442
+          protocol: TCP
+          targetPort: 8442
+      public: true
+      routeTargetPort: http-8442
+    back-python:
+      imagetag: develop
+      multiVersions:
+        enabled: false
+      replicas: 1
+      envVars:
+        APP_REF_NAME: jump-app
+      containerPorts:
+        http:
+          containerPort: 8080
+          protocol: TCP
+      servicePorts:
+        http-8080:
+          port: 8444
+          protocol: TCP
+          targetPort: 8080
+      public: false
+      routeTargetPort: http-8080
+    back-springboot:
+      imagetag: develop
+      multiVersions:
+        enabled: false
+      replicas: 1
+      envVars:
+        APP_REF_NAME: jump-app
+      containerPorts:
+        http:
+          containerPort: 8080
+          protocol: TCP
+        https:
+          containerPort: 8443
+          protocol: TCP
+        service:
+          containerPort: 8778
+          protocol: TCP
+      servicePorts:
+        http-8080:
+          port: 8080
+          protocol: TCP
+          targetPort: 8080
+        http-8443:
+          port: 8443
+          protocol: TCP
+          targetPort: 8443
+        http-8778:
+          port: 8778
+          protocol: TCP
+          targetPort: 8778
+      public: false
+      routeTargetPort: http-8443
+----
+
+* Test our new files rendering this new helm chart
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+helm template . -f values.yaml --namespace <user_namespace>
+----
+
+.Student GitOps Repository rendering
+image::github_gitops_test.png[]
+
+Once Chart.yaml and values.yaml are created and tested, it is required to push these new files to your repository.
+
+* Push files
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git add Chart.yaml
+git add values.yaml
+git commit -m "Added Chart.yaml and values.yaml files"
+git push origin master
+----
+
+.Student GitOps Repository Pushed
+image::github_gitops_pushed.png[]
+
+* Access your own GitOps repository
+
+.Student GitOps Repository Customized
+image::github_gitops_customized.png[]
+
+[#02-deploy]
+== Deploy _Jump App_ via ArgoCD
+
+At this point, your should have a GitOps repository with a helm chart which is ready to deploy _Jump App_ in Openshift through ArgoCD.
+
+Please, follow the next steps to deploy _Jump App_.
+
+* Access ArgoCD console <argocd_console_url> (*URL provided by the Instructor at the beginning of this tutorial)
+
+.ArgoCD Console
+image::argocd_console.png[]
+
+* Create a new App
+
+.ArgoCD New App
+image::argocd_new_app.png[]
+
+* Field the following fields
+
+ ** Application Name -> **<username>-jump-app**
+ ** Project -> **<username>**
+ ** Sync Policy -> **Automatic**
+ ** Repository URL -> **<github_gitops_repository_url>**
+ ** Revision -> **master**
+ ** Path -> **.**
+ ** Cluster URL -> **https://kubernetes.default.svc**
+ ** Namespace -> **<user_namespace>**
+
+.ArgoCD New App Fields
+image::argocd_new_app_fields.png[]
+
+* Click on "CREATE"
+
+.ArgoCD New App Fields
+image::argocd_new_app_create.png[]
+
+.ArgoCD Jump App Creating
+image::argocd_jumpapp_creating.png[]
+
+* After few minutes, _Jump App_ health state will change to healthy
+
+.ArgoCD Jump App OK
+image::argocd_jumpapp_ok.png[]
+
+.ArgoCD Jump App Content I
+image::argocd_jumpapp_content_1.png[]
+
+.ArgoCD Jump App Content II
+image::argocd_jumpapp_content_2.png[]
+
+[#02-test]
+== Confirm that _Jump App_ is already running in Openshift
+
+include::partial$check_jumpapp.adoc[]

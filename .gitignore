@@ -3,6 +3,7 @@ target/
 audit.log
 .cache/
 *.log
+old/
 
 docs/
 gh-pages/

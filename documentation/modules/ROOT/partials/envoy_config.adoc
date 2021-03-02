@@ -1,8 +1,0 @@
-[.console-input]
-[source,input,subs="+macros,+attributes"]
-----
-oc exec {podname} -c istio-proxy -n <user_namespace> curl localhost:15000/config_dump > {podname}-{file}
-----
-
-.Envoy Configuration
-image::{image_config_init}[]

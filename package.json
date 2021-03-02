@@ -1,11 +1,10 @@
 {
-  "name": "rhs-openshift-admins-devops",
-  "description": "OpenShift Admins Devops Course Documentation Site",
-  "homepage": "https://redhat-scholars.github.io/openshift-admins-devops",
+  "name": "redhat-workshop-cicd-gitops",
+  "description": "Red Hat Workshop - CI/CD & GitOps",
+  "homepage": "https://acidonper.github.io/redhat-workshop-cicd-gitops",
   "author": {
-    "email": "kamesh.sampath@hotmail.com",
-    "name": "Kamesh Sampath",
-    "url": "https://twitter.com/@kamesh_sampath"
+    "email": "asier.cidon@gmail.com",
+    "name": "Asier Cidon"
   },
   "dependencies": {
     "@antora/cli": "^2.3.1",
@@ -28,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/redhat-scholars/openshift-admins-devops.git"
+    "url": "git+https://github.com/acidonper/redhat-workshop-cicd-gitops.git"
   },
   "license": "Apache-2.0",
   "babel": {

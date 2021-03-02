@@ -1,20 +1,17 @@
-= Welcome to Red Hat Service Mesh: Envoy & Istio Control Plane
+= Welcome to Red Hat Workshop - CI/CD & GitOps
 :page-layout: home
 :!sectids:
-
-image::logos.png[Envoy,600,200]
-
 
 [.text-center.strong]
 == Introduction
 
-The general idea of _Red Hat Service Mesh: Envoy & Istio Control Plane_ tutorial is to get a deep understanding of the following points:
+_Red Hat Workshop CI/CD & GitOps_ is a repository which includes a tutorial with a set of practices for the purpose of practicing with Kubernetes Native CI/CD pipelines in a GitOps model.
 
-- Service Mesh Communication Flows
-- Istio-Envoy Objects Relationship
-- Envoy Proxy
-- Istio Control Plane Objects
-- Istio Global Services
+The general idea behind this workshop is to get an initial understanding of the following points:
+
+- Deploy microservice-based applications in Kubernetes using ArgoCD and Helm
+- Operate applications in Kubernetes using ArgoCD in a GitOps model
+- Implement Kubernetes Native CI/CD Pipelines strategy with Tekton
 
 [.text-center.strong]
 == Get Started
@@ -23,46 +20,23 @@ First of all, it is required to review your local machine prerequisites and labo
 
 Please, follow xref:01-setup.adoc[Get Started] for more information.
 
-
 [.text-center.strong]
 == Tutorial Steps
 
-=== Deploy Jump App
+=== Deployment Workflow
 
-In this step, you will deploy a demo application in Openshift in order to have a testing environment which supports the next tutorial exercises. 
+In this step, you will prepare a GitOps repository and deploy _Jump App_ application in Openshift using ArgoCD and Helm.
 
-xref:02-jumpapp.adoc[Start this exercise...]
+xref:02-deployment.adoc[Start this exercise...]
 
+=== GitOps Workflow
 
-=== Service Mesh Communication Flows
+In this step, you will xxxx
 
-In this phase, you will review how Service Mesh objects are created and allow the different communication flows in Service Mesh in a specific namespace.
+xref:03-gitops.adoc[Start this exercise...]
 
-xref:03-flows.adoc[Start this exercise...]
+=== CI/CD Workflow
 
+In this step, you will xxx
 
-=== Istio-Envoy Objects Relationship
-
-During this step, you will go through Service Mesh objects definition and their effect at Envoy level.
-
-xref:04-relationship.adoc[Start this exercise...]
-
-=== Envoy Proxy
-
-During this part of the tutorial, you will play with Service Mesh _envoy filters_ and see the results.
-
-xref:05-envoy.adoc[Start this exercise...]
-
-=== Istio Control Plane
-
-In this phase, you will integrate a selected project in the Service Mesh Control Plane through an object names _ServiceMeshMember_ and review the implications for this project.
-
-xref:06-crtlplane.adoc[Start this exercise...]
-
-
-=== Istio Global Services
-
-During this step, you will review how to expose a secure HTTPS service using a Gateway, a custom certificate and Istio Secret Discovery Service (SDS).
-
-xref:07-services.adoc[Start this exercise...]
-
+xref:04-cicd.adoc[Start this exercise...]

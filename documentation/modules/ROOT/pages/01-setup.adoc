@@ -1,26 +1,94 @@
-= Setup
+= Environment Setup
+
 include::_attributes.adoc[]
 
-[#prerequisites]
+[#01-prerequisites]
 == Prerequisites
 
 During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:
 
 include::partial$requirements.adoc[]
 
-[#laboratory]
+NOTE: Please, review the official documentation to install the latest versions of these tools in your laptop following the optimum procedure 
+
+On the other hand, it is required to have a https://github.com[GitHub] account in order to create some repositories during this tutorial.
+
+[#01-laboratory]
 == Laboratory
 
 Tutorial's laboratory is basically based on the following technologies:
 
 - Red Hat Openshift Container Platform Cluster
-- Red Hat Service Mesh based on _Istio_ & _Envoy_
+- ArgoCD (Red Hat GitOps Operator)
+- Tekton (Red Hat Pipelines Operator)
+- Helm
 
-In addition, a GitHub repository is provided with a set of templates and other resources which are required to create different objects in Openshift during this tutorial.
+In addition, a set of GitHub repositories are provided with a set of templates and other resources which are required to create different objects in Openshift during this tutorial.
 
-The previous technologies and resources will allow you to implement a microservice-based application in Openshift which will be included in Service Mesh. The main objective of deploying this application in Openshift using Service Mesh is to understand how _Istio_ & _Envoy_ are tightly related.
+- https://github.com/acidonper/jump-app-gitops[GitHub - Jump App GitOps Repository] 
 
-=== Laboratory Parameters
+The previous technologies and resources will allow you to deploy and operate a microservice-based application in Openshift. The main objective of deploying and operating this application in Openshift using the previous technologies is to understand how GitOps and CI/CD (Continuous Integration/Continuous Deployment) strategies work together in a Kubernetes environment in order to speed up application management processes.
 
-include::partial$access_lab.adoc[]
+[#01-parameters]
+=== Parameters
+
+The Instructor provides users the Openshift credentials and other important parameters at the beginning of this tutorial in order to access the laboratory. 
+
+The following table includes the parameters that the Instructor should provide you at the beginning:
+
+[cols="3*^,3*.",options="header,+attributes"]
+|===
+|**Name**|**Reference**|**Example**
+| Openshift Cluster API (Access CLI)
+| <ocp_cluster_api>
+| _https://api.cicdgitopsworkshop.sandbox507.opentlc.com:6443_
+| Openshift Cluster Console
+| <ocp_cluster_console>
+| _https://console-openshift-console.apps.cicdgitopsworkshop.sandbox507.opentlc.com_
+| Username
+| <username>
+| user1
+| Password
+| <pass>
+| P4ssw0rd
+| Namespace
+| <user_namespace>
+| user1-namespace
+| Openshift Apps Domain
+| <openshift_apps_domain>
+| _apps.cicdgitopsworkshop.sandbox507.opentlc.com_
+| ArgoCD console
+| <argocd_console_url>
+| _https://argocd-gitops-argocd.cicdgitopsworkshop.sandbox507.opentlc.com_
+|===
+
+[#01-accessoc]
+=== Access - OC Client
+
+The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system. 
+
+Please, review the previous settings with your Instructor and connect to the cluster executing next command from your terminal:
+
+[.lines_space]
+[.console-input]
+[source,bash, subs="+macros,+attributes"]
+----
+oc login -u <user> -p <pass> <ocp_cluster_api>
+----
+
+.OC CLI Login Output
+image::oc_login_output.png[]
+
+TIP: Please, pay special attention to _oc CLI_  because you will need to use this tool several times during this tutorial.
+
+[#01-accessconsole]
+=== Access - OCP Console
+
+In addition, access Openshift Console using your credentials via browser in order to check connectivity and accessibility to the console:
+
+- <ocp_cluster_console> (_E.g. https://console-openshift-console.apps.cicdgitopsworkshop.sandbox507.opentlc.com_)
+
+.Openshift Console
+image::ocp_console.png[]
+
 

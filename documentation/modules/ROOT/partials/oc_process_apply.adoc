@@ -1,7 +1,0 @@
-[.lines_space]
-[.console-input]
-[source,bash, subs="+macros,+attributes"]
-----
-oc project {namespace}
-oc process -f {file} --param-file=params.env --ignore-unknown-parameters | oc apply -f -
-----

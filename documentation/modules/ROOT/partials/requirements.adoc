@@ -12,6 +12,11 @@
 | https://git-scm.com/download/mac[Download]
 | https://git-scm.com/download/win[Download]
 | https://git-scm.com[Git - Docs]
+| helm
+| https://get.helm.sh/helm-v3.5.2-linux-amd64.tar.gz[Download]
+| https://get.helm.sh/helm-v3.5.2-darwin-amd64.tar.gz[Download]
+| https://get.helm.sh/helm-v3.5.2-windows-amd64.zip[Download]
+| https://helm.sh/docs/intro/install/[Helm - Docs]
 | Visual Studio Code
 | https://code.visualstudio.com/sha/download?build=stable&os=linux-rpm-x64[Download]
 | https://code.visualstudio.com/sha/download?build=stable&os=darwin[Download]

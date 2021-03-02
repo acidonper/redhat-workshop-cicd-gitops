@@ -13,9 +13,10 @@ manolita"
 ##
 # Adding user to htpasswd
 ##
+htpasswd -C users.htpasswd admin password
 for i in $USERS
 do
-  htpasswd -b users.htpasswd $i password
+  htpasswd -b users.htpasswd $i $i
 done
 
 ##
@@ -44,89 +45,39 @@ EOF
 
 cat oauth.yaml | oc apply -f -
 
+
 ##
-# Creating a custom role to manage Istio Objects
+# Creating Role Binding for ArgoCD
 ##
-cat <<EOF > admin-mesh-custom-role.yaml
+
+
+for i in $USERS
+do
+  oc new-project $i-namespace
+  oc adm policy add-role-to-user admin $i -n $i-namespace
+
+cat <<EOF > argocd-rolebinding-$i.yaml
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+kind: RoleBinding
 metadata:
-  name: admin-mesh
-rules:
-  - apiGroups:
-    - ""
-    resources:
-    - secrets
-    verbs:
-    - create
-    - get
-    - list
-    - watch
-  - apiGroups:
-    - ""
-    - route.openshift.io
-    resources:
-    - routes
-    verbs:
-    - create
-    - delete
-    - deletecollection
-    - get
-    - list
-    - patch
-    - update
-    - watch
-  - apiGroups:
-    - ""
-    - route.openshift.io
-    resources:
-    - routes/custom-host
-    verbs:
-    - create
-  - apiGroups:
-    - ""
-    - route.openshift.io
-    resources:
-    - routes/status
-    verbs:
-    - get
-    - list
-    - watch
-  - apiGroups:
-    - ""
-    - route.openshift.io
-    resources:
-    - routes
-    verbs:
-    - get
-    - list
-    - watch
-  - apiGroups:
-    - maistra.io
-    resources:
-    - servicemeshmemberrolls
-    verbs:
-    - get
-    - list
-    - watch
+  name: argocd-application-controller
+  namespace: {{ $ns }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: admin
+subjects:
+- kind: ServiceAccount
+  name: argocd-application-controller
+  namespace: gitops-argocd
 EOF
+  
+  cat argocd-rolebinding-$i.yaml | oc apply -f -
 
-cat admin-mesh-custom-role.yaml | oc apply -f -
+done
 
+##
 ##
 # Disable self namespaces provisioner 
 ##
 # oc patch clusterrolebinding.rbac self-provisioners -p '{"subjects": null}'
-
-##
-# Adding required roles to users
-##
-for i in $USERS
-do
-  oc new-project $i-namespace
-  oc adm policy add-role-to-user view $i -n istio-system
-  oc adm policy add-role-to-user admin $i -n $i-namespace
-  oc adm policy add-role-to-user admin-mesh $i -n istio-system
-  oc adm policy add-role-to-user mesh-user $i -n istio-system --role-namespace istio-system
-done
-

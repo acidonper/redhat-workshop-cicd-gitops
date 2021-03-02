@@ -1,3 +1,4 @@
+Once _Jump App_ objects have been created in Openshift through ArgoCD, it is required to follow the next steps in order to ensure your demo app is running properly:
 
 - Get pods
 
@@ -10,3 +11,34 @@ oc get pods -n <user_namespace>
 
 .Jump App Pods
 image::jump_app_pods.png[]
+
+If _Jump App_ is already running in Openshift, it is time to access _Jump App_ public services in order to test the application:
+
+- Obtain external services URLs
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+oc get routes -n <user_namespace> 
+----
+
+.Jump App Routes
+image::jump-app-routes.png[]
+
+- Visit the *back*, _back-golang-v1-<user_namespace>.<openshift_apps_domain>_, route via your web browser
+
+.Jump App Back
+image::jump-app-back-ok.png[]
+
+- Visit the *front*, _front-javascript-v1-<user_namespace>.<openshift_apps_domain>_, route via your web browser, push *- JUMP-* button and ensure the following message is displaying in your screen:
+
+ ...{"code":200,"message":"/jump - Greetings from Python!"}
+
+.Jump App Frontend Web UI
+image::jump-app-front-ok.png[]
+
+IMPORTANT: It is required to accept *self-signed certificates* provided by Openshift
+
+.Openshift Self-signed Certificates Warning
+image::certs_warning.png[width=50%]
