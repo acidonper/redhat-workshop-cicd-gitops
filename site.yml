@@ -2,9 +2,9 @@ runtime:
   cache_dir: ./.cache/antora
 
 site:
-  title: Red Hat Service Mesh - Envoy & Istio Control Plane
+  title: Red Hat Workshop - CI/CD & GitOps
   url: http://localhost:3000/rhs-build-course/index.html
-  start_page: rh-servicemesh-envoy-crtplane::index.adoc
+  start_page: redhat-workshop-cicd-gitops::index.adoc
 
 content:
   sources:

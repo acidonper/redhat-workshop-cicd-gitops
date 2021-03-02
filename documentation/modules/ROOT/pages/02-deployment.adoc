@@ -276,7 +276,7 @@ image::argocd_new_app_create.png[]
 .ArgoCD Jump App Creating
 image::argocd_jumpapp_creating.png[]
 
-* After few minutes, _Jump App_ health state will change to healthy
+* After a minute, _Jump App_ health state will change to healthy
 
 .ArgoCD Jump App OK
 image::argocd_jumpapp_ok.png[]
@@ -289,5 +289,8 @@ image::argocd_jumpapp_content_2.png[]
 
 [#02-test]
 == Confirm that _Jump App_ is already running in Openshift
+
+:imageroutes: jump-app-routes.png
+:imagepods: jump_app_pods.png
 
 include::partial$check_jumpapp.adoc[]

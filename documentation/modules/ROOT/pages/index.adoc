@@ -31,7 +31,7 @@ xref:02-deployment.adoc[Start this exercise...]
 
 === GitOps Workflow
 
-In this step, you will xxxx
+In this step, you will make a change in your GitOps GitHub repository where application settings are located and then ArgoCD applies this configuration automatically.
 
 xref:03-gitops.adoc[Start this exercise...]
 

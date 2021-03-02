@@ -5,7 +5,8 @@
 ##
 # Users 
 ##
-USERS="pepito
+USERS="user1
+pepito
 pepita
 manolito
 manolita"
@@ -13,7 +14,7 @@ manolita"
 ##
 # Adding user to htpasswd
 ##
-htpasswd -C users.htpasswd admin password
+htpasswd -c -b users.htpasswd admin password
 for i in $USERS
 do
   htpasswd -b users.htpasswd $i $i
@@ -39,7 +40,7 @@ spec:
       fileData:
         name: lab-users
     mappingMethod: claim
-    name: my_htpasswd_provider
+    name: lab-users
     type: HTPasswd
 EOF
 
@@ -54,6 +55,7 @@ cat oauth.yaml | oc apply -f -
 for i in $USERS
 do
   oc new-project $i-namespace
+  oc project $i-namespace
   oc adm policy add-role-to-user admin $i -n $i-namespace
 
 cat <<EOF > argocd-rolebinding-$i.yaml
@@ -61,7 +63,6 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: argocd-application-controller
-  namespace: {{ $ns }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

@@ -14,5 +14,9 @@
 ** xref:02-deployment.adoc#02-test[2.3 Confirm that _Jump App_ is already running in Openshift]
 
 * xref:03-gitops.adoc[3. GitOps Workflow]
+** xref:03-gitops.adoc#03-changegitops[3.1 Change GitOps repository content]
+** xref:03-gitops.adoc#03-reviewargocd[3.2 Review Changes in ArgoCD]
+** xref:03-gitops.adoc#03-reviewocp[3.3 Review Changes in Openshift]
+** xref:03-gitops.adoc#03-test[3.4 Confirm that _Jump App_ is already running in Openshift]
 
 * xref:04-cicd.adoc[3. CI/CD Workflow]

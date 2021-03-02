@@ -1,1 +1,94 @@
 = GitOps Workflow
+
+In the _GitOps Workflow_ step you will make a change in your GitOps GitHub repository where application settings are located and then ArgoCD applies this configuration automatically.
+
+
+[#03-changegitops]
+== Change GitOps repository content
+
+As you know, you have all _Jump App_ microservices settings defined in the "values.yaml" file which is located in your GitOps repository created in the previous step.
+
+In order to modify our _Jump App_ application settings in a GitOps way, it is required to perform the following tasks:
+
+* Modify your GitOps Repository in order to added the new settings
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+sed 's/replicas: 1/replicas: 2/g' -i values.yaml
+----
+
+* Push changes to GitHub
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git add values.yaml
+git commit -m "Change the number of replicas in order to scale Jump App"
+git push origin master
+----
+
+.Student GitOps Repository Pushed
+image::github_gitops_pushed.png[]
+
+[#03-reviewargocd]
+== Review Changes in ArgoCD
+
+Once previous changes are pushed in the GitHub repository, ArgoCD automatically inits a process to modify Openshift objects in order to apply the desired state in GitHub to the Openshift cluster automatically.
+
+* Access ArgoCD console <argocd_console_url> (*URL provided by the Instructor at the beginning of this tutorial)
+
+* A new sync process is triggered automatically
+
+.ArgoCD Sync Process Triggered Automatically
+image::argocd_gitops_change.png[]
+
+* After a few seconds, _Jump App_ health state will change to healthy
+
+.ArgoCD Sync Process Finished
+image::argocd_gitops_changed.png[]
+
+* Take a look at sync process status
+
+.ArgoCD Sync Process Characteristics
+image::argocd_gitops_sync.png[]
+
+[#03-reviewocp]
+== Review Changes in Openshift
+
+After the ArgoCD sync process finished, it is interesting to access Openshift Console using your credentials via browser in order to check these changes via Openshift Console.
+
+Please, follow the next steps to verify _Jump App_ microservices changes:
+
+* Access <ocp_cluster_console> (_E.g. https://console-openshift-console.apps.cicdgitopsworkshop.sandbox507.opentlc.com_)
+
+.Openshift Console
+image::ocp_console.png[]
+
+.Openshift Developer View
+image::ocp_gitops_access.png[]
+
+* Go to Administrator view
+
+.Openshift Administrator View
+image::ocp_gitops_admin_console.png[]
+
+* Go to Deployments sections and notice that you have **2 of 2** pods instead of _1 of 1_ 
+
+.Openshift Deployments Section
+image::ocp_gitops_deployments.png[]
+
+* Review Pods creation date differences
+
+.Openshift Pods Section
+image::ocp_gitops_pods.png[]
+
+[#03-test]
+== Confirm that _Jump App_ is already running in Openshift
+
+:imageroutes: jump-app-routes.png
+:imagepods: jump_app_pods_gitops.png
+
+include::partial$check_jumpapp.adoc[]

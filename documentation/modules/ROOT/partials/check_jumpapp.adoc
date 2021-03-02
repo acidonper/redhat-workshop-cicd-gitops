@@ -10,7 +10,7 @@ oc get pods -n <user_namespace>
 ----
 
 .Jump App Pods
-image::jump_app_pods.png[]
+image::{imagepods}[]
 
 If _Jump App_ is already running in Openshift, it is time to access _Jump App_ public services in order to test the application:
 
@@ -24,7 +24,7 @@ oc get routes -n <user_namespace>
 ----
 
 .Jump App Routes
-image::jump-app-routes.png[]
+image::{imageroutes}[]
 
 - Visit the *back*, _back-golang-v1-<user_namespace>.<openshift_apps_domain>_, route via your web browser
 
