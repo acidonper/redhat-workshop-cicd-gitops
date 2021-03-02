@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Environment Setup :: Red Hat Service Mesh - Envoy &amp; Istio Control Plane</title>
+    <link rel="canonical" href="http://localhost:3000/rhs-build-course/index.html/redhat-workshop-cicd-gitops/01-setup.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="02-deployment.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://developers.redhat.com" target="_blank"><img
+          src="../_/img/header_logo.png" height="40px" alt="Red Hat Developer Program"></a>
+      <a class="navbar-item" href="http://localhost:3000/rhs-build-course/index.html">Red Hat Service Mesh - Envoy &amp; Istio Control Plane</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Books</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">CheatSheets</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">CheatSheet A</a>
+            <a class="navbar-item" href="#">CheatSheet B</a>
+            <a class="navbar-item" href="#">CheatSheet C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Upcoming Events</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Event A</a>
+            <a class="navbar-item" href="#">Event B</a>
+            <a class="navbar-item" href="#">Event C</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">More Tutorials</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Tutorial A</a>
+            <a class="navbar-item" href="#">Tutorial B</a>
+            <a class="navbar-item" href="#">Tutorial C</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="redhat-workshop-cicd-gitops" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html">Red Hat Workshop - CI/CD &amp; GitOps</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="01-setup.html">1. Environment Setup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#01-prerequisites">1.1 Prerequisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#01-laboratory">1.2 Laboratory</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#01-parameters">1.2.1 Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#01-accessoc">1.2.2 Access - OC Client</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#01-accessconsole">1.2.3 Access - OCP Console</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-deployment.html">2. Deployment Workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-deployment.html#02-gitopsrepo">2.1 Prepare GitOps repository</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment.html#02-gitopsrepofork">2.1.1 Fork</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment.html#02-gitopsrepoclone">2.1.2 Clone</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment.html#02-gitopsrepoconfig">2.1.3 Config</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-deployment.html#02-deploy">2.2 Deploy <em>Jump App</em> via ArgoCD</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-deployment.html#02-test">2.3 Confirm that <em>Jump App</em> is already running in Openshift</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="03-gitops.html">3. GitOps Workflow</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="04-cicd.html">3. CI/CD Workflow</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Red Hat Workshop - CI/CD &amp; GitOps</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Red Hat Workshop - CI/CD & GitOps</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Red Hat Workshop - CI/CD & GitOps</a></li>
+    <li><a href="01-setup.html">1. Environment Setup</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/acidonper/redhat-workshop-cicd-gitops/edit/master/documentation/modules/ROOT/pages/01-setup.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Environment Setup</h1>
+<div class="sect1">
+<h2 id="01-prerequisites"><a class="anchor" href="#01-prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><strong>Tool</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Fedora</strong></th>
+<th class="tableblock halign-center valign-top"><strong>macOS</strong></th>
+<th class="tableblock halign-center valign-top"><strong>windows</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Official Documentation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">oc</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-mac.tar.gz">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-windows.zip">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://docs.openshift.com/container-platform/4.6/cli_reference/openshift_cli/getting-started-cli.html">OpenShift CLI - Docs</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">git</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/linux">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/mac">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com/download/win">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://git-scm.com">Git - Docs</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">helm</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://get.helm.sh/helm-v3.5.2-linux-amd64.tar.gz">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://get.helm.sh/helm-v3.5.2-darwin-amd64.tar.gz">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://get.helm.sh/helm-v3.5.2-windows-amd64.zip">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://helm.sh/docs/intro/install/">Helm - Docs</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Visual Studio Code</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/sha/download?build=stable&amp;os=linux-rpm-x64">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/sha/download?build=stable&amp;os=darwin">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/sha/download?build=stable&amp;os=win32-user">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://code.visualstudio.com/">Visual Studio Code - Docs</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Please, review the official documentation to install the latest versions of these tools in your laptop following the optimum procedure
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>On the other hand, it is required to have a <a href="https://github.com">GitHub</a> account in order to create some repositories during this tutorial.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="01-laboratory"><a class="anchor" href="#01-laboratory"></a>Laboratory</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tutorial&#8217;s laboratory is basically based on the following technologies:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Red Hat Openshift Container Platform Cluster</p>
+</li>
+<li>
+<p>ArgoCD (Red Hat GitOps Operator)</p>
+</li>
+<li>
+<p>Tekton (Red Hat Pipelines Operator)</p>
+</li>
+<li>
+<p>Helm</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition, a set of GitHub repositories are provided with a set of templates and other resources which are required to create different objects in Openshift during this tutorial.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/acidonper/jump-app-gitops">GitHub - Jump App GitOps Repository</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The previous technologies and resources will allow you to deploy and operate a microservice-based application in Openshift. The main objective of deploying and operating this application in Openshift using the previous technologies is to understand how GitOps and CI/CD (Continuous Integration/Continuous Deployment) strategies work together in a Kubernetes environment in order to speed up application management processes.</p>
+</div>
+<div class="sect2">
+<h3 id="01-parameters"><a class="anchor" href="#01-parameters"></a>Parameters</h3>
+<div class="paragraph">
+<p>The Instructor provides users the Openshift credentials and other important parameters at the beginning of this tutorial in order to access the laboratory.</p>
+</div>
+<div class="paragraph">
+<p>The following table includes the parameters that the Instructor should provide you at the beginning:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-top"><strong>Name</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Reference</strong></th>
+<th class="tableblock halign-center valign-top"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Cluster API (Access CLI)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_api&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://api.cicdgitopsworkshop.sandbox507.opentlc.com:6443" class="bare">https://api.cicdgitopsworkshop.sandbox507.opentlc.com:6443</a></em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Cluster Console</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;ocp_cluster_console&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://console-openshift-console.apps.cicdgitopsworkshop.sandbox507.opentlc.com" class="bare">https://console-openshift-console.apps.cicdgitopsworkshop.sandbox507.opentlc.com</a></em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Username</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;username&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">user1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Password</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;pass&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">P4ssw0rd</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Namespace</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;user_namespace&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">user1-namespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Openshift Apps Domain</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;openshift_apps_domain&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em>apps.cicdgitopsworkshop.sandbox507.opentlc.com</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ArgoCD console</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">&lt;argocd_console_url&gt;</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><em><a href="https://argocd-gitops-argocd.cicdgitopsworkshop.sandbox507.opentlc.com" class="bare">https://argocd-gitops-argocd.cicdgitopsworkshop.sandbox507.opentlc.com</a></em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="01-accessoc"><a class="anchor" href="#01-accessoc"></a>Access - OC Client</h3>
+<div class="paragraph">
+<p>The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system.</p>
+</div>
+<div class="paragraph">
+<p>Please, review the previous settings with your Instructor and connect to the cluster executing next command from your terminal:</p>
+</div>
+<div class="listingblock lines_space console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc login -u &lt;user&gt; -p &lt;pass&gt; &lt;ocp_cluster_api&gt;</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/oc_login_output.png" alt="oc login output">
+</div>
+<div class="title">Figure 1. OC CLI Login Output</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Please, pay special attention to <em>oc CLI</em>  because you will need to use this tool several times during this tutorial.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="01-accessconsole"><a class="anchor" href="#01-accessconsole"></a>Access - OCP Console</h3>
+<div class="paragraph">
+<p>In addition, access Openshift Console using your credentials via browser in order to check connectivity and accessibility to the console:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>&lt;ocp_cluster_console&gt; (<em>E.g. <a href="https://console-openshift-console.apps.cicdgitopsworkshop.sandbox507.opentlc.com" class="bare">https://console-openshift-console.apps.cicdgitopsworkshop.sandbox507.opentlc.com</a></em>)</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_console.png" alt="ocp console">
+</div>
+<div class="title">Figure 2. Openshift Console</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html">Red Hat Workshop - CI/CD & GitOps</a></span>
+  <span class="next"><a href="02-deployment.html">2. Deployment Workflow</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <a class="rhd-logo" href="https://developers.redhat.com" target="_blank"></div>
+</footer>
+<script src="../_/js/vendor/clipboard.js"></script>
+<script src="../_/js/site.js"></script>
+<script async src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

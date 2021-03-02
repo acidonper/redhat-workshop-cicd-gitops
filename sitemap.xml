@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://localhost:3000/rhs-build-course/index.html/redhat-workshop-cicd-gitops/01-setup.html</loc>
+<lastmod>2021-03-02T15:03:51.029Z</lastmod>
+</url>
+<url>
+<loc>http://localhost:3000/rhs-build-course/index.html/redhat-workshop-cicd-gitops/02-deployment.html</loc>
+<lastmod>2021-03-02T15:03:51.029Z</lastmod>
+</url>
+<url>
+<loc>http://localhost:3000/rhs-build-course/index.html/redhat-workshop-cicd-gitops/03-gitops.html</loc>
+<lastmod>2021-03-02T15:03:51.029Z</lastmod>
+</url>
+<url>
+<loc>http://localhost:3000/rhs-build-course/index.html/redhat-workshop-cicd-gitops/04-cicd.html</loc>
+<lastmod>2021-03-02T15:03:51.029Z</lastmod>
+</url>
+<url>
+<loc>http://localhost:3000/rhs-build-course/index.html/redhat-workshop-cicd-gitops/index.html</loc>
+<lastmod>2021-03-02T15:03:51.029Z</lastmod>
+</url>
+</urlset>
