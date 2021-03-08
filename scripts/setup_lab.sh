@@ -54,9 +54,11 @@ cat oauth.yaml | oc apply -f -
 
 for i in $USERS
 do
-  oc new-project $i-namespace
-  oc project $i-namespace
-  oc adm policy add-role-to-user admin $i -n $i-namespace
+  oc new-project $i-jump-app
+  oc new-project $i-jump-app-cicd
+  oc project $i-jump-app
+  oc adm policy add-role-to-user admin $i -n $i-jump-app
+  oc adm policy add-role-to-user admin $i -n $i-jump-app-cicd
 
 cat <<EOF > argocd-rolebinding-$i.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -72,8 +74,59 @@ subjects:
   name: argocd-application-controller
   namespace: gitops-argocd
 EOF
-  
-  cat argocd-rolebinding-$i.yaml | oc apply -f -
+
+  cat argocd-rolebinding-$i.yaml | oc apply -f - -n $i-jump-app
+  cat argocd-rolebinding-$i.yaml | oc apply -f - -n $i-jump-app-cicd
+
+cat <<EOF > view-secret.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: view-secret
+rules:
+  - apiGroups:
+    - ""
+    resources:
+    - secrets
+    verbs:
+    - get
+    - list
+    - watch
+EOF
+
+cat <<EOF > argocd-rolebinding-$i-view-secret.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argocd-application-controller-view-secret
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view-secret
+subjects:
+- kind: ServiceAccount
+  name: tekton-deployments-admin
+  namespace: $i-jump-app-cicd
+EOF
+
+cat <<EOF > argocd-rolebinding-$i-view-secret-pipeline.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argocd-application-controller-view-secret
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view-secret
+subjects:
+- kind: ServiceAccount
+  name: pipeline
+  namespace: $i-jump-app-cicd
+EOF
+
+  cat view-secret.yaml | oc apply -f -
+  cat argocd-rolebinding-$i-view-secret.yaml | oc apply -f - -n gitops-argocd
+  cat argocd-rolebinding-$i-view-secret-pipeline.yaml | oc apply -f - -n gitops-argocd
 
 done
 

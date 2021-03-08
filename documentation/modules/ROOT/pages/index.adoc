@@ -37,6 +37,12 @@ xref:03-gitops.adoc[Start this exercise...]
 
 === CI/CD Workflow
 
-In this step, you will xxx
+In this step, you will perform a set of tasks in order to understand and implement a CI/CD strategy:
+
+* Fork a _Jump App_ microservice project in order to be able to make changes in the source code
+* Change some _Jump App_ microservices settings in a GitOps way
+* Deploy a CI/CD project in Openshift
+* Configure GitHub to notify your CI/CD project for changes
+* Modify a microservice source code and integrate this new "release" in a continuous integration & deployment way
 
 xref:04-cicd.adoc[Start this exercise...]

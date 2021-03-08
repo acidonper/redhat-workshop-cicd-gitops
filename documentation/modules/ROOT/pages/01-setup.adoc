@@ -53,7 +53,7 @@ The following table includes the parameters that the Instructor should provide y
 | P4ssw0rd
 | Namespace
 | <user_namespace>
-| user1-namespace
+| user1-jump-app
 | Openshift Apps Domain
 | <openshift_apps_domain>
 | _apps.cicdgitopsworkshop.sandbox507.opentlc.com_

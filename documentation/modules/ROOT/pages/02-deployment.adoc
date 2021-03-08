@@ -2,22 +2,27 @@
 
 include::_attributes.adoc[]
 
-In the _Deployment Workflow_ step you will prepare a GitOps repository and deploy _Jump App_ application in Openshift using ArgoCD and Helm.
+In the _Deployment Workflow_ step you will prepare the CI/CD and GitOps repository in order to deploy _Jump App_ application in Openshift using ArgoCD and Helm.
 
-[#02-gitopsrepo]
-== Prepare GitOps repository
+It is important to bear in mind that about this repository:
 
-First of all, it is required to prepare a _GitOps_ repository in order to allocate the following resources:
+* The CI/CD part of this repository, branch, contains continuous integration and continuous objects definition required to deploy and integrate changes frecuently and automatically in _Jump App_ (ImageStreams, BuildConfigs, Tekton Pipelines, etc).
+* The GitOps part of this repository, branch, contains _Jump App_ microservices objects definition required to make available _Jump App_ (Deployments, Services, Routes, etc).
+
+[#02-repo]
+== Prepare _Jump App_ repository
+
+First of all, it is required to prepare the _GitOps_ and _CI/CD_ repository in order to allocate the following resources:
 
 * Helm Charts references
 * A _values.yaml_ file to make ArgoCD able to deploy _Jump App_ in Openshift using helm charts referenced
 
-Please, follow the following sections to make this GitOps repository available.
+Please, follow the next sections to make this new repository available.
 
-[#02-gitopsrepofork]
+[#02-repofork]
 === Fork
 
-Regarding preparing a GitOps repository, you have a shared repository in GitHub ready to go. Please, follow the next steps to copy this repository in your GitHub account in order to be able to operate it freely:
+Regarding preparing this repository, you have a shared repository in GitHub ready to go. Please, follow the next steps to copy this repository in your GitHub account in order to be able to operate it freely:
 
 * Login in https://github.com[GitHub]
 
@@ -34,7 +39,7 @@ image::github_gitops_fork.png[]
 .Acidonper GitOps Repository Forked
 image::github_gitops_forked.png[]
 
-[#02-gitopsrepoclone]
+[#02-repoclone]
 === Clone
 
 Once you have your own GitOps repository in GitHub, it is time to clone it in your laptop in order to start working.
@@ -43,16 +48,22 @@ Once you have your own GitOps repository in GitHub, it is time to clone it in yo
 [.console-input]
 [source,input,subs="+macros,+attributes"]
 ----
-git clone <github_gitops_repository_url> --recursive 
+cd ~
+git clone https://github.com/<github_user>/jump-app-gitops.git --recursive 
 ----
+
+IMPORTANT: Replace *<github_user>* value with your GitHub username
 
 .Student GitOps Repository Cloned
 image::github_gitops_cloned.png[]
 
-[#02-gitopsrepoconfig]
-=== Config
+[#02-deploy-cicd]
+== _Jump App_ CI/CD objects deployment
 
-Lastly, it is required to make some changes in this new repository in order to be able to deploy _Jump App_ correctly in future steps:
+[#02-cicdrepoconfig]
+=== Prepare _CI/CD_ config branch
+
+Once the repository is forked, it is required to make some changes in this new repository in order to be able to deploy _Jump App_ correctly in future steps:
 
 * Go to the repository folder
 
@@ -60,7 +71,218 @@ Lastly, it is required to make some changes in this new repository in order to b
 [.console-input]
 [source,input,subs="+macros,+attributes"]
 ----
-cd jump-app-gitops
+cd ~/jump-app-gitops
+----
+
+* Create a new branch
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git checkout -b "cicd"
+----
+
+* Create Chart.yaml file
+
+----
+apiVersion: v2
+name: jump-app-cicd
+description: A Helm chart to deploy JumpApp CI/CD Objects for Kubernetes
+type: application
+
+version: 0.1.0
+appVersion: 0.1.16
+
+mantainers:
+  * name: Asier Cidon
+    email: acidonpe@redhat.com
+
+dependencies:
+  * name: jump-app-micros
+    repository: 'file://./charts/jump-app-micros'
+    version: 0.1.0
+    condition: jump-app-micros.enabled
+  * name: jump-app-cicd
+    repository: 'file://./charts/charts/jump-app-cicd'
+    version: 0.1.0
+    condition: jump-app-cicd.enabled
+  * name: jump-app-argocd
+    repository: 'file://./charts/charts/jump-app-argocd'
+    version: 0.1.0
+    condition: jump-app-argocd.enabled
+----
+
+* Create values.yaml file modifying _global.appsDomain_ and _jump-app-cicd.namespaceXXX_ including in *<openshift_apps_domain>* and *<user_namespace>* parameters value respectively provided by the Instructor:
+
+----
+jump-app-micros:
+  enabled: false
+
+jump-app-argocd:
+  enabled: false
+
+jump-app-cicd:
+  namespaceDev: <user_namespace>
+  namespacePre: <user_namespace>-pre
+  namespacePro: <user_namespace>-pro
+  enabled: true
+  functTestRepo: https://github.com/acidonper/jump-app-functional-tests.git
+  functTestRepoBranch: master
+  functTestMicro: front-javascript
+  pipeTypes:
+    - nodejs
+    - golang
+    - python
+    - java
+  gitBranchPro: master
+  gitBranchDev: develop
+  sa: tekton-deployments-admin
+
+# Global variables
+global:
+  appsDomain: <openshift_apps_domain>
+  # Jump microservices settings
+  apps:
+    front-javascript:
+      build: is
+      imagestream: nodejs:latest
+      imagestreamNamespace: openshift
+      versions:
+        - v1
+      type: nodejs
+      gitRepo: https://github.com/acidonper/jump-app-typescrypt-react.git
+    back-golang:
+      build: dockerfile
+      versions:
+        - v1
+      gitRepo: https://github.com/acidonper/jump-app-golang.git
+      type: golang
+    back-python:
+      build: is
+      imagestream: python:latest
+      imagestreamNamespace: openshift
+      versions:
+        - v1
+      gitRepo: https://github.com/acidonper/jump-app-python.git
+      type: python
+    back-springboot:
+      build: is
+      imagestream: java:latest
+      imagestreamNamespace: openshift
+      versions:
+        - v1
+      gitRepo: https://github.com/acidonper/jump-app-java-springboot.git
+      type: java
+----
+
+* Test our new files rendering this new helm chart
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+helm template . -f values.yaml --namespace <user_namespace>
+----
+
+.Student CICD Chart rendering
+image::github_cicd_test.png[]
+
+Once Chart.yaml and values.yaml are created and tested, it is required to push these new files to your repository.
+
+* Push files
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git add Chart.yaml
+git add values.yaml
+git commit -m "Added Chart.yaml and values.yaml files"
+git push origin cicd
+----
+
+.Student CICD Branch Pushed
+image::github_cicd_pushed.png[]
+
+* Access your own GitOps repository, branch "cicd"
+
+.Student GitOps Repository Customized
+image::github_gitops_customized_cicd_1.png[]
+
+.Student GitOps Repository Customized
+image::github_gitops_customized_cicd_2.png[]
+
+[#02-deploy-cicd-obj]
+=== Deploy _Jump App_ CI/CD objects via ArgoCD
+
+At this point, your should have a repository with a helm chart which is ready to deploy _Jump App_ CI/CD Objects in Openshift through ArgoCD.
+
+Please, follow the next steps to deploy _Jump App_ CI/CD Objects:
+
+* Access ArgoCD console <argocd_console_url> (*URL provided by the Instructor at the beginning of this tutorial)
+
+.ArgoCD Console
+image::argocd_console_cicd.png[]
+
+* Create a new App
+
+.ArgoCD New App
+image::argocd_new_app_cicd  .png[]
+
+* Field the following fields
+
+ ** Application Name -> **<username>-jump-app-cicd**
+ ** Project -> **<username>**
+ ** Sync Policy -> **Manual**
+ ** Repository URL -> **https://github.com/<github_user>/jump-app-gitops.git**
+ ** Revision -> **cicd**
+ ** Path -> **.**
+ ** Cluster URL -> **https://kubernetes.default.svc**
+ ** Namespace -> **<user_namespace>-cicd**
+
+.ArgoCD New App Fields
+image::argocd_new_app_fields_cicd.png[]
+
+* Click on "CREATE"
+
+.ArgoCD New App Fields
+image::argocd_new_app_create_cicd.png[]
+
+* Once the new app is created, it is required to sync manually pressing on the _sync_ button
+
+.ArgoCD Jump App Sync
+image::argocd_jumpapp_sync_cicd.png[]
+
+.ArgoCD Jump App Creating
+image::argocd_jumpapp_creating_cicd.png[]
+
+* After a few minutes, _Jump App_ CI/CD health state will change to healthy
+
+.ArgoCD Jump App CI/CD OK
+image::argocd_jumpapp_ok_cicd.png[]
+
+.ArgoCD Jump App CI/CD Content I
+image::argocd_jumpapp_content_1_cicd.png[]
+
+.ArgoCD Jump App CI/CD Content II
+image::argocd_jumpapp_content_2_cicd.png[]
+
+[#02-deploy-jumpapp]
+== _Jump App_ objects deployment
+
+[#02-gitopsrepo]
+=== Prepare _GitOps_ config branch
+
+Lastly, it is required to make some changes in this new repository in order to be able to deploy _Jump App_ correctly in future steps:
+
+* Go to the master branch again
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git checkout master
 ----
 
 * Create Chart.yaml file
@@ -93,6 +315,8 @@ dependencies:
     condition: jump-app-argocd.enabled
 ----
 
+* Create values.yaml file modifying _global.appsDomain_ and _jump-app-micros.cicd.namespace_ including in *<openshift_apps_domain>* and *<user_namespace>* parameters value respectively provided by the Instructor:
+
 * Create values.yaml file modifying _global.appsDomain_ including *<openshift_apps_domain>* parameter value provided by the Instructor
 
 ----
@@ -108,7 +332,7 @@ jump-app-micros:
     namespace: istio-system
     mtls: true
   cicd:
-    namespace: jump-app-cicd
+    namespace: <user_namespace>-cicd
   
 # Global variables
 global:
@@ -237,8 +461,8 @@ image::github_gitops_pushed.png[]
 .Student GitOps Repository Customized
 image::github_gitops_customized.png[]
 
-[#02-deploy]
-== Deploy _Jump App_ via ArgoCD
+[#02-deploy-jumpapp-obj]
+=== Deploy _Jump App_ objects via ArgoCD
 
 At this point, your should have a GitOps repository with a helm chart which is ready to deploy _Jump App_ in Openshift through ArgoCD.
 
@@ -259,7 +483,7 @@ image::argocd_new_app.png[]
  ** Application Name -> **<username>-jump-app**
  ** Project -> **<username>**
  ** Sync Policy -> **Automatic**
- ** Repository URL -> **<github_gitops_repository_url>**
+ ** Repository URL -> **https://github.com/<github_user>/jump-app-gitops.git**
  ** Revision -> **master**
  ** Path -> **.**
  ** Cluster URL -> **https://kubernetes.default.svc**

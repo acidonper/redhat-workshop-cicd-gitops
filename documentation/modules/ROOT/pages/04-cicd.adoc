@@ -1,2 +1,326 @@
 = CI/CD (Continuous Integration / Continuous Deployment) Workflow
 
+In the _CI/CD Workflow_ step you will perform a set of tasks in order to understand and implement a CI/CD strategy:
+
+* Fork a _Jump App_ microservice project in order to be able to make changes in the source code
+* Change some _Jump App_ microservices settings in a GitOps way
+* Configure GitHub to notify your CI/CD solution for changes
+* Modify a microservice source code and integrate this new "release" in a continuous integration & continuous deployment way
+
+After this step will be completed, you will be able to release new application versions following a continuous integration & deployment strategy.
+
+[#04-repo]
+== Prepare _Jump App_ Frontend custom repository
+
+[#04-repofork]
+=== Fork
+
+In order to work with a custom _Jump App_ frontend repository, you have a shared repository in GitHub ready to go. Please, follow the next steps to copy this repository in your GitHub account in order to be able to operate it freely:
+
+* Login in https://github.com[GitHub]
+
+* Access https://github.com/acidonper/jump-app-typescrypt-react[GitHub - Jump App GitOps Repository]
+
+.Acidonper _Jump App_ Frontend Repository
+image::github_acidonper.png[]
+
+* Fork the repository
+
+.Acidonper _Jump App_ Frontend Repository Fork
+image::github_front_fork.png[]
+
+.Acidonper _Jump App_ Frontend Repository Forked
+image::github_front_forked.png[]
+
+[#04-repoclone]
+=== Clone
+
+Once you have your own _Jump App_ frontend repository in GitHub, it is time to clone it in your laptop in order to start working.
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+cd ~
+git clone https://github.com/<github_user>/jump-app-typescrypt-react.git
+----
+
+IMPORTANT: Replace *<github_user>* value with your GitHub username
+
+.Student _Jump App_ Frontend Repository Cloned
+image::github_front_cloned.png[]
+
+[#04-changegitops]
+== Change GitOps repository content
+
+As you know, you have all _Jump App_ microservices settings defined in the "values.yaml" file which is located in your GitOps repository created in the previous step.
+
+In order to modify our _Jump App_ application settings in a GitOps way, it is required to perform the following tasks:
+
+* Go to the repository folder
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+cd ~/jump-app-gitops
+----
+
+* Change to **cicd** branch
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git checkout cicd
+----
+
+* Modify your GitOps Repository in order to added the new settings
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+sed 's/https:\/\/github.com\/acidonper\/jump-app-typescrypt-react.git/https:\/\/github.com\/<github_user>\/jump-app-typescrypt-react.git/g' -i values.yaml
+----
+
+IMPORTANT: Replace *<github_user>* value with your GitHub username 
+
+* Verify your own _Jump App_ Frontend repository has been defined properly
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+cat values.yaml | grep jump-app-typescrypt-react.git
+----
+
+* Push changes to GitHub
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git add values.yaml
+git commit -m "Change Jump App Frontend URL namespace by default"
+git push origin cicd
+----
+
+.Student GitOps Repository Pushed
+image::github_cicd_pushed.png[]
+
+[#04-reviewargocd]
+=== Review Changes in ArgoCD
+
+Once previous changes are pushed in the GitHub repository, you have to sync this new content in ArgoCD manually in order to ArgoCD inits a process to modify Openshift objects in order to apply the desired state in GitHub to the Openshift cluster automatically.
+
+* Access ArgoCD console <argocd_console_url> (*URL provided by the Instructor at the beginning of this tutorial)
+
+* Once the new commit has been detected, it is required to sync manually pressing on the _sync_ button
+
+.ArgoCD Jump App CI/CD Sync
+image::argocd_jumpapp_sync_cicd_2.png[]
+
+* After a few seconds, _Jump App_ health state will change to healthy
+
+.ArgoCD Sync Process Finished
+image::argocd_cicd_changed_2.png[]
+
+
+[#04-repoconfig]
+== Customize your own _Jump App_ Frontend
+
+[#04-webhook]
+=== Configure GitHub Webhooks
+
+During this step, you will configure a GitHub Webhook in your own _Jump App_ Frontend repository in order to notify your CI/CD solution, Tekton, when a new change in the source code comes.
+
+* Go to Openshift Console, <ocp_cluster_console>, using your credentials provided by the instructor
+
+* Once inside, navigate to _Pipelines -> Triggers_ in order to ensure these objects are created
+
+.OCP Console Pipeline Triggers 
+image::ocp_pipeline_triggers.png[]
+
+* At this point, go to  _Networking -> Routes_ and copy *eventlistener-front-javascript-v1-deploy* public URL
+
+.OCP Console listener-front-javascript-v1-deploy Trigger
+image::ocp_pipeline_triggers_javascript_url.png[]
+
+* Access your own _Jump App_ Frontend repository settings in GitHub
+
+.GitHub Front repository settings
+image::github_front_settings.png[]
+
+* Go to _Weebhooks -> Add weebhook_
+
+.GitHub Front repository settings
+image::github_front_settings_webhooks.png[]
+
+* Field the following fields and press **[ Add webhook ]**
+
+ ** Payload URL -> **<listener-front-javascript-v1-deploy> public URL**
+ ** Content type -> **application/json**
+ ** SSL verification -> **Disabled**
+
+.GitHub Front repository settings
+image::github_front_settings_webhooks_fields.png[]
+
+* Press F5 and review the webhook status is _ready_
+
+.GitHub Front repository settings
+image::github_front_settings_webhooks_ok.png[]
+
+[#04-makechange]
+=== Make some changes in the frontend
+
+At this time, you are able to customize your _Jump App_ Frontend. Please, follow next steps to perform this customization:
+
+* Go to the repository folder
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+cd ~/jump-app-typescrypt-react
+----
+
+* Move to the *develop* branch
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git checkout develop
+----
+
+* Modify _Jump App_ Frontend title in order to added your username
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+sed 's/Jump App v2.1 DEV/Jump App v.2.1 DEV - <username>/g' -i src/ui/header/Header.tsx
+----
+
+IMPORTANT: Replace *<username>* value with your tutorial username 
+
+* Push changes to GitHub
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git add src/ui/header/Header.tsx
+git commit -m "Modified Jump App frontend title"
+git push origin develop
+----
+
+.Student GitOps Repository Pushed
+image::github_front_pushed_2.png[]
+
+
+[#04-pipelinetriggered]
+=== Review Pipeline triggered by the webhook
+
+After the changes have been pushed to your GitHub repository, GitHub notified Tekton through _webhook_ event and then Tekton triggered a pipeline in order to release this new Frontend version.
+
+Please, follow the next steps in order to review the process launched:
+
+* Go to Openshift Console, <ocp_cluster_console>, using your credentials provided by the instructor
+
+* Once inside, navigate to _Pipelines_ and the new pipeline triggered
+
+.OCP Pipeline Triggered
+image::ocp_pipeline_triggered.png[]
+
+* After a few minutes, you obtain an **error** in the pipeline execution test step
+
+.OCP Pipeline Triggered Fail
+image::ocp_pipeline_triggered_error.png[]
+
+.OCP Pipeline Triggered Error
+image::ocp_pipeline_triggered_error_2.png[]
+
+[#04-fixpipeline]
+=== Solve the test problems
+
+As you know, testing is very important in the continuous integration and continuous deployment processes. For this reason, you have to solve this problem adapting the tests to the new header defined:
+
+Please, follow next steps to adapt test to the previous header customization:
+
+* Go to the repository folder
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+cd ~/jump-app-typescrypt-react
+----
+
+* Move to the *develop* branch
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git checkout develop
+----
+
+* Modify _Jump App_ Frontend title in order to added your username
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+sed 's/Jump App v2./Jump App v.2.1 DEV - <username>/g' -i src/ui/header/Header.spec.tsx
+----
+
+IMPORTANT: Replace *<username>* value with your tutorial username 
+
+* Push changes to GitHub
+
+[.lines_7]
+[.console-input]
+[source,input,subs="+macros,+attributes"]
+----
+git add src/ui/header/Header.spec.tsx
+git commit -m "Adjust testing to new frontend title"
+git push origin develop
+----
+
+.Student GitOps Repository Pushed
+image::github_front_pushed_2.png[]
+
+
+[#04-pipelinetriggeredagain]
+=== Review Pipeline triggered by the webhook again
+
+After these new changes have been pushed, GitHub notified Tekton through _webhook_ event again and then Tekton triggered a pipeline in order to release this new Frontend version.
+
+Please, follow the next steps in order to review the process launched:
+
+* Go to Openshift Console, <ocp_cluster_console>, using your credentials provided by the instructor
+
+* Once inside, navigate to _Pipelines_ and the new pipeline triggered
+
+.OCP Pipeline Trigerred
+image::ocp_pipeline_triggered.png[]
+
+* After a few minutes, the pipeline execution finish with **Succeeded**
+
+.OCP Pipeline Trigerred OK
+image::ocp_pipeline_triggered_ok.png[]
+
+[#04-test]
+== Confirm that _Jump App_ is already running in Openshift
+
+After this process is finished, you should be able to visit your own _Jump App_ Frontend with a customized header or title. In order to verify this new title, please follow the next step:
+
+* Visit the *front*, _front-javascript-v1-<user_namespace>.<openshift_apps_domain>_, route via your web browser, push *- JUMP -* button and ensure the following message is displaying in your screen:
+
+ ...{"code":200,"message":"/jump - Greetings from Python!"}
+
+.Jump App Frontend Web UI
+image::jump-app-front-ok-custom.png[]
+
