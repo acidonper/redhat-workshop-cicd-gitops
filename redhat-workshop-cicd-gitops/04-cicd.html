@@ -100,24 +100,42 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="02-deployment.html#02-gitopsrepo">2.1 Prepare GitOps repository</a>
+    <a class="nav-link" href="02-deployment.html#02-repo">2.1 Prepare <em>Jump App</em> repository</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="02-deployment.html#02-gitopsrepofork">2.1.1 Fork</a>
+    <a class="nav-link" href="02-deployment.html#02-repofork">2.1.1 Fork</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="02-deployment.html#02-gitopsrepoclone">2.1.2 Clone</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="02-deployment.html#02-gitopsrepoconfig">2.1.3 Config</a>
+    <a class="nav-link" href="02-deployment.html#02-repoclone">2.1.2 Clone</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="02-deployment.html#02-deploy">2.2 Deploy <em>Jump App</em> via ArgoCD</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-deployment.html#02-deploy-cicd">2.2 <em>Jump App</em> CI/CD objects deployment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment.html#02-cicdrepoconfig">2.2.1 Prepare <em>CICD</em> config branch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment.html#02-deploy-cicd-obj">2.2.2 Deploy <em>Jump App</em> CI/CD objects via ArgoCD</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="02-deployment.html#02-test">2.3 Confirm that <em>Jump App</em> is already running in Openshift</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-deployment.html#02-deploy-jumpapp">2.3 <em>Jump App</em> objects deployment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment.html#02-gitopsrepo">2.3.1 Prepare <em>GitOps</em> config branch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment.html#02-deploy-jumpapp-obj">2.3.2 Deploy <em>Jump App</em> objects via ArgoCD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-deployment.html#02-test">2.4 Confirm that <em>Jump App</em> is already running in Openshift</a>
   </li>
 </ul>
   </li>
@@ -140,7 +158,55 @@
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="04-cicd.html">3. CI/CD Workflow</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-cicd.html">4. CI/CD Workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#04-repo">4.1 Prepare <em>Jump App</em> Frontend custom repository</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#04-repofork">4.1.1 Fork</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#04-repoclone">4.1.2 Clone</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#04-changegitops">4.2 Change GitOps repository content</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#04-reviewargocd">4.2.1 Review Changes in ArgoCD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="#04-repoconfig">4.3 Customize your own <em>Jump App</em> Frontend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#04-webhook">4.3.1 Configure GitHub Webhooks</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#04-makechange">4.3.2 Make some changes in the frontend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#04-pipelinetriggered">4.3.3 Review Pipeline triggered by the webhook</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#04-fixpipeline">4.3.3 Solve the test problems</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#04-pipelinetriggeredagain">4.3.4 Review Pipeline triggered by the webhook again</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#04-test">4.4 Confirm that <em>Jump App</em> is already running in Openshift</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -173,7 +239,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Red Hat Workshop - CI/CD & GitOps</a></li>
-    <li><a href="04-cicd.html">3. CI/CD Workflow</a></li>
+    <li><a href="04-cicd.html">4. CI/CD Workflow</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/acidonper/redhat-workshop-cicd-gitops/edit/master/documentation/modules/ROOT/pages/04-cicd.adoc">Edit this Page</a></div>
@@ -181,7 +247,598 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">CI/CD (Continuous Integration / Continuous Deployment) Workflow</h1>
-
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the <em>CI/CD Workflow</em> step you will perform a set of tasks in order to understand and implement a CI/CD strategy:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fork a <em>Jump App</em> microservice project in order to be able to make changes in the source code</p>
+</li>
+<li>
+<p>Change some <em>Jump App</em> microservices settings in a GitOps way</p>
+</li>
+<li>
+<p>Configure GitHub to notify your CI/CD solution for changes</p>
+</li>
+<li>
+<p>Modify a microservice source code and integrate this new "release" in a continuous integration &amp; continuous deployment way</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After this step will be completed, you will be able to release new application versions following a continuous integration &amp; deployment strategy.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="04-repo"><a class="anchor" href="#04-repo"></a>Prepare <em>Jump App</em> Frontend custom repository</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="04-repofork"><a class="anchor" href="#04-repofork"></a>Fork</h3>
+<div class="paragraph">
+<p>In order to work with a custom <em>Jump App</em> frontend repository, you have a shared repository in GitHub ready to go. Please, follow the next steps to copy this repository in your GitHub account in order to be able to operate it freely:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Login in <a href="https://github.com">GitHub</a></p>
+</li>
+<li>
+<p>Access <a href="https://github.com/acidonper/jump-app-typescrypt-react">GitHub - Jump App GitOps Repository</a></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_acidonper.png" alt="github acidonper">
+</div>
+<div class="title">Figure 1. Acidonper <em>Jump App</em> Frontend Repository</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fork the repository</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_front_fork.png" alt="github front fork">
+</div>
+<div class="title">Figure 2. Acidonper <em>Jump App</em> Frontend Repository Fork</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_front_forked.png" alt="github front forked">
+</div>
+<div class="title">Figure 3. Acidonper <em>Jump App</em> Frontend Repository Forked</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="04-repoclone"><a class="anchor" href="#04-repoclone"></a>Clone</h3>
+<div class="paragraph">
+<p>Once you have your own <em>Jump App</em> frontend repository in GitHub, it is time to clone it in your laptop in order to start working.</p>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">cd ~
+git clone <a href="https://github.com/&lt;github_user&gt;/jump-app-typescrypt-react.git" class="bare">https://github.com/&lt;github_user&gt;/jump-app-typescrypt-react.git</a></code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Replace <strong>&lt;github_user&gt;</strong> value with your GitHub username
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_front_cloned.png" alt="github front cloned">
+</div>
+<div class="title">Figure 4. Student <em>Jump App</em> Frontend Repository Cloned</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="04-changegitops"><a class="anchor" href="#04-changegitops"></a>Change GitOps repository content</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As you know, you have all <em>Jump App</em> microservices settings defined in the "values.yaml" file which is located in your GitOps repository created in the previous step.</p>
+</div>
+<div class="paragraph">
+<p>In order to modify our <em>Jump App</em> application settings in a GitOps way, it is required to perform the following tasks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to the repository folder</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">cd ~/jump-app-gitops</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Change to <strong>cicd</strong> branch</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">git checkout cicd</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Modify your GitOps Repository in order to added the new settings</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">sed 's/https:\/\/github.com\/acidonper\/jump-app-typescrypt-react.git/https:\/\/github.com\/&lt;github_user&gt;\/jump-app-typescrypt-react.git/g' -i values.yaml</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Replace <strong>&lt;github_user&gt;</strong> value with your GitHub username
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify your own <em>Jump App</em> Frontend repository has been defined properly</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">cat values.yaml | grep jump-app-typescrypt-react.git</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Push changes to GitHub</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">git add values.yaml
+git commit -m "Change Jump App Frontend URL namespace by default"
+git push origin cicd</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_cicd_pushed.png" alt="github cicd pushed">
+</div>
+<div class="title">Figure 5. Student GitOps Repository Pushed</div>
+</div>
+<div class="sect2">
+<h3 id="04-reviewargocd"><a class="anchor" href="#04-reviewargocd"></a>Review Changes in ArgoCD</h3>
+<div class="paragraph">
+<p>Once previous changes are pushed in the GitHub repository, you have to sync this new content in ArgoCD manually in order to ArgoCD inits a process to modify Openshift objects in order to apply the desired state in GitHub to the Openshift cluster automatically.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Access ArgoCD console &lt;argocd_console_url&gt; (*URL provided by the Instructor at the beginning of this tutorial)</p>
+</li>
+<li>
+<p>Once the new commit has been detected, it is required to sync manually pressing on the <em>sync</em> button</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/argocd_jumpapp_sync_cicd_2.png" alt="argocd jumpapp sync cicd 2">
+</div>
+<div class="title">Figure 6. ArgoCD Jump App CI/CD Sync</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After a few seconds, <em>Jump App</em> health state will change to healthy</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/argocd_cicd_changed_2.png" alt="argocd cicd changed 2">
+</div>
+<div class="title">Figure 7. ArgoCD Sync Process Finished</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="04-repoconfig"><a class="anchor" href="#04-repoconfig"></a>Customize your own <em>Jump App</em> Frontend</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="04-webhook"><a class="anchor" href="#04-webhook"></a>Configure GitHub Webhooks</h3>
+<div class="paragraph">
+<p>During this step, you will configure a GitHub Webhook in your own <em>Jump App</em> Frontend repository in order to notify your CI/CD solution, Tekton, when a new change in the source code comes.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to Openshift Console, &lt;ocp_cluster_console&gt;, using your credentials provided by the instructor</p>
+</li>
+<li>
+<p>Once inside, navigate to <em>Pipelines &#8594; Triggers</em> in order to ensure these objects are created</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_pipeline_triggers.png" alt="ocp pipeline triggers">
+</div>
+<div class="title">Figure 8. OCP Console Pipeline Triggers</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>At this point, go to  <em>Networking &#8594; Routes</em> and copy <strong>eventlistener-front-javascript-v1-deploy</strong> public URL</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_pipeline_triggers_javascript_url.png" alt="ocp pipeline triggers javascript url">
+</div>
+<div class="title">Figure 9. OCP Console listener-front-javascript-v1-deploy Trigger</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Access your own <em>Jump App</em> Frontend repository settings in GitHub</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_front_settings.png" alt="github front settings">
+</div>
+<div class="title">Figure 10. GitHub Front repository settings</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to <em>Weebhooks &#8594; Add weebhook</em></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_front_settings_webhooks.png" alt="github front settings webhooks">
+</div>
+<div class="title">Figure 11. GitHub Front repository settings</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Field the following fields and press <strong>[ Add webhook ]</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Payload URL &#8594; <strong>&lt;listener-front-javascript-v1-deploy&gt; public URL</strong></p>
+</li>
+<li>
+<p>Content type &#8594; <strong>application/json</strong></p>
+</li>
+<li>
+<p>SSL verification &#8594; <strong>Disabled</strong></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_front_settings_webhooks_fields.png" alt="github front settings webhooks fields">
+</div>
+<div class="title">Figure 12. GitHub Front repository settings</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Press F5 and review the webhook status is <em>ready</em></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_front_settings_webhooks_ok.png" alt="github front settings webhooks ok">
+</div>
+<div class="title">Figure 13. GitHub Front repository settings</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="04-makechange"><a class="anchor" href="#04-makechange"></a>Make some changes in the frontend</h3>
+<div class="paragraph">
+<p>At this time, you are able to customize your <em>Jump App</em> Frontend. Please, follow next steps to perform this customization:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to the repository folder</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">cd ~/jump-app-typescrypt-react</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Move to the <strong>develop</strong> branch</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">git checkout develop</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Modify <em>Jump App</em> Frontend title in order to added your username</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">sed 's/Jump App v2.1 DEV/Jump App v.2.1 DEV - &lt;username&gt;/g' -i src/ui/header/Header.tsx</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Replace <strong>&lt;username&gt;</strong> value with your tutorial username
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Push changes to GitHub</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">git add src/ui/header/Header.tsx
+git commit -m "Modified Jump App frontend title"
+git push origin develop</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_front_pushed_2.png" alt="github front pushed 2">
+</div>
+<div class="title">Figure 14. Student GitOps Repository Pushed</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="04-pipelinetriggered"><a class="anchor" href="#04-pipelinetriggered"></a>Review Pipeline triggered by the webhook</h3>
+<div class="paragraph">
+<p>After the changes have been pushed to your GitHub repository, GitHub notified Tekton through <em>webhook</em> event and then Tekton triggered a pipeline in order to release this new Frontend version.</p>
+</div>
+<div class="paragraph">
+<p>Please, follow the next steps in order to review the process launched:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to Openshift Console, &lt;ocp_cluster_console&gt;, using your credentials provided by the instructor</p>
+</li>
+<li>
+<p>Once inside, navigate to <em>Pipelines</em> and the new pipeline triggered</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_pipeline_triggered.png" alt="ocp pipeline triggered">
+</div>
+<div class="title">Figure 15. OCP Pipeline Triggered</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After a few minutes, you obtain an <strong>error</strong> in the pipeline execution test step</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_pipeline_triggered_error.png" alt="ocp pipeline triggered error">
+</div>
+<div class="title">Figure 16. OCP Pipeline Triggered Fail</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_pipeline_triggered_error_2.png" alt="ocp pipeline triggered error 2">
+</div>
+<div class="title">Figure 17. OCP Pipeline Triggered Error</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="04-fixpipeline"><a class="anchor" href="#04-fixpipeline"></a>Solve the test problems</h3>
+<div class="paragraph">
+<p>As you know, testing is very important in the continuous integration and continuous deployment processes. For this reason, you have to solve this problem adapting the tests to the new header defined:</p>
+</div>
+<div class="paragraph">
+<p>Please, follow next steps to adapt test to the previous header customization:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to the repository folder</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">cd ~/jump-app-typescrypt-react</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Move to the <strong>develop</strong> branch</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">git checkout develop</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Modify <em>Jump App</em> Frontend title in order to added your username</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">sed 's/Jump App v2./Jump App v.2.1 DEV - &lt;username&gt;/g' -i src/ui/header/Header.spec.tsx</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Replace <strong>&lt;username&gt;</strong> value with your tutorial username
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Push changes to GitHub</p>
+</li>
+</ul>
+</div>
+<div class="listingblock lines_7 console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-input hljs" data-lang="input">git add src/ui/header/Header.spec.tsx
+git commit -m "Adjust testing to new frontend title"
+git push origin develop</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/github_front_pushed_2.png" alt="github front pushed 2">
+</div>
+<div class="title">Figure 18. Student GitOps Repository Pushed</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="04-pipelinetriggeredagain"><a class="anchor" href="#04-pipelinetriggeredagain"></a>Review Pipeline triggered by the webhook again</h3>
+<div class="paragraph">
+<p>After these new changes have been pushed, GitHub notified Tekton through <em>webhook</em> event again and then Tekton triggered a pipeline in order to release this new Frontend version.</p>
+</div>
+<div class="paragraph">
+<p>Please, follow the next steps in order to review the process launched:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Go to Openshift Console, &lt;ocp_cluster_console&gt;, using your credentials provided by the instructor</p>
+</li>
+<li>
+<p>Once inside, navigate to <em>Pipelines</em> and the new pipeline triggered</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_pipeline_triggered.png" alt="ocp pipeline triggered">
+</div>
+<div class="title">Figure 19. OCP Pipeline Trigerred</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After a few minutes, the pipeline execution finish with <strong>Succeeded</strong></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_pipeline_triggered_ok.png" alt="ocp pipeline triggered ok">
+</div>
+<div class="title">Figure 20. OCP Pipeline Trigerred OK</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="04-test"><a class="anchor" href="#04-test"></a>Confirm that <em>Jump App</em> is already running in Openshift</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After this process is finished, you should be able to visit your own <em>Jump App</em> Frontend with a customized header or title. In order to verify this new title, please follow the next step:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Visit the <strong>front</strong>, <em>front-javascript-v1-&lt;user_namespace&gt;.&lt;openshift_apps_domain&gt;</em>, route via your web browser, push <strong>- JUMP -</strong> button and ensure the following message is displaying in your screen:</p>
+<div class="literalblock">
+<div class="content">
+<pre>...{"code":200,"message":"/jump - Greetings from Python!"}</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/jump-app-front-ok-custom.png" alt="jump app front ok custom">
+</div>
+<div class="title">Figure 21. Jump App Frontend Web UI</div>
+</div>
+</div>
+</div>
 <nav class="pagination">
   <span class="prev"><a href="03-gitops.html">3. GitOps Workflow</a></span>
 </nav>

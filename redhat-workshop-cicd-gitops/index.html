@@ -100,24 +100,42 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="02-deployment.html#02-gitopsrepo">2.1 Prepare GitOps repository</a>
+    <a class="nav-link" href="02-deployment.html#02-repo">2.1 Prepare <em>Jump App</em> repository</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="02-deployment.html#02-gitopsrepofork">2.1.1 Fork</a>
+    <a class="nav-link" href="02-deployment.html#02-repofork">2.1.1 Fork</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="02-deployment.html#02-gitopsrepoclone">2.1.2 Clone</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="02-deployment.html#02-gitopsrepoconfig">2.1.3 Config</a>
+    <a class="nav-link" href="02-deployment.html#02-repoclone">2.1.2 Clone</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="02-deployment.html#02-deploy">2.2 Deploy <em>Jump App</em> via ArgoCD</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-deployment.html#02-deploy-cicd">2.2 <em>Jump App</em> CI/CD objects deployment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment.html#02-cicdrepoconfig">2.2.1 Prepare <em>CICD</em> config branch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment.html#02-deploy-cicd-obj">2.2.2 Deploy <em>Jump App</em> CI/CD objects via ArgoCD</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="02-deployment.html#02-test">2.3 Confirm that <em>Jump App</em> is already running in Openshift</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-deployment.html#02-deploy-jumpapp">2.3 <em>Jump App</em> objects deployment</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment.html#02-gitopsrepo">2.3.1 Prepare <em>GitOps</em> config branch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="02-deployment.html#02-deploy-jumpapp-obj">2.3.2 Deploy <em>Jump App</em> objects via ArgoCD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-deployment.html#02-test">2.4 Confirm that <em>Jump App</em> is already running in Openshift</a>
   </li>
 </ul>
   </li>
@@ -140,7 +158,55 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="04-cicd.html">3. CI/CD Workflow</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-cicd.html">4. CI/CD Workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-cicd.html#04-repo">4.1 Prepare <em>Jump App</em> Frontend custom repository</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-cicd.html#04-repofork">4.1.1 Fork</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-cicd.html#04-repoclone">4.1.2 Clone</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-cicd.html#04-changegitops">4.2 Change GitOps repository content</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-cicd.html#04-reviewargocd">4.2.1 Review Changes in ArgoCD</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-cicd.html#04-repoconfig">4.3 Customize your own <em>Jump App</em> Frontend</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-cicd.html#04-webhook">4.3.1 Configure GitHub Webhooks</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-cicd.html#04-makechange">4.3.2 Make some changes in the frontend</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-cicd.html#04-pipelinetriggered">4.3.3 Review Pipeline triggered by the webhook</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-cicd.html#04-fixpipeline">4.3.3 Solve the test problems</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="04-cicd.html#04-pipelinetriggeredagain">4.3.4 Review Pipeline triggered by the webhook again</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-cicd.html#04-test">4.4 Confirm that <em>Jump App</em> is already running in Openshift</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -240,7 +306,26 @@
 <div class="sect2">
 <h3>CI/CD Workflow</h3>
 <div class="paragraph">
-<p>In this step, you will xxx</p>
+<p>In this step, you will perform a set of tasks in order to understand and implement a CI/CD strategy:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fork a <em>Jump App</em> microservice project in order to be able to make changes in the source code</p>
+</li>
+<li>
+<p>Change some <em>Jump App</em> microservices settings in a GitOps way</p>
+</li>
+<li>
+<p>Deploy a CI/CD project in Openshift</p>
+</li>
+<li>
+<p>Configure GitHub to notify your CI/CD project for changes</p>
+</li>
+<li>
+<p>Modify a microservice source code and integrate this new "release" in a continuous integration &amp; deployment way</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><a href="04-cicd.html" class="page">Start this exercise&#8230;&#8203;</a></p>
