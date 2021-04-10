@@ -410,19 +410,19 @@ version: 0.1.0
 appVersion: 0.1.16
 
 mantainers:
-  * name: Asier Cidon
+  - name: Asier Cidon
     email: acidonpe@redhat.com
 
 dependencies:
-  * name: jump-app-micros
+  - name: jump-app-micros
     repository: 'file://./charts/jump-app-micros'
     version: 0.1.0
     condition: jump-app-micros.enabled
-  * name: jump-app-cicd
+  - name: jump-app-cicd
     repository: 'file://./charts/charts/jump-app-cicd'
     version: 0.1.0
     condition: jump-app-cicd.enabled
-  * name: jump-app-argocd
+  - name: jump-app-argocd
     repository: 'file://./charts/charts/jump-app-argocd'
     version: 0.1.0
     condition: jump-app-argocd.enabled</pre>
@@ -431,7 +431,7 @@ dependencies:
 <div class="ulist">
 <ul>
 <li>
-<p>Create values.yaml file modifying <em>global.appsDomain</em> and <em>jump-app-cicd.namespaceXXX</em> including in <strong>&lt;openshift_apps_domain&gt;</strong> and <strong>&lt;user_namespace&gt;</strong> parameters value respectively provided by the Instructor:</p>
+<p>Create values.yaml file modifying <em>jump-app-cicd.namespaceDev</em> and <em>global.appsDomain</em> with <strong>&lt;user_namespace&gt;</strong> and <strong>&lt;openshift_apps_domain&gt;</strong> parameters value respectively provided by the Instructor:</p>
 </li>
 </ul>
 </div>
@@ -445,8 +445,8 @@ jump-app-argocd:
 
 jump-app-cicd:
   namespaceDev: &lt;user_namespace&gt;
-  namespacePre: &lt;user_namespace&gt;-pre
-  namespacePro: &lt;user_namespace&gt;-pro
+  namespacePre: mock-value-pre
+  namespacePro: mock-value-pro
   enabled: true
   functTestRepo: https://github.com/acidonper/jump-app-functional-tests.git
   functTestRepoBranch: master
@@ -589,21 +589,21 @@ git push origin cicd</code></pre>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/argocd_new_app_cicd%20%20.png" alt="argocd new app cicd  ">
+<img src="_images/argocd_new_app_cicd.png" alt="argocd new app cicd">
 </div>
 <div class="title">Figure 10. ArgoCD New App</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Field the following fields</p>
+<p>Field the following fields replacing <strong>&lt;username&gt;</strong>, <strong>&lt;argocd_project&gt;</strong>, <strong>&lt;github_user&gt;</strong>, <strong>&lt;argocd_ocp_cluster_api&gt;</strong> and <strong>&lt;user_namespace_cicd&gt;</strong> respective parameters provided by the Instructor</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Application Name &#8594; <strong>&lt;username&gt;-jump-app-cicd</strong></p>
 </li>
 <li>
-<p>Project &#8594; <strong>&lt;username&gt;</strong></p>
+<p>Project &#8594; <strong>&lt;argocd_project&gt;</strong></p>
 </li>
 <li>
 <p>Sync Policy &#8594; <strong>Manual</strong></p>
@@ -618,10 +618,10 @@ git push origin cicd</code></pre>
 <p>Path &#8594; <strong>.</strong></p>
 </li>
 <li>
-<p>Cluster URL &#8594; <strong><a href="https://kubernetes.default.svc" class="bare">https://kubernetes.default.svc</a></strong></p>
+<p>Cluster URL &#8594; <strong>&lt;argocd_ocp_cluster_api&gt;</strong></p>
 </li>
 <li>
-<p>Namespace &#8594; <strong>&lt;user_namespace&gt;-cicd</strong></p>
+<p>Namespace &#8594; <strong>&lt;user_namespace_cicd&gt;</strong></p>
 </li>
 </ul>
 </div>
@@ -732,19 +732,19 @@ version: 0.1.0
 appVersion: 0.1.16
 
 mantainers:
-  * name: Asier Cidon
+  - name: Asier Cidon
     email: acidonpe@redhat.com
 
 dependencies:
-  * name: jump-app-micros
+  - name: jump-app-micros
     repository: 'file://./charts/jump-app-micros'
     version: 0.1.0
     condition: jump-app-micros.enabled
-  * name: jump-app-cicd
+  - name: jump-app-cicd
     repository: 'file://./charts/charts/jump-app-cicd'
     version: 0.1.0
     condition: jump-app-cicd.enabled
-  * name: jump-app-argocd
+  - name: jump-app-argocd
     repository: 'file://./charts/charts/jump-app-argocd'
     version: 0.1.0
     condition: jump-app-argocd.enabled</pre>
@@ -753,10 +753,7 @@ dependencies:
 <div class="ulist">
 <ul>
 <li>
-<p>Create values.yaml file modifying <em>global.appsDomain</em> and <em>jump-app-micros.cicd.namespace</em> including in <strong>&lt;openshift_apps_domain&gt;</strong> and <strong>&lt;user_namespace&gt;</strong> parameters value respectively provided by the Instructor:</p>
-</li>
-<li>
-<p>Create values.yaml file modifying <em>global.appsDomain</em> including <strong>&lt;openshift_apps_domain&gt;</strong> parameter value provided by the Instructor</p>
+<p>Create values.yaml file modifying <em>jump-app-micros.cicd.namespace</em> and <em>global.appsDomain</em> with <strong>&lt;user_namespace_cicd&gt;</strong> and <strong>&lt;openshift_apps_domain&gt;</strong> parameters value respectively provided by the Instructor:</p>
 </li>
 </ul>
 </div>
@@ -774,7 +771,9 @@ jump-app-micros:
     namespace: istio-system
     mtls: true
   cicd:
-    namespace: &lt;user_namespace&gt;-cicd
+    namespace: &lt;user_namespace_cicd&gt;
+  knative:
+    enabled: false
 
 # Global variables
 global:
@@ -971,14 +970,14 @@ git push origin master</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Field the following fields</p>
+<p>Field the following fields replacing <strong>&lt;username&gt;</strong>, <strong>&lt;argocd_project&gt;</strong>, <strong>&lt;github_user&gt;</strong>, <strong>&lt;argocd_ocp_cluster_api&gt;</strong> and <strong>&lt;user_namespace&gt;</strong> respective parameters provided by the Instructor</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Application Name &#8594; <strong>&lt;username&gt;-jump-app</strong></p>
 </li>
 <li>
-<p>Project &#8594; <strong>&lt;username&gt;</strong></p>
+<p>Project &#8594; <strong>&lt;argocd_project&gt;</strong></p>
 </li>
 <li>
 <p>Sync Policy &#8594; <strong>Automatic</strong></p>
@@ -993,7 +992,7 @@ git push origin master</code></pre>
 <p>Path &#8594; <strong>.</strong></p>
 </li>
 <li>
-<p>Cluster URL &#8594; <strong><a href="https://kubernetes.default.svc" class="bare">https://kubernetes.default.svc</a></strong></p>
+<p>Cluster URL &#8594; <strong>&lt;argocd_ocp_cluster_api&gt;</strong></p>
 </li>
 <li>
 <p>Namespace &#8594; <strong>&lt;user_namespace&gt;</strong></p>
