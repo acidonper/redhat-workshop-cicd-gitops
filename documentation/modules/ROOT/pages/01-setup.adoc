@@ -51,15 +51,24 @@ The following table includes the parameters that the Instructor should provide y
 | Password
 | <pass>
 | P4ssw0rd
-| Namespace
+| App Namespace
 | <user_namespace>
 | user1-jump-app
+| CI/CD Namespace
+| <user_namespace_cicd>
+| user1-jump-app-cicd
 | Openshift Apps Domain
 | <openshift_apps_domain>
 | _apps.cicdgitopsworkshop.sandbox507.opentlc.com_
 | ArgoCD console
 | <argocd_console_url>
 | _https://argocd-gitops-argocd.cicdgitopsworkshop.sandbox507.opentlc.com_
+| ArgoCD Project
+| <argocd_project>
+| jump-app
+| ArgoCD Openshift Cluster
+| <argocd_ocp_cluster_api>
+| _https://kubernetes.default.svc_
 |===
 
 [#01-accessoc]

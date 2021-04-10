@@ -95,25 +95,25 @@ version: 0.1.0
 appVersion: 0.1.16
 
 mantainers:
-  * name: Asier Cidon
+  - name: Asier Cidon
     email: acidonpe@redhat.com
 
 dependencies:
-  * name: jump-app-micros
+  - name: jump-app-micros
     repository: 'file://./charts/jump-app-micros'
     version: 0.1.0
     condition: jump-app-micros.enabled
-  * name: jump-app-cicd
+  - name: jump-app-cicd
     repository: 'file://./charts/charts/jump-app-cicd'
     version: 0.1.0
     condition: jump-app-cicd.enabled
-  * name: jump-app-argocd
+  - name: jump-app-argocd
     repository: 'file://./charts/charts/jump-app-argocd'
     version: 0.1.0
     condition: jump-app-argocd.enabled
 ----
 
-* Create values.yaml file modifying _global.appsDomain_ and _jump-app-cicd.namespaceXXX_ including in *<openshift_apps_domain>* and *<user_namespace>* parameters value respectively provided by the Instructor:
+* Create values.yaml file modifying _jump-app-cicd.namespaceDev_ and _global.appsDomain_ with *<user_namespace>* and *<openshift_apps_domain>* parameters value respectively provided by the Instructor:
 
 ----
 jump-app-micros:
@@ -124,8 +124,8 @@ jump-app-argocd:
 
 jump-app-cicd:
   namespaceDev: <user_namespace>
-  namespacePre: <user_namespace>-pre
-  namespacePro: <user_namespace>-pro
+  namespacePre: mock-value-pre
+  namespacePro: mock-value-pro
   enabled: true
   functTestRepo: https://github.com/acidonper/jump-app-functional-tests.git
   functTestRepoBranch: master
@@ -228,18 +228,18 @@ image::argocd_console_cicd.png[]
 * Create a new App
 
 .ArgoCD New App
-image::argocd_new_app_cicd  .png[]
+image::argocd_new_app_cicd.png[]
 
-* Field the following fields
+* Field the following fields replacing **<username>**, **<argocd_project>**, **<github_user>**, **<argocd_ocp_cluster_api>** and **<user_namespace_cicd>** respective parameters provided by the Instructor
 
  ** Application Name -> **<username>-jump-app-cicd**
- ** Project -> **<username>**
+ ** Project -> **<argocd_project>**
  ** Sync Policy -> **Manual**
  ** Repository URL -> **https://github.com/<github_user>/jump-app-gitops.git**
  ** Revision -> **cicd**
  ** Path -> **.**
- ** Cluster URL -> **https://kubernetes.default.svc**
- ** Namespace -> **<user_namespace>-cicd**
+ ** Cluster URL -> **<argocd_ocp_cluster_api>**
+ ** Namespace -> **<user_namespace_cicd>**
 
 .ArgoCD New App Fields
 image::argocd_new_app_fields_cicd.png[]
@@ -297,27 +297,25 @@ version: 0.1.0
 appVersion: 0.1.16
 
 mantainers:
-  * name: Asier Cidon
+  - name: Asier Cidon
     email: acidonpe@redhat.com
 
 dependencies:
-  * name: jump-app-micros
+  - name: jump-app-micros
     repository: 'file://./charts/jump-app-micros'
     version: 0.1.0
     condition: jump-app-micros.enabled
-  * name: jump-app-cicd
+  - name: jump-app-cicd
     repository: 'file://./charts/charts/jump-app-cicd'
     version: 0.1.0
     condition: jump-app-cicd.enabled
-  * name: jump-app-argocd
+  - name: jump-app-argocd
     repository: 'file://./charts/charts/jump-app-argocd'
     version: 0.1.0
     condition: jump-app-argocd.enabled
 ----
 
-* Create values.yaml file modifying _global.appsDomain_ and _jump-app-micros.cicd.namespace_ including in *<openshift_apps_domain>* and *<user_namespace>* parameters value respectively provided by the Instructor:
-
-* Create values.yaml file modifying _global.appsDomain_ including *<openshift_apps_domain>* parameter value provided by the Instructor
+* Create values.yaml file modifying _jump-app-micros.cicd.namespace_ and _global.appsDomain_ with *<user_namespace_cicd>* and *<openshift_apps_domain>* parameters value respectively provided by the Instructor:
 
 ----
 # Chart variables
@@ -332,15 +330,17 @@ jump-app-micros:
     namespace: istio-system
     mtls: true
   cicd:
-    namespace: <user_namespace>-cicd
-  
+    namespace: <user_namespace_cicd>
+  knative: 
+    enabled: false
+
 # Global variables
 global:
   appsDomain: <openshift_apps_domain>
   apps:
     front-javascript:
       imagetag: develop
-      multiVersions:
+      multiVersions: 
         enabled: false
       replicas: 1
       envVars:
@@ -359,7 +359,7 @@ global:
       backend: back-golang
     back-golang:
       imagetag: develop
-      multiVersions:
+      multiVersions: 
         enabled: false
       replicas: 1
       envVars:
@@ -380,7 +380,7 @@ global:
         port: 8442
     back-python:
       imagetag: develop
-      multiVersions:
+      multiVersions: 
         enabled: false
       replicas: 1
       envVars:
@@ -401,7 +401,7 @@ global:
         port: 8444
     back-springboot:
       imagetag: develop
-      multiVersions:
+      multiVersions: 
         enabled: false
       replicas: 1
       envVars:
@@ -487,15 +487,15 @@ image::argocd_console.png[]
 .ArgoCD New App
 image::argocd_new_app.png[]
 
-* Field the following fields
+* Field the following fields replacing **<username>**, **<argocd_project>**, **<github_user>**, **<argocd_ocp_cluster_api>** and **<user_namespace>** respective parameters provided by the Instructor
 
  ** Application Name -> **<username>-jump-app**
- ** Project -> **<username>**
+ ** Project -> **<argocd_project>**
  ** Sync Policy -> **Automatic**
  ** Repository URL -> **https://github.com/<github_user>/jump-app-gitops.git**
  ** Revision -> **master**
  ** Path -> **.**
- ** Cluster URL -> **https://kubernetes.default.svc**
+ ** Cluster URL -> **<argocd_ocp_cluster_api>**
  ** Namespace -> **<user_namespace>**
 
 .ArgoCD New App Fields
