@@ -268,6 +268,29 @@ image::argocd_jumpapp_content_1_cicd.png[]
 .ArgoCD Jump App CI/CD Content II
 image::argocd_jumpapp_content_2_cicd.png[]
 
+
+Once this step is completed, it is time to check the final resources which were created in Openshift by ArgoCD. For this checking, it is required to go to the Openshift Console, <user_namespace_cicd>  and review the following objects:
+
+* BuildConfig and ImageStreams
+
+.OCP BuildConfig
+image::ocp_bcs.png[]
+
+.OCP Imagestreams
+image::ocp_iss.png[]
+
+* Pipelines
+
+.OCP Pipelines
+image::ocp_pipelines.png[]
+
+IMPORTANT: ArgoCD allows admins to block or exclude some kubernetes objects in order to avoid some k8s objects management. If the ArgoCD installation does not handle _PipelineRun_ it is required to execute all ***-build-init-images** manually at the first time.
+
+.OCP Pipelines Manually Execution
+image::ocp_pipelines_manual.png[]
+
+
+
 [#02-deploy-jumpapp]
 == _Jump App_ objects deployment
 
