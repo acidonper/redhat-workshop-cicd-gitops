@@ -1,7 +1,7 @@
 
 [cols="5*^,5*.",options="header,+attributes"]
 |===
-|**Tool**|**Fedora**|**macOS**|**windows**|**Official Documentation**
+|**Tool**|**Fedora**|**macOS**|**Windows**|**Official Documentation**
 | oc
 | https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz[Download]
 | https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-mac.tar.gz[Download]

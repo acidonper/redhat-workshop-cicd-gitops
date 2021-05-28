@@ -8,7 +8,7 @@ In the _GitOps Workflow_ step you will make a change in your GitOps GitHub repos
 
 As you know, you have all _Jump App_ microservices settings defined in the "values.yaml" file which is located in your GitOps repository created in the previous step.
 
-In order to modify our _Jump App_ application settings in a GitOps way, it is required to perform the following tasks:
+In order to modify our _Jump App_ application settings in a GitOps fashion, it is required to perform the following tasks:
 
 * Modify your GitOps Repository in order to added the new settings
 
@@ -38,7 +38,7 @@ image::github_gitops_pushed.png[]
 
 Once previous changes are pushed in the GitHub repository, ArgoCD automatically inits a process to modify Openshift objects in order to apply the desired state in GitHub to the Openshift cluster automatically.
 
-* Access ArgoCD console <argocd_console_url> (*URL provided by the Instructor at the beginning of this tutorial)
+* Access ArgoCD console <argocd_console_url> (*URL provided by the instructor at the beginning of this tutorial)
 
 * A new sync process is triggered automatically
 

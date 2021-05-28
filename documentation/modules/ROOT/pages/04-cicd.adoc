@@ -3,9 +3,9 @@
 In the _CI/CD Workflow_ step you will perform a set of tasks in order to understand and implement a CI/CD strategy:
 
 * Fork a _Jump App_ microservice project in order to be able to make changes in the source code
-* Change some _Jump App_ microservices settings in a GitOps way
+* Change some _Jump App_ microservices settings in a GitOps fashion
 * Configure GitHub to notify your CI/CD solution for changes
-* Modify a microservice source code and integrate this new "release" in a continuous integration & continuous deployment way
+* Modify a microservice source code and integrate this new release in a continuous integration & continuous deployment way
 
 After this step will be completed, you will be able to release new application versions following a continuous integration & deployment strategy.
 
@@ -35,7 +35,7 @@ image::github_front_forked.png[]
 [#04-repoclone]
 === Clone
 
-Once you have your own _Jump App_ frontend repository in GitHub, it is time to clone it in your laptop in order to start working.
+Once you have your own _Jump App_ frontend repository in GitHub, it is time to clone it on your laptop in order to start working.
 
 [.lines_7]
 [.console-input]
@@ -55,7 +55,7 @@ image::github_front_cloned.png[]
 
 As you know, you have all _Jump App_ microservices settings defined in the "values.yaml" file which is located in your GitOps repository created in the previous step.
 
-In order to modify our _Jump App_ application settings in a GitOps way, it is required to perform the following tasks:
+In order to modify our _Jump App_ application settings in a GitOps fashion, it is required to perform the following tasks:
 
 * Go to the repository folder
 
@@ -114,7 +114,7 @@ image::github_cicd_pushed.png[]
 
 Once previous changes are pushed in the GitHub repository, you have to sync this new content in ArgoCD manually in order to ArgoCD inits a process to modify Openshift objects in order to apply the desired state in GitHub to the Openshift cluster automatically.
 
-* Access ArgoCD console <argocd_console_url> (*URL provided by the Instructor at the beginning of this tutorial)
+* Access ArgoCD console <argocd_console_url> (*URL provided by the instructor at the beginning of this tutorial)
 
 * Once the new commit has been detected, it is required to sync manually pressing on the _sync_ button
 

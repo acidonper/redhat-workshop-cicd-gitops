@@ -9,14 +9,14 @@ During this tutorial, it will be required to work with different tools for runni
 
 include::partial$requirements.adoc[]
 
-NOTE: Please, review the official documentation to install the latest versions of these tools in your laptop following the optimum procedure 
+NOTE: Please, review the official documentation to install the latest versions of these tools on your laptop following the optimum procedure 
 
-On the other hand, it is required to have a https://github.com[GitHub] account in order to create some repositories during this tutorial.
+You also need to have a Github to have a https://github.com[GitHub] account in order to create some repositories during this tutorial.
 
 [#01-laboratory]
 == Laboratory
 
-Tutorial's laboratory is basically based on the following technologies:
+The tutorial laboratory covers the following technologies:
 
 - Red Hat Openshift Container Platform Cluster
 - ArgoCD (Red Hat GitOps Operator)
@@ -27,14 +27,14 @@ In addition, a set of GitHub repositories are provided with a set of templates a
 
 - https://github.com/acidonper/jump-app-gitops[GitHub - Jump App GitOps Repository] 
 
-The previous technologies and resources will allow you to deploy and operate a microservice-based application in Openshift. The main objective of deploying and operating this application in Openshift using the previous technologies is to understand how GitOps and CI/CD (Continuous Integration/Continuous Deployment) strategies work together in a Kubernetes environment in order to speed up application management processes.
+The technologies and resources on the previous page will allow you to deploy and operate a microservice-based application in Openshift. The main objective of deploying and operating this application in Openshift is to understand how GitOps and CI/CD strategies work together in order to speed up the application management processes.
 
 [#01-parameters]
 === Parameters
 
-The Instructor provides users the Openshift credentials and other important parameters at the beginning of this tutorial in order to access the laboratory. 
+The instructor provides the users the necessary Openshift credentials and other important parameters at the beginning of this tutorial in order to access and complete the laboratory. 
 
-The following table includes the parameters that the Instructor should provide you at the beginning:
+The following table includes the parameters that the instructor should provide you at the beginning of the laboratory:
 
 [cols="3*^,3*.",options="header,+attributes"]
 |===
@@ -74,9 +74,9 @@ The following table includes the parameters that the Instructor should provide y
 [#01-accessoc]
 === Access - OC Client
 
-The OpenShift Container Platform CLI, installed before, exposes commands for managing your applications, as well as lower level tools to interact with each component of your system. 
+The OpenShift Container Platform CLI (which needs to be installed first) exposes the commands for managing your applications as well as the lower-level tools to interact with each component of your system.
 
-Please, review the previous settings with your Instructor and connect to the cluster executing next command from your terminal:
+Please, review the previous settings with your instructor and connect to the cluster executing next command from your terminal:
 
 [.lines_space]
 [.console-input]

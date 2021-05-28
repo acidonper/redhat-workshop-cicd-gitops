@@ -14,11 +14,11 @@ The general idea behind this workshop is to get an initial understanding of the 
 - Implement Kubernetes Native CI/CD Pipelines strategy with Tekton
 
 [.text-center.strong]
-== Get Started
+== Getting Started
 
 First of all, it is required to review your local machine prerequisites and laboratory environment access in order to be able to start working on this tutorial.
 
-Please, follow xref:01-setup.adoc[Get Started] for more information.
+Please, follow xref:01-setup.adoc[Getting Started] for more information.
 
 [.text-center.strong]
 == Tutorial Steps
@@ -40,9 +40,9 @@ xref:03-gitops.adoc[Start this exercise...]
 In this step, you will perform a set of tasks in order to understand and implement a CI/CD strategy:
 
 * Fork a _Jump App_ microservice project in order to be able to make changes in the source code
-* Change some _Jump App_ microservices settings in a GitOps way
+* Change some _Jump App_ microservices settings in a GitOps fashion
 * Deploy a CI/CD project in Openshift
 * Configure GitHub to notify your CI/CD project for changes
-* Modify a microservice source code and integrate this new "release" in a continuous integration & deployment way
+* Modify a microservice source code and integrate this new release in a continuous integration & deployment way
 
 xref:04-cicd.adoc[Start this exercise...]
