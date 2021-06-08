@@ -91,6 +91,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="#01-accessconsole">1.2.3 Access - OCP Console</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#01-summary">1.2.4 Summary</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -315,7 +318,7 @@ Please, review the official documentation to install the latest versions of thes
 </table>
 </div>
 <div class="paragraph">
-<p>You also need to have a Github to have a <a href="https://github.com">GitHub</a> account in order to create some repositories during this tutorial.</p>
+<p>It is also required to have a <a href="https://github.com">GitHub</a> account in order to create some repositories during this tutorial.</p>
 </div>
 </div>
 </div>
@@ -323,36 +326,54 @@ Please, review the official documentation to install the latest versions of thes
 <h2 id="01-laboratory"><a class="anchor" href="#01-laboratory"></a>Laboratory</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The tutorial laboratory covers the following technologies:</p>
+<p>The technical exercises included in this tutorial are based on cloud native solutions which are extensively used in the IT market. Please review the following list which includes the basics around these cloud native solutions:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Red Hat Openshift Container Platform Cluster</p>
+<p><a href="https://github.com/">GitHub</a> is a provider of Internet hosting for software development and version control using Git. It offers the distributed version control and source code management functionality of Git, plus its own features.</p>
 </li>
 <li>
-<p>ArgoCD (Red Hat GitOps Operator)</p>
+<p><a href="https://docs.openshift.com/container-platform/">Red Hat Openshift Container Platform Cluster</a> is an enterprise-ready Kubernetes container platform with full-stack automated operations to manage hybrid cloud, multicloud, and edge deployments. Red Hat OpenShift is optimized to improve developer productivity and promote innovation.</p>
 </li>
 <li>
-<p>Tekton (Red Hat Pipelines Operator)</p>
+<p><a href="https://argoproj.github.io/argo-cd/">ArgoCD</a> is a declarative, GitOps continuous delivery tool for Kubernetes following the GitOps pattern of using Git repositories as the source of truth for defining the desired application state. Argo CD automates the deployment of the desired application states in the specified target environments. Application deployments can track updates to branches, tags, or pinned to a specific version of manifests at a Git commit.</p>
 </li>
 <li>
-<p>Helm</p>
+<p><a href="https://helm.sh/">Helm</a> is a tool to find, share, and use software built for Kubernetes. Helm helps users manage Kubernetes applications in terms of definition, installing, and upgrading even the most complex Kubernetes application.</p>
+</li>
+<li>
+<p><a href="https://tekton.dev/">Tekton</a> (Red Hat Pipelines Operator) is a powerful and flexible open-source framework for creating CI/CD systems, allowing developers to build, test, and deploy across cloud providers and on-premise systems.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>In addition, a set of GitHub repositories are provided with a set of templates and other resources which are required to create different objects in Openshift during this tutorial.</p>
+<p>During this tutorial, a set of resources are provided by the instructor in order to be able to complete the exercises described in the following sections. The main objective of these resources is to provide a platform, multiple templates and other resources which are required to create different objects in Openshift.</p>
+</div>
+<div class="paragraph">
+<p>Please review the following list to have an overall understanding about the resources provided for completing this tutorial:</p>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>An Openshift cluster that will host and make available a set of applications deployed</p>
+</li>
+<li>
+<p>An ArgoCD installation which will allow attendees to deploy applications in a GitOps fashion</p>
+</li>
+<li>
+<p>A Tekton installation that will control the applications lifecycle automatically</p>
+</li>
+<li>
+<p>A set of GitHub repositories that include the templates and automatisms required to deploy a group of applications</p>
+</li>
 <li>
 <p><a href="https://github.com/acidonper/jump-app-gitops">GitHub - Jump App GitOps Repository</a></p>
 </li>
+<li>
+<p><a href="https://github.com/acidonper/jump-app-helm-charts">GitHub - Jump App Helm Charts</a></p>
+</li>
 </ul>
-</div>
-<div class="paragraph">
-<p>The technologies and resources on the previous page will allow you to deploy and operate a microservice-based application in Openshift. The main objective of deploying and operating this application in Openshift is to understand how GitOps and CI/CD strategies work together in order to speed up the application management processes.</p>
 </div>
 <div class="sect2">
 <h3 id="01-parameters"><a class="anchor" href="#01-parameters"></a>Parameters</h3>
@@ -479,6 +500,14 @@ Please, pay special attention to <em>oc CLI</em>  because you will need to use t
 </div>
 <div class="title">Figure 2. Openshift Console</div>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="01-summary"><a class="anchor" href="#01-summary"></a>Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The technologies and resources included on this page will allow you to deploy and operate a microservice-based application in Openshift. The main objective of deploying and operating this application in Openshift is to understand how GitOps and CI/CD strategies work together in order to speed up the application management processes.</p>
 </div>
 </div>
 </div>
