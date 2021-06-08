@@ -1,3 +1,6 @@
+scripts/view-secret.yaml
+scripts/users.htpasswd
+scripts/oauth.yaml
 target/
 !.mvn/wrapper/maven-wrapper.jar
 audit.log

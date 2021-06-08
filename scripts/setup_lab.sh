@@ -72,7 +72,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: argocd-application-controller
-  namespace: gitops-argocd
+  namespace: ${USERNAME}-gitops-argocd
 EOF
 
   cat argocd-rolebinding-$i.yaml | oc apply -f - -n $i-jump-app

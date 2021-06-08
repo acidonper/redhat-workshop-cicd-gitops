@@ -4,6 +4,7 @@
 *** xref:01-setup.adoc#01-parameters[1.2.1 Parameters]
 *** xref:01-setup.adoc#01-accessoc[1.2.2 Access - OC Client]
 *** xref:01-setup.adoc#01-accessconsole[1.2.3 Access - OCP Console]
+*** xref:01-setup.adoc#01-summary[1.2.4 Summary]
 
 * xref:02-deployment.adoc[2. Deployment Workflow]
 ** xref:02-deployment.adoc#02-repo[2.1 Prepare _Jump App_ repository]
