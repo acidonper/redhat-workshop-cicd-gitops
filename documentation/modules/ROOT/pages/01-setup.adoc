@@ -5,11 +5,11 @@ include::_attributes.adoc[]
 [#01-prerequisites]
 == Prerequisites
 
-During this tutorial, it will be required to work with different tools for running the exercises included. Please, install the following software:
+During this tutorial, it will be required to work with different tools for running the exercises included. Please install the following software:
 
 include::partial$requirements.adoc[]
 
-NOTE: Please, review the official documentation to install the latest versions of these tools on your laptop following the optimum procedure 
+NOTE: Please review the official documentation to install the latest versions of these tools on your laptop following the optimum procedure 
 
 It is also required to have a https://github.com[GitHub] account in order to create some repositories during this tutorial.
 
@@ -82,7 +82,7 @@ The following table includes the parameters that the instructor should provide y
 
 The OpenShift Container Platform CLI (which needs to be installed first) exposes the commands for managing your applications as well as the lower-level tools to interact with each component of your system.
 
-Please, review the previous settings with your instructor and connect to the cluster executing next command from your terminal:
+Please review the previous settings with your instructor and connect to the cluster executing next command from your terminal:
 
 [.lines_space]
 [.console-input]
@@ -94,7 +94,7 @@ oc login -u <user> -p <pass> <ocp_cluster_api>
 .OC CLI Login Output
 image::oc_login_output.png[]
 
-TIP: Please, pay special attention to _oc CLI_  because you will need to use this tool several times during this tutorial.
+TIP: Please pay special attention to _oc CLI_  because you will need to use this tool several times during this tutorial.
 
 [#01-accessconsole]
 === Access - OCP Console

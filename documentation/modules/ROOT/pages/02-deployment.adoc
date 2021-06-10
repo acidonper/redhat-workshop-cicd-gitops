@@ -17,12 +17,12 @@ First of all, it is required to prepare the _GitOps_ and _CI/CD_ repository in o
 * Helm Charts references
 * A _values.yaml_ file to make ArgoCD able to deploy _Jump App_ in Openshift using helm charts referenced
 
-Please, follow the next sections to make this new repository available.
+Please follow the next sections to make this new repository available.
 
 [#02-repofork]
 === Fork
 
-Regarding preparing this repository, you have a shared repository in GitHub ready to go. Please, follow the next steps to copy this repository in your GitHub account in order to be able to operate it freely:
+Regarding preparing this repository, you have a shared repository in GitHub ready to go. Please follow the next steps to copy this repository in your GitHub account in order to be able to operate it freely:
 
 * Login in https://github.com[GitHub]
 
@@ -218,7 +218,7 @@ image::github_gitops_customized_cicd_2.png[]
 
 At this point, your should have a repository with a helm chart which is ready to deploy _Jump App_ CI/CD Objects in Openshift through ArgoCD.
 
-Please, follow the next steps to deploy _Jump App_ CI/CD Objects:
+Please follow the next steps to deploy _Jump App_ CI/CD Objects:
 
 * Access ArgoCD console <argocd_console_url> (*URL provided by the instructor at the beginning of this tutorial)
 
@@ -498,7 +498,7 @@ image::github_gitops_customized.png[]
 
 At this point, your should have a GitOps repository with a helm chart which is ready to deploy _Jump App_ in Openshift through ArgoCD.
 
-Please, follow the next steps to deploy _Jump App_.
+Please follow the next steps to deploy _Jump App_.
 
 * Access ArgoCD console <argocd_console_url> (*URL provided by the instructor at the beginning of this tutorial)
 

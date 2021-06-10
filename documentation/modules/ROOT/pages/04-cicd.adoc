@@ -15,7 +15,7 @@ After this step will be completed, you will be able to release new application v
 [#04-repofork]
 === Fork
 
-In order to work with a custom _Jump App_ frontend repository, you have a shared repository in GitHub ready to go. Please, follow the next steps to copy this repository in your GitHub account in order to be able to operate it freely:
+In order to work with a custom _Jump App_ frontend repository, you have a shared repository in GitHub ready to go. Please follow the next steps to copy this repository in your GitHub account in order to be able to operate it freely:
 
 * Login in https://github.com[GitHub]
 
@@ -174,7 +174,7 @@ image::github_front_settings_webhooks_ok.png[]
 [#04-makechange]
 === Make some changes in the frontend
 
-At this time, you are able to customize your _Jump App_ Frontend. Please, follow next steps to perform this customization:
+At this time, you are able to customize your _Jump App_ Frontend. Please follow next steps to perform this customization:
 
 * Go to the repository folder
 
@@ -225,7 +225,7 @@ image::github_front_pushed_2.png[]
 
 After the changes have been pushed to your GitHub repository, GitHub notified Tekton through _webhook_ event and then Tekton triggered a pipeline in order to release this new Frontend version.
 
-Please, follow the next steps in order to review the process launched:
+Please follow the next steps in order to review the process launched:
 
 * Go to Openshift Console, <ocp_cluster_console>, using your credentials provided by the instructor
 
@@ -247,7 +247,7 @@ image::ocp_pipeline_triggered_error_2.png[]
 
 As you know, testing is very important in the continuous integration and continuous deployment processes. For this reason, you have to solve this problem adapting the tests to the new header defined:
 
-Please, follow next steps to adapt test to the previous header customization:
+Please follow next steps to adapt test to the previous header customization:
 
 * Go to the repository folder
 
@@ -298,7 +298,7 @@ image::github_front_pushed_2.png[]
 
 After these new changes have been pushed, GitHub notified Tekton through _webhook_ event again and then Tekton triggered a pipeline in order to release this new Frontend version.
 
-Please, follow the next steps in order to review the process launched:
+Please follow the next steps in order to review the process launched:
 
 * Go to Openshift Console, <ocp_cluster_console>, using your credentials provided by the instructor
 

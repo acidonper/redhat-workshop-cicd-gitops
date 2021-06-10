@@ -18,7 +18,7 @@ The general idea behind this workshop is to get an initial understanding of the 
 
 First of all, it is required to review your local machine prerequisites and laboratory environment access in order to be able to start working on this tutorial.
 
-Please, follow xref:01-setup.adoc[Getting Started] for more information.
+Please follow xref:01-setup.adoc[Getting Started] for more information.
 
 [.text-center.strong]
 == Tutorial Steps

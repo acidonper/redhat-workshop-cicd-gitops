@@ -60,7 +60,7 @@ image::argocd_gitops_sync.png[]
 
 After the ArgoCD sync process finished, it is interesting to access Openshift Console using your credentials via browser in order to check these changes via Openshift Console.
 
-Please, follow the next steps to verify _Jump App_ microservices changes:
+Please follow the next steps to verify _Jump App_ microservices changes:
 
 * Access <ocp_cluster_console> (_E.g. https://console-openshift-console.apps.cicdgitopsworkshop.sandbox507.opentlc.com_)
 
