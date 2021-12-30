@@ -113,7 +113,7 @@ dependencies:
     condition: jump-app-argocd.enabled
 ----
 
-* Create values.yaml file modifying _jump-app-cicd.namespaceDev_ and _global.appsDomain_ with *<user_namespace>* and *<openshift_apps_domain>* parameters value respectively provided by the instructor:
+* Create values.yaml file modifying _jump-app-cicd.namespaceGitOps, _jump-app-cicd.namespaceDev_ and _global.appsDomain_ with *<username>* ,*<user_namespace>* and *<openshift_apps_domain>* parameters value respectively provided by the instructor:
 
 ----
 jump-app-micros:
@@ -123,10 +123,11 @@ jump-app-argocd:
   enabled: false
 
 jump-app-cicd:
+  enabled: true
   namespaceDev: <user_namespace>
   namespacePre: mock-value-pre
   namespacePro: mock-value-pro
-  enabled: true
+  namespaceGitOps: <username>-gitops-argocd
   functTestRepo: https://github.com/acidonper/jump-app-functional-tests.git
   functTestRepoBranch: master
   functTestMicro: front-javascript
@@ -201,6 +202,8 @@ git add values.yaml
 git commit -m "Added Chart.yaml and values.yaml files"
 git push origin cicd
 ----
+
+IMPORTANT: It is required to generate a personal access token in order to push the changes via HTTPS 
 
 .Student CICD Branch Pushed
 image::github_cicd_pushed.png[]

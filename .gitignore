@@ -7,6 +7,9 @@ audit.log
 .cache/
 *.log
 old/
+oauth.yaml
+users.htpasswd
+view-secret.yaml
 
 docs/
 gh-pages/

@@ -6,10 +6,7 @@
 # Users 
 ##
 USERS="user1
-pepito
-pepita
-manolito
-manolita"
+user2"
 
 ##
 # Adding user to htpasswd
