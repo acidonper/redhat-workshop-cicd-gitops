@@ -434,7 +434,7 @@ dependencies:
 <div class="ulist">
 <ul>
 <li>
-<p>Create values.yaml file modifying <em>jump-app-cicd.namespaceDev</em> and <em>global.appsDomain</em> with <strong>&lt;user_namespace&gt;</strong> and <strong>&lt;openshift_apps_domain&gt;</strong> parameters value respectively provided by the instructor:</p>
+<p>Create values.yaml file modifying <em>jump-app-cicd.namespaceGitOps, _jump-app-cicd.namespaceDev</em> and <em>global.appsDomain</em> with <strong>&lt;username&gt;</strong> ,<strong>&lt;user_namespace&gt;</strong> and <strong>&lt;openshift_apps_domain&gt;</strong> parameters value respectively provided by the instructor:</p>
 </li>
 </ul>
 </div>
@@ -447,10 +447,11 @@ jump-app-argocd:
   enabled: false
 
 jump-app-cicd:
+  enabled: true
   namespaceDev: &lt;user_namespace&gt;
   namespacePre: mock-value-pre
   namespacePro: mock-value-pro
-  enabled: true
+  namespaceGitOps: &lt;username&gt;-gitops-argocd
   functTestRepo: https://github.com/acidonper/jump-app-functional-tests.git
   functTestRepoBranch: master
   functTestMicro: front-javascript
@@ -535,6 +536,18 @@ git add values.yaml
 git commit -m "Added Chart.yaml and values.yaml files"
 git push origin cicd</code></pre>
 </div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It is required to generate a personal access token in order to push the changes via HTTPS
+</td>
+</tr>
+</table>
 </div>
 <div class="imageblock">
 <div class="content">
