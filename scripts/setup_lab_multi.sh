@@ -5,8 +5,18 @@
 ##
 # Users 
 ##
-USERS="user1
-user2"
+USERS="user01
+user02
+user03
+user04
+user05
+user06
+user07
+user08
+user09
+user10
+user11
+"
 
 ##
 # Adding user to htpasswd
@@ -43,51 +53,91 @@ EOF
 
 cat oauth.yaml | oc apply -f -
 
-
-##
-# Creating Role Binding for ArgoCD
-##
-oc adm policy add-cluster-role-to-user admin admin
-
-for i in $USERS
-do
-  oc new-project $i-jump-app-dev
-  oc label namespace $i-jump-app-dev argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
-  oc adm policy add-role-to-user admin $i -n $i-jump-app-dev
-  
-  oc new-project $i-jump-app-dev-k8s
-  oc label namespace $i-jump-app-dev-k8s argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
-  oc adm policy add-role-to-user admin $i -n $i-jump-app-dev-k8s
-  
-  oc new-project $i-jump-app-dev-helm
-  oc label namespace $i-jump-app-dev-helm argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
-  oc adm policy add-role-to-user admin $i -n $i-jump-app-dev-helm
-
-  oc new-project $i-jump-app-pre
-  oc label namespace $i-jump-app-pre argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
-  oc adm policy add-role-to-user admin $i -n $i-jump-app-pre
-
-  oc new-project $i-jump-app-pro
-  oc label namespace $i-jump-app-pro argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
-  oc adm policy add-role-to-user admin $i -n $i-jump-app-pro
-  
-  oc new-project $i-jump-app-cicd
-  oc label namespace $i-jump-app-cicd argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
-  oc adm policy add-role-to-user admin $i -n $i-jump-app-cicd
-
-  oc new-project $i-gitops-argocd
-  oc label namespace $i-gitops-argocd argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
-  oc adm policy add-role-to-user admin $i -n $i-gitops-argocd
-
-  # oc process -f ./scripts/files/argocd_operator.yaml -p USERNAME=$i | oc apply -f -
-  oc apply -f ./scripts/files/redhat_gitops.yaml
-  sleep 30
-  oc process -f ./scripts/files/argocd_objs.yaml -p USERNAME=$i | oc apply -f -
-
-done
-
-##
 ##
 # Disable self namespaces provisioner 
 ##
 oc patch clusterrolebinding.rbac self-provisioners -p '{"subjects": null}'
+
+##
+# Creating Role Binding for admin user
+##
+oc adm policy add-cluster-role-to-user admin admin
+
+## 
+# Create Cluster Roles for Tekton (Manage triggers and get secret content in all namespaces)
+##
+oc apply -f ./scripts/files/tekton_cluster_roles.yaml
+
+## 
+# Install GitOps Operator
+##
+oc apply -f ./scripts/files/redhat_gitops.yaml
+sleep 60
+
+for i in $USERS
+do
+
+  ##
+  # Create required namespaces for each user
+  ##
+  oc new-project $i-jump-app-dev
+  oc label namespace $i-jump-app-dev argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
+  oc adm policy add-role-to-user admin $i -n $i-jump-app-dev
+  oc adm policy add-role-to-user admin system:serviceaccount:$i-gitops-argocd:argocd-argocd-application-controller -n $i-jump-app-dev
+  
+  oc new-project $i-jump-app-dev-k8s
+  oc label namespace $i-jump-app-dev-k8s argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
+  oc adm policy add-role-to-user admin $i -n $i-jump-app-dev-k8s
+  oc adm policy add-role-to-user admin system:serviceaccount:$i-gitops-argocd:argocd-argocd-application-controller -n $i-jump-app-dev-k8s
+  
+  oc new-project $i-jump-app-dev-helm
+  oc label namespace $i-jump-app-dev-helm argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
+  oc adm policy add-role-to-user admin $i -n $i-jump-app-dev-helm
+  oc adm policy add-role-to-user admin system:serviceaccount:$i-gitops-argocd:argocd-argocd-application-controller -n $i-jump-app-dev-helm
+
+  oc new-project $i-jump-app-pre
+  oc label namespace $i-jump-app-pre argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
+  oc adm policy add-role-to-user admin $i -n $i-jump-app-pre
+  oc adm policy add-role-to-user admin system:serviceaccount:$i-gitops-argocd:argocd-argocd-application-controller -n $i-jump-app-pre
+
+  oc new-project $i-jump-app-pro
+  oc label namespace $i-jump-app-pro argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
+  oc adm policy add-role-to-user admin $i -n $i-jump-app-pro
+  oc adm policy add-role-to-user admin system:serviceaccount:$i-gitops-argocd:argocd-argocd-application-controller -n $i-jump-app-pro
+  
+  oc new-project $i-jump-app-cicd
+  oc label namespace $i-jump-app-cicd argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
+  oc adm policy add-role-to-user admin $i -n $i-jump-app-cicd
+  oc adm policy add-role-to-user admin system:serviceaccount:$i-gitops-argocd:argocd-argocd-application-controller -n $i-jump-app-cicd
+  oc adm policy add-cluster-role-to-user tekton-admin-view system:serviceaccount:$i-jump-app-cicd:tekton-deployments-admin
+  oc adm policy add-cluster-role-to-user secret-reader system:serviceaccount:$i-jump-app-cicd:tekton-deployments-admin
+  oc adm policy add-cluster-role-to-user secret-reader system:serviceaccount:$i-jump-app-cicd:pipeline
+
+  oc new-project $i-gitops-argocd
+  oc label namespace $i-gitops-argocd argocd.argoproj.io/managed-by=$i-gitops-argocd --overwrite
+  oc adm policy add-role-to-user admin $i -n $i-gitops-argocd
+  oc adm policy add-role-to-user admin system:serviceaccount:$i-gitops-argocd:argocd-argocd-application-controller -n $i-gitops-argocd
+
+  ##
+  # Create ArgoCD Roles and Rolebindings
+  ## 
+  # oc process -f ./scripts/files/argocd_objs.yaml -p USERNAME=$i | oc apply -f -
+
+  ##
+  # Install ArgoCD Operator
+  ##
+  # oc process -f ./scripts/files/argocd_operator.yaml -p USERNAME=$i | oc apply -f -
+  # sleep 30
+
+  ## 
+  # Install ArgoCD
+  ##
+  oc apply -f ./scripts/files/argocd.yaml -n $i-gitops-argocd
+
+  ## 
+  # Install ArgoCD Project
+  ##
+  oc process -f ./scripts/files/argocd_project.yaml -p USERNAME=$i | oc apply -f - 
+
+done
+

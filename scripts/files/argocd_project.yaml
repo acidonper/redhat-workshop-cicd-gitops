@@ -1,0 +1,38 @@
+
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: jump-app-gitops-argocd-project
+objects:
+  - apiVersion: argoproj.io/v1alpha1
+    kind: AppProject
+    metadata:
+      name: jump-app
+      namespace: ${USERNAME}-gitops-argocd
+    spec:
+      description: Jump App CI/CD, GitOps, ServiceMesh and so on
+      sourceRepos:
+        - '*'
+      destinations:
+        - namespace: ${USERNAME}-jump-app-dev-k82
+          server: https://kubernetes.default.svc
+        - namespace: ${USERNAME}-jump-app-dev-helm
+          server: https://kubernetes.default.svc
+        - namespace: ${USERNAME}-jump-app-dev
+          server: https://kubernetes.default.svc
+        - namespace: ${USERNAME}-jump-app-pre
+          server: https://kubernetes.default.svc
+        - namespace: ${USERNAME}-jump-app-pro
+          server: https://kubernetes.default.svc
+        - namespace: ${USERNAME}-jump-app-cicd
+          server: https://kubernetes.default.svc
+        - namespace: ${USERNAME}-istio-system
+          server: https://kubernetes.default.svc  
+      clusterResourceWhitelist:
+        - group: '*'
+          kind: '*'
+parameters:
+  - description: Username
+    displayName: Username
+    name: USERNAME
+    required: true
