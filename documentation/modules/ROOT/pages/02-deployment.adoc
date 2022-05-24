@@ -515,7 +515,7 @@ image::argocd_new_app.png[]
 
 * Field the following fields replacing **<username>**, **<argocd_project>**, **<github_user>**, **<argocd_ocp_cluster_api>** and **<user_namespace>** respective parameters provided by the instructor
 
- ** Application Name -> **<username>-jump-app**
+ ** Application Name -> **<username>-jump-app-dev**
  ** Project -> **<argocd_project>**
  ** Sync Policy -> **Automatic**
  ** Repository URL -> **https://github.com/<github_user>/jump-app-gitops.git**
