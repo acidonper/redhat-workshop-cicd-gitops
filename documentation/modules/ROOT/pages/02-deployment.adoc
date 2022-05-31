@@ -26,7 +26,7 @@ Regarding preparing this repository, you have a shared repository in GitHub read
 
 * Login in https://github.com[GitHub]
 
-* Access https://github.com/acidonper/jump-app-gitops[GitHub * Jump App GitOps Repository]
+* Access https://github.com/davidseve/jump-app-gitops[GitHub * Jump App GitOps Repository]
 
 .Acidonper GitOps Repository
 image::github_acidonper.png[]
