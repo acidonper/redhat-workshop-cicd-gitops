@@ -161,8 +161,9 @@ image::github_front_settings_webhooks.png[]
 
  ** Payload URL -> **<listener-front-javascript-v1-deploy> public URL**
  ** Content type -> **application/json**
- ** SSL verification -> **Disabled**
-
+ ** Secret -> **s3cr3t-d@t@**
+ ** SSL verification -> **Enable**
+ 
 .GitHub Front repository settings
 image::github_front_settings_webhooks_fields.png[]
 
