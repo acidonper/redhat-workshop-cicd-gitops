@@ -6,3 +6,11 @@ spec:
   server:
     route:
       enabled: true
+  resourceExclusions: |
+    - apiGroups:
+      - tekton.dev
+      kinds:
+      - PipelineRun
+      - TaskRun
+      clusters:
+      - "*"
