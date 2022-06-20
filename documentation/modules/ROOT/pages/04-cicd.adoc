@@ -142,7 +142,7 @@ During this step, you will configure a GitHub Webhook in your own _Jump App_ Fro
 .OCP Console Pipeline Triggers 
 image::ocp_pipeline_triggers.png[]
 
-* At this point, go to  _Networking -> Routes_ and copy *eventlistener-front-javascript-v1-deploy* public URL
+* At this point, go to  _Networking -> Routes_ and copy *el-front-javascript* public URL
 
 .OCP Console listener-front-javascript-v1-deploy Trigger
 image::ocp_pipeline_triggers_javascript_url.png[]
@@ -161,8 +161,9 @@ image::github_front_settings_webhooks.png[]
 
  ** Payload URL -> **<listener-front-javascript-v1-deploy> public URL**
  ** Content type -> **application/json**
- ** SSL verification -> **Disabled**
-
+ ** Secret -> **s3cr3t-d@t@**
+ ** SSL verification -> **Enable**
+ 
 .GitHub Front repository settings
 image::github_front_settings_webhooks_fields.png[]
 

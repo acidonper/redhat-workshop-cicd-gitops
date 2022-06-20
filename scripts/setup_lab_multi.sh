@@ -140,4 +140,3 @@ do
   oc process -f ./scripts/files/argocd_project.yaml -p USERNAME=$i | oc apply -f - 
 
 done
-

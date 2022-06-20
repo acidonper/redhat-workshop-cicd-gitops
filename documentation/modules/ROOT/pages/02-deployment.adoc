@@ -292,6 +292,10 @@ IMPORTANT: ArgoCD allows admins to block or exclude some kubernetes objects in o
 .OCP Pipelines Manually Execution
 image::ocp_pipelines_manual.png[]
 
+.OCP Pipelines Manually Execution Start
+image::ocp_pipeline_manual_start.png[]
+
+IMPORTANT: Each _PipelineRun_ should use the PVC that much his name.
 
 
 [#02-deploy-jumpapp]
@@ -515,7 +519,7 @@ image::argocd_new_app.png[]
 
 * Field the following fields replacing **<username>**, **<argocd_project>**, **<github_user>**, **<argocd_ocp_cluster_api>** and **<user_namespace>** respective parameters provided by the instructor
 
- ** Application Name -> **<username>-jump-app**
+ ** Application Name -> **<username>-jump-app-dev**
  ** Project -> **<argocd_project>**
  ** Sync Policy -> **Automatic**
  ** Repository URL -> **https://github.com/<github_user>/jump-app-gitops.git**
