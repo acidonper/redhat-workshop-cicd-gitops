@@ -69,6 +69,12 @@ oc adm policy add-cluster-role-to-user admin admin
 oc apply -f ./scripts/files/tekton_cluster_roles.yaml
 
 ## 
+# Install Pipelines Operator
+##
+oc apply -f ./scripts/files/redhat_pipelines.yaml
+sleep 60
+
+## 
 # Install GitOps Operator
 ##
 oc apply -f ./scripts/files/redhat_gitops.yaml
