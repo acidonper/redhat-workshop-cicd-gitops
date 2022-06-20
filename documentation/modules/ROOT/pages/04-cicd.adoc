@@ -19,7 +19,7 @@ In order to work with a custom _Jump App_ frontend repository, you have a shared
 
 * Login in https://github.com[GitHub]
 
-* Access https://github.com/acidonper/jump-app-typescrypt-react[GitHub - Jump App GitOps Repository]
+* Access https://github.com/acidonper/jump-app-typescrypt-react[GitHub - Jump App Frontend based on React Repository]
 
 .Acidonper _Jump App_ Frontend Repository
 image::github_acidonper.png[]
