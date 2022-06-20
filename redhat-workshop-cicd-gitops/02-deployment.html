@@ -760,6 +760,24 @@ ArgoCD allows admins to block or exclude some kubernetes objects in order to avo
 </div>
 <div class="title">Figure 21. OCP Pipelines Manually Execution</div>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/ocp_pipeline_manual_start.png" alt="ocp pipeline manual start">
+</div>
+<div class="title">Figure 22. OCP Pipelines Manually Execution Start</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Each <em>PipelineRun</em> should use the PVC that much his name.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -962,7 +980,7 @@ global:
 <div class="content">
 <img src="_images/github_gitops_test.png" alt="github gitops test">
 </div>
-<div class="title">Figure 22. Student GitOps Repository rendering</div>
+<div class="title">Figure 23. Student GitOps Repository rendering</div>
 </div>
 <div class="paragraph">
 <p>Once Chart.yaml and values.yaml are created and tested, it is required to push these new files to your repository.</p>
@@ -986,7 +1004,7 @@ git push origin master</code></pre>
 <div class="content">
 <img src="_images/github_gitops_pushed.png" alt="github gitops pushed">
 </div>
-<div class="title">Figure 23. Student GitOps Repository Pushed</div>
+<div class="title">Figure 24. Student GitOps Repository Pushed</div>
 </div>
 <div class="ulist">
 <ul>
@@ -999,7 +1017,7 @@ git push origin master</code></pre>
 <div class="content">
 <img src="_images/github_gitops_customized.png" alt="github gitops customized">
 </div>
-<div class="title">Figure 24. Student GitOps Repository Customized</div>
+<div class="title">Figure 25. Student GitOps Repository Customized</div>
 </div>
 </div>
 <div class="sect2">
@@ -1021,7 +1039,7 @@ git push origin master</code></pre>
 <div class="content">
 <img src="_images/argocd_console.png" alt="argocd console">
 </div>
-<div class="title">Figure 25. ArgoCD Console</div>
+<div class="title">Figure 26. ArgoCD Console</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1034,7 +1052,7 @@ git push origin master</code></pre>
 <div class="content">
 <img src="_images/argocd_new_app.png" alt="argocd new app">
 </div>
-<div class="title">Figure 26. ArgoCD New App</div>
+<div class="title">Figure 27. ArgoCD New App</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1043,7 +1061,7 @@ git push origin master</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Application Name &#8594; <strong>&lt;username&gt;-jump-app</strong></p>
+<p>Application Name &#8594; <strong>&lt;username&gt;-jump-app-dev</strong></p>
 </li>
 <li>
 <p>Project &#8594; <strong>&lt;argocd_project&gt;</strong></p>
@@ -1075,7 +1093,7 @@ git push origin master</code></pre>
 <div class="content">
 <img src="_images/argocd_new_app_fields.png" alt="argocd new app fields">
 </div>
-<div class="title">Figure 27. ArgoCD New App Fields</div>
+<div class="title">Figure 28. ArgoCD New App Fields</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1088,13 +1106,13 @@ git push origin master</code></pre>
 <div class="content">
 <img src="_images/argocd_new_app_create.png" alt="argocd new app create">
 </div>
-<div class="title">Figure 28. ArgoCD New App Fields</div>
+<div class="title">Figure 29. ArgoCD New App Fields</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/argocd_jumpapp_creating.png" alt="argocd jumpapp creating">
 </div>
-<div class="title">Figure 29. ArgoCD Jump App Creating</div>
+<div class="title">Figure 30. ArgoCD Jump App Creating</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1107,19 +1125,19 @@ git push origin master</code></pre>
 <div class="content">
 <img src="_images/argocd_jumpapp_ok.png" alt="argocd jumpapp ok">
 </div>
-<div class="title">Figure 30. ArgoCD Jump App OK</div>
+<div class="title">Figure 31. ArgoCD Jump App OK</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/argocd_jumpapp_content_1.png" alt="argocd jumpapp content 1">
 </div>
-<div class="title">Figure 31. ArgoCD Jump App Content I</div>
+<div class="title">Figure 32. ArgoCD Jump App Content I</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/argocd_jumpapp_content_2.png" alt="argocd jumpapp content 2">
 </div>
-<div class="title">Figure 32. ArgoCD Jump App Content II</div>
+<div class="title">Figure 33. ArgoCD Jump App Content II</div>
 </div>
 </div>
 </div>
@@ -1146,7 +1164,7 @@ git push origin master</code></pre>
 <div class="content">
 <img src="_images/jump_app_pods.png" alt="jump app pods">
 </div>
-<div class="title">Figure 33. Jump App Pods</div>
+<div class="title">Figure 34. Jump App Pods</div>
 </div>
 <div class="paragraph">
 <p>If <em>Jump App</em> is already running in Openshift, it is time to access <em>Jump App</em> public services in order to test the application:</p>
@@ -1167,7 +1185,7 @@ git push origin master</code></pre>
 <div class="content">
 <img src="_images/jump-app-routes.png" alt="jump app routes">
 </div>
-<div class="title">Figure 34. Jump App Routes</div>
+<div class="title">Figure 35. Jump App Routes</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1180,7 +1198,7 @@ git push origin master</code></pre>
 <div class="content">
 <img src="_images/jump-app-back-ok.png" alt="jump app back ok">
 </div>
-<div class="title">Figure 35. Jump App Back</div>
+<div class="title">Figure 36. Jump App Back</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1198,7 +1216,7 @@ git push origin master</code></pre>
 <div class="content">
 <img src="_images/jump-app-front-ok.png" alt="jump app front ok">
 </div>
-<div class="title">Figure 36. Jump App Frontend Web UI</div>
+<div class="title">Figure 37. Jump App Frontend Web UI</div>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1216,7 +1234,7 @@ It is required to accept <strong>self-signed certificates</strong> provided by O
 <div class="content">
 <img src="_images/certs_warning.png" alt="certs warning" width="50%">
 </div>
-<div class="title">Figure 37. Openshift Self-signed Certificates Warning</div>
+<div class="title">Figure 38. Openshift Self-signed Certificates Warning</div>
 </div>
 </div>
 </div>
