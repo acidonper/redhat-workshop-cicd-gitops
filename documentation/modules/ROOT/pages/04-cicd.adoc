@@ -265,7 +265,7 @@ cd ~/jump-app-typescrypt-react
 [.console-input]
 [source,input,subs="+macros,+attributes"]
 ----
-git checkout develop
+git checkout -b develop
 ----
 
 * Modify _Jump App_ Frontend title in order to added your username
