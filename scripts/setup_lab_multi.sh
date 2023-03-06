@@ -16,7 +16,12 @@ user08
 user09
 user10
 user11
+user12
+user13
+user14
+user15
 "
+GITOPS_NS="openshift-gitops"
 
 ##
 # Adding user to htpasswd
@@ -146,3 +151,10 @@ do
   oc process -f ./scripts/files/argocd_project.yaml -p USERNAME=$i | oc apply -f - 
 
 done
+
+for i in $USERS
+do
+  GITOPS_NS="${GITOPS_NS},${i}-gitops-argocd"
+done
+
+oc patch subscription openshift-gitops-operator -n openshift-operators -p '{"spec":{"config":{"env":[{"name":"ARGOCD_CLUSTER_CONFIG_NAMESPACES","value":"'${GITOPS_NS}'"}]}}}' --type=merge
